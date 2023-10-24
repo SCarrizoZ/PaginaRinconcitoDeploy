@@ -1,10 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.documentation import include_docs_urls
+from rest_framework.routers import DefaultRouter
 from . import views
 
+router = DefaultRouter()
+router.register(r"products", views.ProductViewSet, basename="products")
+
 urlpatterns = [
-    path("", views.get_products, name="products"),
-    path("get/<str:name>/", views.get_product, name="product"),
-    path("post/", views.create_product, name="create_product"),
-    path("edit/<int:pk>/", views.edit_product, name="edit_product"),
-    path("delete/<int:pk>/", views.delete_product, name="delete_product"),
+    path("api/v1/", include(router.urls)),
+    path("docs/", include_docs_urls(title="API de Productos")),
 ]

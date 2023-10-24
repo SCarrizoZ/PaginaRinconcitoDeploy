@@ -14,6 +14,9 @@ class Product(models.Model):
     count_in_stock = models.IntegerField(default=0)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
@@ -21,3 +24,6 @@ class Review(models.Model):
     rating = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     description = models.TextField(blank=True)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.created)
