@@ -9,7 +9,7 @@ import { CartContext } from '../context/CartContext'
 export function Product({ product }) {
   const { addToCart } = useContext(CartContext)
   // destructure product's properties
-  const { id, image, category, name: title, price, user, num_reviews, count_in_stock, created } = product
+  const { id, image, category, title, price, user, num_reviews, count_in_stock, created } = product
   return (
     //<div className='w-full h-[300px] bg-pink-200 mb-4' key={id}> {title}</div>
     <div className='rounded-lg border border-[#e4e4e4]'>
