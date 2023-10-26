@@ -3,19 +3,20 @@ import React, {useContext} from 'react'
 import { ProductContext } from '../context/ProductContext'
 // import components
 import {Product} from "../components/Product"
-
+import { Hero } from '../components/Hero';
 export  function Home() {
   // get products from product context
   const {products}  = useContext(ProductContext);
   //console.log(products)
   const filteredProducts = products.filter(item=>{
-    return item.category === "men's clothing" || item.category === "women's clothing"
+    return item.category === "Guitarras" || item.category === "women's clothing"
   })
 
   //console.log(filteredProducts)
   return (
     
-    <div className='mt-10'>
+    <div className=''>
+      <Hero/>
       {/* DISEÑO DE PRODUCTOS */}
       <section className='py-16'>
         <div className="container mx-auto">

@@ -20,12 +20,12 @@ export  function Header() {
     })
   })
   return (
-    <header style={{background:"#373333"}} className={`p-10 ${isActive ? 'py-4 shadow-md':'py-6'} fixed w-full  z-10 transition-all `}>
+    <header style={{background:"#373333"}} className={` ${isActive ? 'py-4 shadow-md':'py-6'}  w-full  z-10 transition-all `}>
       <div className='container mx-auto flex items-center justify-between h-full'>
         {/* Logo */}
         <Link to={'/'}>
           <div>
-            <img src={logoImg} alt="" className='w-[40px]'/>
+            <img src={logoImg} alt="" className='w-[80px]'/>
           </div>
         </Link>
         {/* Cart / user*/}
