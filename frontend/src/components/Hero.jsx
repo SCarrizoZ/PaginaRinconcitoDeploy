@@ -1,22 +1,18 @@
-import React from 'react'
-// Images
-import rinconcito_hero from "../img/rinconcito_hero.png"
-// Link
-import {Link} from 'react-router-dom'
+import React from 'react';
+import rinconcito_hero from '../img/rinconcito_hero.png';
+import { Link } from 'react-router-dom';
 
-export  function Hero() {
+export function Hero() {
   return (
-    <section className='bg-gray-200 h-[800px] bg-hero  bg-no-repeat bg-cover bg-center '>
-      <div className='container mx-auto flex justify-around h-full'>
-        {/* text */}
-        <div className='flex'>
-          <div></div>
+    <div className="bg-gray-900">
+      <div className="w-full overflow-hidden">
+        <div className="flex">
+          <div className="w-screen">
+            <img src={rinconcito_hero} alt="Imagen 1" className="w-full" />
+          </div>
         </div>
-        {/* image */}
-        
-          {/*<img src={rinconcito_hero} alt="" />*/}
-        
       </div>
-    </section>
-  )
+    </div>
+  );
 }
+
