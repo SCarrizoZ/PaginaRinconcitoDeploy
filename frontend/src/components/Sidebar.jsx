@@ -6,15 +6,13 @@ import { FiTrash2 } from 'react-icons/fi';
 import { CartItem } from '../components/CartItem';
 import { SidebarContext } from '../context/SidebarContext';
 import { CartContext } from '../context/CartContext';
-
+import { formatPrice } from '../utils'
 export function Sidebar() {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
 
   // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
-  const formatPrice = (price) => {
-    return `$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} CLP`;
-  };
+
 
 
   // Calcular el subtotal en números enteros y formatear
