@@ -6,10 +6,10 @@ import './index.css'
 import { ProductProvider } from "./context/ProductContext"
 import { SidebarProvider } from './context/SidebarContext'
 import { CartProvider } from './context/CartContext.jsx'
-import CategoryProvider from './context/CategoryContext.jsx'
+import FiltersProvider from './context/FiltersContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-  <CategoryProvider>
+  <FiltersProvider>
     <SidebarProvider>
       <CartProvider>
         <ProductProvider>
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         </ProductProvider>
       </CartProvider>
     </SidebarProvider>
-  </CategoryProvider>
+  </FiltersProvider>
 
 
 )

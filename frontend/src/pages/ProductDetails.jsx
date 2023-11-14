@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { ProductContext } from '../context/ProductContext';
@@ -9,12 +9,14 @@ export const ProductDetails = () => {
   const { addToCart } = useContext(CartContext);
   console.log(products)
 
- 
+  const productsArray = Array.isArray(products.data) ? products.data : [];
 
   // Obtén el producto por su id
-  const product = products.data.find((item) => {
+  const product = productsArray.find((item) => {
     return item.id === parseInt(id);
   });
+
+  console.log(product)
 
   if (!product) {
     return <section className='h-screen flex justify-center'></section>;

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from '../context/CartContext';
@@ -11,7 +11,7 @@ export function Product({ product }) {
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
   console.log(product)
   // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
- 
+
 
   return (
     <div className='rounded-lg border border-[#e4e4e4]'>

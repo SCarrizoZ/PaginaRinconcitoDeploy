@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import { IoMdArrowForward } from 'react-icons/io';
 import { RiCloseFill } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdRemove, IoMdAdd, IoMdClose } from 'react-icons/io';
 import { RiCloseCircleLine } from 'react-icons/ri';
