@@ -113,7 +113,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
 
         {/* <FaSearch className='absolute right-0 top-0 mt-3 mr-4' onClick={()=>{resetInput()}}/> */}
       </div>
-      <div className={`  shadow-lg ${searchData.length === 0 ? "h-0 hidden" : "h-[500px] block"}  transition-all result bg-white w-[400px]  mt-2 absolute overflow-y-auto p-2 rounded-lg duration-1000`}>
+      <div className={`  shadow-lg ${searchData.length === 0 ? "h-0 hidden" : "h-[500px] block"}  transition-all result bg-white w-[400px]  mt-2 absolute overflow-y-auto p-2 rounded-lg duration-1000 z-10`}>
         {
           searchData.map((product, index) => {
 

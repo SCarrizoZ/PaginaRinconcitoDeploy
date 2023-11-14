@@ -105,7 +105,7 @@ export function Header() {
             >
 
               {showCategories && (
-                <div className="absolute top-full left-0 bg-white p-2 border border-gray-300 shadow-lg rounded-lg">
+                <div className="absolute top-full left-0 bg-white p-2 border border-gray-300 shadow-lg rounded-lg z-10">
 
                   {categories.data?.map((category) => {
                     const { id, attributes } = category;
