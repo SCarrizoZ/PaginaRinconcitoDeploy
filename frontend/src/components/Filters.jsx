@@ -25,7 +25,6 @@ export const Filters = ({ category, filteredProducts }) => {
     }
   }, [minPriceFilterId]);
 
-
   return (
     <>
       <div className="container mx-auto px-4 w-[300px] border-2 mt-5">
@@ -38,58 +37,10 @@ export const Filters = ({ category, filteredProducts }) => {
         </header>
         <div>
           <div className="cont">
-            <div className="categories border-b-2 py-3 ">
-              <button className="flex justify-between w-full">
-                <div className="filter-name">Categorías</div>
-              </button>
-              <div className="list">
-                <div className="list-cont hidden transition-all duration-300">
-                  <ul>
-                    <li className="category">
-                      <a href="" className="w-full flex justify-between">
-                        <span className="before:content-['+']">Guitarras</span>
-                        <span>100</span>
-                      </a>
-                    </li>
-                    <li className="category">
-                      <a href="" className="w-full flex justify-between">
-                        <span className="before:content-['+']">Guitarras</span>
-                        <span>100</span>
-                      </a>
-                    </li>
-                    <li className="category">
-                      <a href="" className="w-full flex justify-between">
-                        <span className="before:content-['+']">Guitarras</span>
-                        <span>100</span>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="brands border-b-2 py-3">
-              <button className="flex justify-between w-full">
-                <div className="filter-name">Brands</div>
-                <div className="icon"> + </div>
-              </button>
-              <div className="list hidden">
-                <div>
-                  <ul>
-                    <li>
-                      <label htmlFor="" className="flex gap-2">
-                        <input type="checkbox" />
-                        <span>Marca1</span>
-                        <span className="ml-auto">Quantity 200</span>
-                      </label>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
             <div className="price border-b-2 py-3">
-              <button className="flex justify-between w-full">
+              <p className="flex justify-between w-full">
                 <div className="filter-name">Precio</div>
-              </button>
+              </p >
               <input
                 type='range'
                 id={minPriceFilterId}
