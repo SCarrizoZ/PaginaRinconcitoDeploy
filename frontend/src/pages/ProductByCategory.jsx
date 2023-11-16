@@ -22,9 +22,15 @@ export const ProductByCategory = () => {
   });
 
   return (
-    <div className="">
+    <div className="flex relative">
+      <div className='bg-yellow-300 flex-1 relative'>
+        <div className='sticky top-[40px] bg-black w-[100px] h-[100px]'>
+          Filtros
+        </div>
+      </div>
       {/* DISEÑO DE PRODUCTOS */}
-      <section className="py-16">
+
+      <section className="py-16 bg-pink-200 ml-auto">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
             {filteredProducts?.map(product => (
