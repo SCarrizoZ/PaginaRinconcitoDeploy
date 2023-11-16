@@ -11,7 +11,7 @@ import {Sidebar} from "./components/Sidebar"
 import {Footer} from "./components/Footer"
 export default function App() {
   return (
-    <div className="overflow-hidden">
+    <div className="">
       <BrowserRouter>
         <Header/>
         <Routes>

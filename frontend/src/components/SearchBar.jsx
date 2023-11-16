@@ -108,7 +108,6 @@ export const SearchBar = ({setResults, setIsSelect, isSelect}) => {
           input===""?
           <FaSearch className='absolute right-0 top-0 mt-3 mr-4' onClick={()=>{resetInput()}}/>:
           <RiCloseFill className='absolute right-0 top-0 mt-3 mr-4' onClick={()=>{resetInput()}}/>
-          
         }
 
         {/* <FaSearch className='absolute right-0 top-0 mt-3 mr-4' onClick={()=>{resetInput()}}/> */}
