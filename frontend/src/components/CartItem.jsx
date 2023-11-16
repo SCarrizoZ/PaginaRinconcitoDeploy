@@ -1,13 +1,11 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { IoMdRemove, IoMdAdd, IoMdClose } from 'react-icons/io';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { CartContext } from '../context/CartContext';
-
+import { formatPrice } from '../utils'
 // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
-const formatPrice = (price) => {
-  return `$${price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}CLP`;
-};
+
 
 export function CartItem({ item }) {
   // Deconstruye las propiedades del elemento del carrito de acuerdo a la nueva estructura de datos

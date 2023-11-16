@@ -1,7 +1,9 @@
+import { apiUrl } from "../../config";
+
 // FETCH API
 export const getProducts = async () => {
   try {
-    const response = await fetch("https://rinconcito-strapi.onrender.com/api/productos?populate[portada][fields][0]=url&populate[subcategoria][fields][0]=nombre");
+    const response = await fetch(`${apiUrl}/productos?populate[portada][fields][0]=url&populate[subcategoria][fields][0]=nombre&populate[marca][fields][0]=nombre`);
     if (response.ok) {
       const data = await response.json();
       return data;
@@ -14,7 +16,6 @@ export const getProducts = async () => {
     return null;
   }
 };
-
 
 
 
