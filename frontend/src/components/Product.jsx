@@ -10,7 +10,6 @@ export function Product({ product }) {
   const { id, attributes } = product;
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
   console.log(product)
-  // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
 
 
   return (

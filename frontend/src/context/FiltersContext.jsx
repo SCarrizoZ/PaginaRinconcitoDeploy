@@ -8,6 +8,8 @@ export const FiltersProvider = ({ children }) => {
   // Estado del producto
   const [categories, setCategories] = useState([])
   const [brands, setBrands] = useState([])
+  const [minPrice, setMinPrice] = useState(0)
+  const [subcategories, setSubcategories] = useState([])
   // Fetch con useEffect
   useEffect(() => {
     // metodo getCategories
@@ -27,7 +29,7 @@ export const FiltersProvider = ({ children }) => {
 
   }, [])
 
-  return <FiltersContext.Provider value={{ categories, brands }}>{children}</FiltersContext.Provider>
+  return <FiltersContext.Provider value={{ categories, brands, minPrice, subcategories, setMinPrice, setSubcategories }}>{children}</FiltersContext.Provider>
 
 }
 
