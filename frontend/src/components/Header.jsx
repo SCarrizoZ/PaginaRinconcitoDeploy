@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 import {RiAlignJustify} from "react-icons/ri"
@@ -8,8 +8,7 @@ import logoImg from '../img/logonuevofinal_edited.png'
 
 import { SidebarContext } from '../context/SidebarContext'
 import { CartContext } from '../context/CartContext'
-import { ProductContext } from '../context/ProductContext'
-import { CategoryContext } from '../context/CategoryContext'
+import { FiltersContext } from '../context/FiltersContext'
 
 import { SearchBar } from './SearchBar'
 
@@ -17,7 +16,7 @@ import { SearchBar } from './SearchBar'
 export function Header() {
   const { itemAmount, setItemAmount } = useContext(CartContext);
   const { isOpen, setIsOpen } = useContext(SidebarContext);
-  const { categories } = useContext(CategoryContext)
+  const { categories } = useContext(FiltersContext)
 
   const [isActive, setIsActive] = useState(false);
   const [showCategories, setShowCategories] = useState(false);

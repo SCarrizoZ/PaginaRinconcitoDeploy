@@ -1,6 +1,5 @@
-import React from 'react';
 import rinconcito_hero from '../img/rinconcito_hero.png';
-import { Link } from 'react-router-dom';
+
 
 export function Hero() {
   return (
