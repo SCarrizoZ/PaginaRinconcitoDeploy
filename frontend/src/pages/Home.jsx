@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Product } from '../components/Product';
 import { Hero } from '../components/Hero';
+import marcas from '../img/marcas.png';
 
 export function Home() {
   // Obtén los productos del contexto
@@ -13,6 +14,7 @@ export function Home() {
   return (
     <div className="">
       <Hero />
+      <h2 className='titulo mt-3 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
       {/* DISEÑO DE PRODUCTOS */}
       <section className="py-16">
         <div className="container mx-auto">
@@ -23,6 +25,8 @@ export function Home() {
           </div>
         </div>
       </section>
+      <h2 className='titulo mt-3 text-center' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
+      <img src={marcas} alt="marcas" />
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { ProductProvider } from "./context/ProductContext"
 import { SidebarProvider } from './context/SidebarContext'
 import { CartProvider } from './context/CartContext.jsx'
 import FiltersProvider from './context/FiltersContext.jsx'
+
 ReactDOM.createRoot(document.getElementById('root')).render(
 
   <FiltersProvider>
