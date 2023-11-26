@@ -36,7 +36,7 @@ export const ProductByCategory = () => {
   }, [filteredProductsByCategory, minPrice]);
 
   return (
-    <div className="flex">
+    <div className="flex h-screen">
       <div className='mx-5 mt-3'>
         <div className=''>
           <Filters filteredProducts={filteredProductsByCategory} />

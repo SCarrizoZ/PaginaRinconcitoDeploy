@@ -19,7 +19,7 @@ export const ProductDetails = () => {
   console.log(product)
 
   if (!product) {
-    return <section className='h-screen flex justify-center'></section>;
+    return <section className='h-full flex justify-center'></section>;
   }
 
   const { attributes } = product;
