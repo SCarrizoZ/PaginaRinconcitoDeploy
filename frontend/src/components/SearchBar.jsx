@@ -10,7 +10,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   const [searchData, setSearchData] = useState([])
   const { products } = useContext(ProductContext)
   const [selectedItem, setSelectedItem] = useState(-1)
-  console.log(products)
+
   let menuRef = useRef();
   const handleChange = (value) => {
     setInput(value)
@@ -21,7 +21,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
     setSelectedItem(-1)
   }
   const handleKeyDown = (e) => {
-    console.log(e.key, selectedItem)
+    // console.log(e.key, selectedItem)
     if (selectedItem < searchData.length) {
       if (e.key === "ArrowUp" && selectedItem > 0) {
         setSelectedItem(prev => prev - 1)
@@ -70,13 +70,13 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
       //     return setSearchData(data)
       // })
       // FILTER LOCAL DATA
-      console.log(products.data)
+
       const newFilterData = products.data.filter(product => {
         const productName = product.attributes.nombre.toLowerCase()
         return productName.includes(input.toLowerCase())
 
       })
-      console.log(searchData)
+
       setSearchData(newFilterData)
     } else {
       setSearchData([])
@@ -85,11 +85,10 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
 
   const resetInput = () => {
     setInput('')
-    console.log("aaa")
+
     setIsSelect(false)
   }
 
-  console.log("selectedItem=", selectedItem)
   return (
     <div className="search-section" ref={menuRef}>
 
@@ -122,9 +121,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
                   <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>
                     <img src={product.attributes.portada.data.attributes.url} alt="" className='w-[50px] h-auto' />
                   </Link>
-                  {
-                    console.log("index=", index)
-                  }
+
                 </div>
                 <div className='w-[400px]'>
                   <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>

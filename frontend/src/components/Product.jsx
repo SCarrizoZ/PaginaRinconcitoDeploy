@@ -9,7 +9,7 @@ export function Product({ product }) {
   // Deconstruye las propiedades del producto de la respuesta de the API
   const { id, attributes } = product;
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
-  console.log(product)
+  // console.log(product)
 
 
   return (
