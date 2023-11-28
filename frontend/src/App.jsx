@@ -17,16 +17,16 @@ export default function App() {
   }, [])
   
   return (
-    <div className="bg-gray-200">
+    <div className="bg-gray-200 min-h-[100vh]">
       <BrowserRouter>
         <Header />
-        <div className="mb-[20%] ">
+        {/* <div className="mb-[20%] "> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/categoria/:nombre" element={<ProductByCategory />} />
           </Routes>
-        </div>
+        {/* </div> */}
         <Sidebar />
         <Footer />
       </BrowserRouter>
