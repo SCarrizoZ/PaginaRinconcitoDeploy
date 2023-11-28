@@ -128,7 +128,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
               </div>
             </header>
             <div className=''>
-              <div className="cont bg-green-200 p-2">
+              <div className="cont  p-2">
                 {/* Filter lists */}
                 <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
                 {brandList.includes("Unknown Brand") ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}

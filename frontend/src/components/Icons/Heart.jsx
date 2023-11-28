@@ -14,7 +14,7 @@ const Heart = () => {
       onClick={() => setIsOpen(!isOpen)}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      className='flex relative hidden md:block'
+      className=' relative hidden md:block'
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

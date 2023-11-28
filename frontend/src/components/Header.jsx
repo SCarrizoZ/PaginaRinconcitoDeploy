@@ -60,12 +60,12 @@ export function Header() {
         <div className='container flex flex-1 items-center  gap-3  '>
           {/* Logo */}
 
-          <div className='flex  items-center mx-auto md:mx-0 justify-center mt-7'> {/* Ajustar según tus necesidades */}
+          <div className='flex  items-center mx-auto md:mx-0 justify-center md:mt-7'> {/* Ajustar según tus necesidades */}
             <Link to={'/'}>
               <div className='relative'>
-                <img src={logoImg} alt="" className='w-[120px]' />
+                <img src={logoImg} alt="" className='w-[120px] min-w-[120px]' />
               </div>
-              <div>
+              <div className={' hidden md:block'} >
                 <h1 className='text-xl font-bold text-red-600 text-center titulo'>Rinconcito<br />Musical</h1>
               </div>
             </Link>
@@ -91,7 +91,7 @@ export function Header() {
             <Heart />
           </div>
 
-          <div>
+          <div className={'relative hidden md:block'} >
             <TransitionsModal user={user} />
           </div>
 
