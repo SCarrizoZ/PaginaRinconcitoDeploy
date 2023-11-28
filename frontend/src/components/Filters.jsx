@@ -1,70 +1,95 @@
-import { useContext, useEffect, useId, useState } from "react";
+import { useContext, useEffect, useId, useState, useRef } from "react";
 import { FiltersContext } from "../context/FiltersContext";
-import FilterList from "./FilterList";
-
-export const Filters = ({ products }) => {
+import { FilterComponent } from "./FilterList"
+import { Product } from '../components/Product';
+export const Filters = ({ productList, subcategoriesList, brandList, nombre , setProductList}) => {
 
   const { setMinPrice, minPrice, subcategories, setSubcategories } = useContext(FiltersContext)
   const minPriceFilterId = useId()
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]); // this will be used to filter the products based on brands
   const [fileredProductList, setFilteredProductList] = useState([]);
+  const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
+  const [products, setProducts] = useState(); // this will be used to filter the products based on brands
+  const rangeInputRef = useRef(null);
   // CATEGORIES OP
   const addCategory = (category) => {
-    if(!selectedCategories.includes(category)){
-        setSelectedCategories(prev => ([...prev, category]))
-        
-    }   
-    // resetRangeSlider()  
-    
-  }
-  console.log(selectedCategories)
-  const removeCategory = (category) => {
-    if(selectedCategories.includes(category)){
-        const removedList = selectedCategories.filter((item) => (item !== category));
-        setSelectedCategories(removedList);
+    if (!selectedCategories.includes(category)) {
+      setSelectedCategories(prev => ([...prev, category]))
+
     }
-    // resetRangeSlider()  
+    resetRangeSlider()  
+
+  }
+  const resetFilters = () => {
+    setSelectedCategories([]);
+    setSelectedBrands([]);
+    setMinPrice(0);
+  }
+
+  const removeCategory = (category) => {
+    if (selectedCategories.includes(category)) {
+      const removedList = selectedCategories.filter((item) => (item !== category));
+      setSelectedCategories(removedList);
+    }
+    resetRangeSlider()  
   }
   // BRANDS OP
   const addBrand = (brand) => {
-    if(!selectedBrands.includes(brand)){
-        setSelectedBrands(prev => ([...prev, brand]))
+    if (!selectedBrands.includes(brand)) {
+      setSelectedBrands(prev => ([...prev, brand]))
     }
-    // resetRangeSlider()  
-    
+    resetRangeSlider()  
+
+  }
+  const resetMinPrice = () => {
+    setMinPrice(0);
+  };
+  const resetRangeSlider = ()=>{
+    rangeInputRef.current.value=0
+    resetMinPrice(0)
   }
   const removeBrand = (brand) => {
-    if(selectedBrands.includes(brand)){
-        const removedList = selectedBrands.filter((item) => (item !== brand));
-        setSelectedBrands(removedList);
-    } 
-    // resetRangeSlider()  
+    if (selectedBrands.includes(brand)) {
+      const removedList = selectedBrands.filter((item) => (item !== brand));
+      setSelectedBrands(removedList);
+    }
+    resetRangeSlider()  
   }
   const applyFilter = () => {
-    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0) {
-        return products?.data;
-    }
-    // if(selectedCategories.length ===0 && selectedBrands.length ===0 && minPrice!=0){
-
-    //   resetMinPrice()
+    // if(productList!==undefined){
+    //   console.log(productList[0]?.attributes?.subcategoria?.data?.attributes?.nombre)
+    //   console.log(productList[0]?.attributes?.marca?.data?.attributes?.nombre)
+    //   console.log(productList[0]?.attributes?.precio)
+      
     // }
 
-    return products?.data.filter(item =>
-        
-        {
-          return (selectedCategories.length === 0 || selectedCategories.includes(item.category)) &&
-        (selectedBrands.length === 0 || selectedBrands.includes(item.brand)) &&
-        (minPrice === 0 || item.price >= minPrice)}
+    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0) {
+      console.log("no hay nada seleccionado")
+      return products
+    }
+    
+    return products.filter(product => {
+      return (selectedCategories.length === 0 || selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)) &&
+        (selectedBrands.length === 0 || selectedBrands.includes(product?.attributes?.marca?.data?.attributes?.nombre)) &&
+        (minPrice === 0 || parseInt(product?.attributes?.precio) >= minPrice)
+    }
     );
   };
-  
   useEffect(() => {
-    console.log(selectedCategories);
+    setProducts(productList)
+  }, [productList])
+  useEffect(() => {
+    // console.log(selectedCategories);
     const filteredList = applyFilter();
     setFilteredProductList(filteredList);
+    // console.log(filteredList)
     // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-}, [selectedCategories, products?.data, selectedBrands, minPrice]);
+  }, [selectedCategories, selectedBrands, minPrice, products]);
+
+  useEffect(() => {
+    resetFilters();
+  }, [nombre]);
 
   const handleChangeMinPrice = (event) => {
     const newMinPrice = event.target.value
@@ -88,36 +113,69 @@ export const Filters = ({ products }) => {
 
   return (
     <>
-      <div className="container mx-auto px-4 w-[300px] border-2 mt-5">
-        <header className="border-b-2 pb-3">
-          <div>
-            <div className="flex justify-between">
-              <div className="font-bold">Filtros</div>
+    
+      <div className=' mt-3 mx-3 p-10 hidden md:block   '> {/* GREEN */}
+        
+        <div className='border-2 rounded-lg p-4 bg-gray-100 '>
+
+          <header className="border-b-2 pb-3">
+            <div>
+              <div className="flex justify-between">
+                <div className="font-bold">Filtros</div>
+
+              </div>
+            </div>
+          </header>
+          <div className=''>
+            <div className="cont">
+              {/* Filter lists */}
+              <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
+              {brandList.includes("Unknown Brand") ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
+              {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
+
+
+              <div className="price border-b-2 py-3">
+                <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
+
+                  <div className="filter-name">Precio</div>
+                  <div className="icon"> {openFilter ? "-" : "+"}</div>
+                </button>
+                <div className={`flex justify-center items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
+                    <input
+                    className='accent-red-500'
+                    value={minPrice}
+                      type='range'
+                      id={minPriceFilterId}
+                      min='0'
+                      max={maxPrice}
+                      ref={rangeInputRef}
+                      onChange={handleChangeMinPrice}
+                      step={10000}
+                    />
+                    <span>${minPrice}</span>
+                  </div>
+
+              </div>
+
             </div>
           </div>
-        </header>
-        <div>
-          <div className="cont">
-            {/* CATEGORIES */}
-            <FilterList content={{name:"Categorias",selectedElements:selectedCategories,addElement:addCategory,removeElement:removeCategory}} subset={subcategories} filterName="Categorias" />
-            {/* BRANDS */}
-            {/* PRICE */}
-            <div className="price border-b-2 py-3">
-              <p className="flex justify-between w-full">
-                <div className="filter-name">Precio</div>
-              </p >
-              <input
-                type='range'
-                id={minPriceFilterId}
-                min='0'
-                max={maxPrice}
-                onChange={handleChangeMinPrice}
-              />
-              <span>${minPrice}</span>
-            </div>
-          </div>
-        </div>
+          <button onClick={()=>{console.log(products)}} className="bg-slate-200">Click Me😡</button>
+        </div> 
       </div>
+      {/* pink be */}
+      <section className="py-16   mt-3  flex-1">
+          <div className=" w-full">
+            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
+
+              {fileredProductList?.map(product => (
+                <Product key={product.id} product={product} />
+              ))}
+            </div>
+          </div>
+      </section>
+
+
+
     </>
   );
 }

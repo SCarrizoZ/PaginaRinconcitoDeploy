@@ -28,7 +28,7 @@ export const FilterComponent = ({subset, filterName,content}) => {
                         }
                         }}>
                           <span className="">
-                            <input className="accent-red-400 text-white mx-2 hover:cursor-pointer" type="checkbox" value={item} checked={content.selectedElements.includes(item)}/>
+                            <input onChange={()=>{}}className="accent-red-400 text-white mx-2 hover:cursor-pointer" type="checkbox" value={item} checked={content.selectedElements.includes(item)}/>
                             <label className="hover:cursor-pointer">{item}</label>
                           </span>
                         

@@ -11,7 +11,7 @@ export const ProductProvider = ({ children }) => {
     // metodo getProduct
     async function fetchProducts() {
       const data = await getProducts()
-
+      console.log(data)
       setProducts(data)
 
     }

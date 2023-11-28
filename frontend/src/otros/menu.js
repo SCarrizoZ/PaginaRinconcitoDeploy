@@ -3,4 +3,3 @@ const menubtn = document.getElementById('menu-button');
       menubtn.addEventListener('click', () => {
           menu.classList.toggle('hidden');
       })
-console.log("holaaaaaaaaaaa")
