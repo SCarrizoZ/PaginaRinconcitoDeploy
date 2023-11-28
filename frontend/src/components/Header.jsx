@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { RiAlignJustify } from "react-icons/ri"
 import { RiShoppingCart2Line } from "react-icons/ri"
-import { BiUserCircle } from "react-icons/bi"
+
+import Heart from './Icons/Heart';
 import logoImg from '../img/logonuevofinal_edited.png'
 
 import { SidebarContext } from '../context/SidebarContext'
@@ -11,6 +12,8 @@ import { CartContext } from '../context/CartContext'
 import { FiltersContext } from '../context/FiltersContext'
 
 import { SearchBar } from './SearchBar'
+
+import TransitionsModal from './LoginModal';
 
 
 export function Header() {
@@ -22,8 +25,16 @@ export function Header() {
   const [showCategories, setShowCategories] = useState(false);
   const [isSelect, setIsSelect] = useState(false)
   const [results, setResults] = useState([])
+  const [user, setUser] = useState(getUser())
 
-
+  function getUser() {
+    const user = JSON.parse(localStorage.getItem('user'))
+    if (user) {
+      return user
+    } else {
+      return null
+    }
+  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -49,10 +60,13 @@ export function Header() {
         <div className='container flex flex-1 items-center  gap-3  '>
           {/* Logo */}
 
-          <div className='flex  items-center mx-auto md:mx-0 justify-center'> {/* Ajustar según tus necesidades */}
+          <div className='flex  items-center mx-auto md:mx-0 justify-center mt-7'> {/* Ajustar según tus necesidades */}
             <Link to={'/'}>
               <div className='relative'>
                 <img src={logoImg} alt="" className='w-[120px]' />
+              </div>
+              <div>
+                <h1 className='text-xl font-bold text-red-600 text-center titulo'>Rinconcito<br />Musical</h1>
               </div>
             </Link>
           </div>
@@ -72,15 +86,13 @@ export function Header() {
             <RiShoppingCart2Line color="red" className='text-5xl' />
             <div className='bg-red-500 absolute -right-2 -bottom-2 texr-[12px] w-[19px] h-[18px] text-white flex justify-center items-center rounded-full'>{itemAmount}</div>
           </div>
-          <div onClick={() => setIsOpen(!isOpen)}
-            className=' cursor-pointer flex relative hidden md:block '>
-            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-heart" width="50" height="50" viewBox="0 0 24 24" strokeWidth="2" stroke="red" fill="none" strokeLinecap="round" strokeLinejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" /></svg>
 
+          <div>
+            <Heart />
           </div>
-          <div onClick={() => setIsOpen(!isOpen)}
-            className=' cursor-pointer flex relative hidden md:block '>
-            <BiUserCircle color="red" className='text-5xl' />
 
+          <div>
+            <TransitionsModal user={user} />
           </div>
 
         </div>
@@ -88,7 +100,7 @@ export function Header() {
 
       </div>
       {/* BOTTOM AREA */}
-      <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 '>
+      <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 mt-8'>
         <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly">
           <li>
             <a className="text-white hover:text-red-500 text-2xl" href="#">Catálogo</a>
@@ -125,6 +137,6 @@ export function Header() {
 
         </ul>
       </div>
-    </header>
+    </header >
   );
 }
