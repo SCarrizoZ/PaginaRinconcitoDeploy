@@ -17,14 +17,16 @@ export default function App() {
   }, [])
   
   return (
-    <div className="">
+    <div className="bg-gray-200">
       <BrowserRouter>
         <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/product/:id" element={<ProductDetails />} />
-          <Route path="/categoria/:nombre" element={<ProductByCategory />} />
-        </Routes>
+        <div className="mb-[30%] ">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/categoria/:nombre" element={<ProductByCategory />} />
+          </Routes>
+        </div>
         <Sidebar />
         <Footer />
       </BrowserRouter>

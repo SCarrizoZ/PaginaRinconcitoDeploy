@@ -5,14 +5,14 @@ export const FilterComponent = ({subset, filterName,content}) => {
   console.log(subset)
 
   return (
-    <div className="categories border-b-2 border-gray-400 py-3 ">
+    <div className=" border-b-2 border-gray-400 py-3 ">
         <button className=" flex justify-between w-full" onClick={()=>{setOpenFilter(!openFilter)}}>
           <div className="filter-name">{content.name}</div>
           <div className="icon"> {openFilter?"-":"+"}</div>
         </button>
           <div className="list ">
-            <div className={`list-cont  ${openFilter ? "max-h-[350px] ":" max-h-0"}   transition-all duration-300 overflow-auto `} >
-              <ul className="overflow-y">
+            <div className={`list-cont  ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-500 overflow-auto `} >
+              <ul className="">
                 {
                   subset?.map((item,index) => (
                     <li key={index} className="category hover:cursor-pointer">

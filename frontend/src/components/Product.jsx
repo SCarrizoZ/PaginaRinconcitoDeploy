@@ -13,7 +13,7 @@ export function Product({ product }) {
 
 
   return (
-<div className='rounded-lg border border-[#e4e4e4]'>
+<div className='rounded-lg border border-[#e4e4e4] bg-white'>
   {/** Container de la portada TOP */}
   <div className='border-b h-[300px] mb-4 relative overflow-hidden group transition'>
     {/* Imagenes y enlace al detalle del producto */}

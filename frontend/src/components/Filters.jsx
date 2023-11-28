@@ -113,66 +113,68 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
 
   return (
     <>
-    
-      <div className=' mt-3 mx-3 p-10 hidden md:block   '> {/* GREEN */}
-        
-        <div className='border-2 rounded-lg p-4 bg-gray-100 '>
+      <div className="flex container ">
 
-          <header className="border-b-2 pb-3">
-            <div>
-              <div className="flex justify-between">
-                <div className="font-bold">Filtros</div>
+        <div className=' mt-3 mx-3 p-10 hidden md:block  '> {/* GREEN */}
+          
+          <div className='border-2 rounded-lg p-4 bg-white '>
+
+            <header className="border-b-2 pb-3">
+              <div>
+                <div className="flex justify-between">
+                  <div className="font-bold">Filtros</div>
+
+                </div>
+              </div>
+            </header>
+            <div className=''>
+              <div className="cont">
+                {/* Filter lists */}
+                <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
+                {brandList.includes("Unknown Brand") ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
+                {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
+
+
+                <div className="price border-b-2 py-3">
+                  <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
+
+                    <div className="filter-name">Precio</div>
+                    <div className="icon"> {openFilter ? "-" : "+"}</div>
+                  </button>
+                  <div className={`flex justify-center items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
+                      <input
+                      className='accent-red-500'
+                      value={minPrice}
+                        type='range'
+                        id={minPriceFilterId}
+                        min='0'
+                        max={maxPrice}
+                        ref={rangeInputRef}
+                        onChange={handleChangeMinPrice}
+                        step={1}
+                      />
+                      <span>${minPrice}</span>
+                    </div>
+
+                </div>
 
               </div>
             </div>
-          </header>
-          <div className=''>
-            <div className="cont">
-              {/* Filter lists */}
-              <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
-              {brandList.includes("Unknown Brand") ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
-              {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
+            {/* <button onClick={()=>{console.log(products)}} className="bg-slate-200">Click Me😡</button> */}
+          </div> 
+        </div>
+        {/* pink be */}
+        <section className=" py-16  mx-2  mt-3  flex-1">
+            <div className=" w-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
 
-
-              <div className="price border-b-2 py-3">
-                <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
-
-                  <div className="filter-name">Precio</div>
-                  <div className="icon"> {openFilter ? "-" : "+"}</div>
-                </button>
-                <div className={`flex justify-center items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
-                    <input
-                    className='accent-red-500'
-                    value={minPrice}
-                      type='range'
-                      id={minPriceFilterId}
-                      min='0'
-                      max={maxPrice}
-                      ref={rangeInputRef}
-                      onChange={handleChangeMinPrice}
-                      step={10000}
-                    />
-                    <span>${minPrice}</span>
-                  </div>
-
+                {fileredProductList?.map(product => (
+                  <Product key={product.id} product={product} />
+                ))}
               </div>
-
             </div>
-          </div>
-          <button onClick={()=>{console.log(products)}} className="bg-slate-200">Click Me😡</button>
-        </div> 
+        </section>
       </div>
-      {/* pink be */}
-      <section className="py-16   mt-3  flex-1">
-          <div className=" w-full">
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
-
-              {fileredProductList?.map(product => (
-                <Product key={product.id} product={product} />
-              ))}
-            </div>
-          </div>
-      </section>
 
 
 

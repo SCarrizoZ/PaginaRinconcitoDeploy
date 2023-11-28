@@ -4,7 +4,15 @@
   padding: 2rem;
   text-align: center;
 }
-
+body{
+  min-height: 100%;
+  
+}
+html{
+  display: flex;
+  flex-direction: column  ;
+  
+}
 .logo {
   height: 6em;
   padding: 1.5em;
