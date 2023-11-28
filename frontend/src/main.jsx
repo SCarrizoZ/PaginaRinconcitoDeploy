@@ -9,7 +9,6 @@ import { CartProvider } from './context/CartContext.jsx'
 import FiltersProvider from './context/FiltersContext.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-
   <FiltersProvider>
     <SidebarProvider>
       <CartProvider>

@@ -14,19 +14,21 @@ export function Home() {
   return (
     <div className="">
       <Hero />
-      <h2 className='titulo mt-3 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
       {/* DISEÑO DE PRODUCTOS */}
-      <section className="py-16">
-        <div className="container mx-auto">
+      <section className="" style={{ backgroundColor: "#ffffff" }}>
+        <div className="container mx-auto py-20">
+          <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
-            {productsArray.map(product => (
+            {productsArray.slice(0, 5).map(product => (
               <Product key={product.id} product={product} />
             ))}
           </div>
         </div>
       </section>
-      <h2 className='titulo mt-3 text-center' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
-      <img src={marcas} alt="marcas" />
+      <section style={{ backgroundColor: "#000000" }}>
+        <h2 className='titulo text-center pt-6' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
+        <img src={marcas} alt="marcas" />
+      </section>
     </div>
   );
 }
