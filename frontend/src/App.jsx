@@ -20,7 +20,7 @@ export default function App() {
     <div className="bg-gray-200">
       <BrowserRouter>
         <Header />
-        <div className="mb-[30%] ">
+        <div className="mb-[20%] ">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
