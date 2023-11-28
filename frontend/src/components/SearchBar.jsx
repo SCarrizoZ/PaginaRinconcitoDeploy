@@ -116,11 +116,12 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
           searchData.map((product, index) => {
 
             return (
-              <div key={index} className={`  flex m-x-5 gap-x-4 hover:bg-red-100 items-center ${selectedItem === index ? "bg-red-100" : " bg-white"}`}>
+              <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>
+              <div  className={`  flex m-x-5 gap-x-4 hover:bg-red-100 items-center ${selectedItem === index ? "bg-red-100" : " bg-white"}`}>
                 <div className='p-4'>
-                  <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>
+                  {/* <Link key={index} to={`/product/${product.id} `} onClick={handleClose}> */}
                     <img src={product.attributes.portada.data.attributes.url} alt="" className='w-[50px] h-auto' />
-                  </Link>
+                  {/* </Link> */}
 
                 </div>
                 <div className='w-[400px]'>
@@ -133,7 +134,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
                 </div>
 
               </div>
-
+              </Link>
             )
           })
         }

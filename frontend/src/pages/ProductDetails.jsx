@@ -27,7 +27,7 @@ export const ProductDetails = () => {
 
   return (
     <>
-      <section className='pt-32 pb-12 lg:py-32 flex items-center'>
+      <section className='pt-32 pb-12 lg:py-32 flex items-center h-screen'>
         <div className="container mx-auto px-32 ">
           <div className='flex flex-col lg:flex-row  '>
             {/* Imagen */}
