@@ -1,3 +1,5 @@
+
+import { useEffect } from "react"
 // react-router-dom
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // Pages
@@ -33,16 +35,23 @@ const THEME = createTheme({
 });
 
 export default function App() {
+  // add code for reset scroll to 0,0
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
-    <div className="">
+    <div className="bg-gray-200">
       <ThemeProvider theme={THEME}>
         <BrowserRouter>
           <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/categoria/:nombre" element={<ProductByCategory />} />
-          </Routes>
+          <div className="mb-[20%] ">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/product/:id" element={<ProductDetails />} />
+              <Route path="/categoria/:nombre" element={<ProductByCategory />} />
+            </Routes>
+          </div>
           <Sidebar />
           <Footer />
         </BrowserRouter>

@@ -9,17 +9,21 @@ export function Product({ product }) {
   // Deconstruye las propiedades del producto de la respuesta de the API
   const { id, attributes } = product;
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
-  console.log(product)
+  // console.log(product)
 
 
   return (
-    <div className='rounded-lg border border-[#e4e4e4]'>
+    <div className='rounded-lg border border-[#e4e4e4] bg-white'>
       {/** Container de la portada TOP */}
       <div className='border-b h-[300px] mb-4 relative overflow-hidden group transition'>
         <div className='w-full h-full flex justify-center'>
           {/* Imagenes */}
           <div className='w-[200px] mx-auto flex justify-center items-center'>
-            <img src={portada.data.attributes.url} alt={nombre} className='max-h-[160px] group-hover:scale-110 duration-300' />
+              <Link to={`/product/${id}`}>
+              <div className='w-[200px] mx-auto flex justify-center items-center'>
+                <img  src={portada.data.attributes.url} alt={nombre} className='max-h-[160px] group-hover:scale-110 duration-300' />
+              </div>
+              </Link>
           </div>
           {/** Botones */}
           <div className='absolute top-6 -right-11 group-hover:right-5 bg-red-500/40 p-2 flex flex-col gap-y-2 justify-center items-center opacity-0 group-hover:opacity-100 transition-all duration-300 '>
