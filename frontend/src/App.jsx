@@ -42,6 +42,7 @@ export default function App() {
 
   return (
     <div className="bg-gray-200 min-h-[100vh]">
+      <ThemeProvider theme={THEME}>
       <BrowserRouter>
         <Header />
         {/* <div className="mb-[20%] "> */}
@@ -54,7 +55,7 @@ export default function App() {
         <Sidebar />
         <Footer />
       </BrowserRouter>
-
+      </ThemeProvider>
     </div>
   )
 }

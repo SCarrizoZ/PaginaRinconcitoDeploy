@@ -14,13 +14,13 @@ const Heart = () => {
       onClick={() => setIsOpen(!isOpen)}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
-      className=' relative hidden md:block'
+      className=' relative hidden md:block '
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="icon icon-tabler icon-tabler-heart"
-        width="50"
-        height="50"
+        width="2rem"
+        height="2rem"
         viewBox="0 0 24 24"
         strokeWidth="2"
         stroke="red"

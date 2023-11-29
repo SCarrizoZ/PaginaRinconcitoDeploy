@@ -6,6 +6,7 @@ import { CartItem } from '../components/CartItem';
 import { SidebarContext } from '../context/SidebarContext';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
+import { Link } from 'react-router-dom';
 export function Sidebar() {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
@@ -56,6 +57,15 @@ export function Sidebar() {
             <FiTrash2 />
           </div>
         </div>
+        {/* See cart  */}
+        <Link
+        onClick={handleClose}
+          to='/cart'
+          className='bg-red-500 w-full py-3 flex justify-center items-center text-xl cursor-pointer transition-all text-white '
+        >
+          <span>Ver carrito</span>
+          <IoMdArrowForward className='ml-2' />
+        </Link>
       </div>
     </div>
   );

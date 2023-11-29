@@ -8,7 +8,7 @@ export const FilterComponent = ({subset, filterName,content}) => {
     <div className=" border-b-2 border-gray-400 py-3 ">
         <button className=" flex justify-between w-full" onClick={()=>{setOpenFilter(!openFilter)}}>
           <div className="filter-name">Marcas</div>
-          <div className="icon"> {openFilter?"-":"+"}</div>
+          <div > {openFilter?"-":"+"}</div>
         </button>
           <div className="list ">
             <div className={`list-cont  ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-500 overflow-auto  `} >
@@ -29,7 +29,7 @@ export const FilterComponent = ({subset, filterName,content}) => {
                         }}>
                           <span className="">
                             <input onChange={()=>{}}className="accent-red-400 text-white mx-2 hover:cursor-pointer" type="checkbox" value={item} checked={content.selectedElements.includes(item)}/>
-                            <label className="hover:cursor-pointer pr-10">{item}</label>
+                            <label className="hover:cursor-pointer pr-10 ">{item}</label>
                           </span>
                         
                       </div>    

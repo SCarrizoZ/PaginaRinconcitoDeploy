@@ -51,23 +51,23 @@ export function Header() {
   };
 
   return (
-    <header style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-10 transition-all sticky top-0  `}>
+    <header style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-10 transition-all sticky top-0 min-w-[360px] flex flex-col  `}>
       {/* TOP AREA */}
-      <div className=' relative flex h-16 items-center justify-around py-14 px-4 hidde'>
-        <div className='flex gap-x-4 absolute inset-y-0 left-0 block md:hidden px-4  items-center pr-2 sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
-          <RiAlignJustify className='text-5xl ' color='red' />
+      <div className=' relative flex h-16 items-center justify-around py-14 px-10  hidde container self-center '>
+        <div className='flex gap-x-4 absolute inset-y-0 left-0  md:hidden pl-4  items-center  sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
+          <RiAlignJustify className='text-[2rem] ' color='red' />
         </div>
         <div className='container flex flex-1 items-center  gap-3  '>
           {/* Logo */}
 
-          <div className='flex  items-center mx-auto md:mx-0 justify-center md:mt-7'> {/* Ajustar según tus necesidades */}
+          <div className='flex  items-center mx-auto md:mx-0 justify-center '> {/* Ajustar según tus necesidades */}
             <Link to={'/'}>
-              <div className='relative'>
-                <img src={logoImg} alt="" className='w-[120px] min-w-[120px]' />
+              <div className=' flex justify-center items-center '>
+                <img src={logoImg} alt="" className='w-[120px] min-w-[120px] my-auto' />
               </div>
-              <div className={' hidden md:block'} >
+              {/* <div className={' hidden md:block'} >
                 <h1 className='text-xl font-bold text-red-600 text-center titulo'>Rinconcito<br />Musical</h1>
-              </div>
+              </div> */}
             </Link>
           </div>
           {/* Searchbar */}
@@ -81,14 +81,14 @@ export function Header() {
 
 
         {/* Cart / user-login*/}
-        <div className='flex gap-x-4 absolute inset-y-0 right-0    items-center pr-4 sm:static sm:inset-auto sm:ml-6 sm:pr-0"'>
-          <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer flex relative sm:pl'>
-            <RiShoppingCart2Line color="red" className='text-5xl' />
+        <div className='flex  absolute inset-y-0 right-0 gap-4   items-center pr-4 sm:static sm:inset-auto sm:ml-6 sm:pr-0"'>
+          <div onClick={() => setIsOpen(!isOpen)} className=' cursor-pointer flex relative  '>
+            <RiShoppingCart2Line color="red" className='text-[2rem]' />
             <div className='bg-red-500 absolute -right-2 -bottom-2 texr-[12px] w-[19px] h-[18px] text-white flex justify-center items-center rounded-full'>{itemAmount}</div>
           </div>
 
           <div>
-            <Heart />
+            <Heart className='text-[2rem]' />
           </div>
 
           <div className={'relative hidden md:block'} >
@@ -100,14 +100,14 @@ export function Header() {
 
       </div>
       {/* BOTTOM AREA */}
-      <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 mt-8'>
-        <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly">
+      <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 '>
+        <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly text-[1.2rem]">
           <li>
-            <a className="text-white hover:text-red-500 text-2xl" href="#">Catálogo</a>
+            <a className="text-white hover:text-red-500 " href="#">Catálogo</a>
           </li>
           <li>
-            <a className="text-white hover:text-red-500 text-2xl" href="#" onMouseEnter={handleCategoriesHover}
-              onMouseLeave={handleCategoriesLeave}>Categorias</a>
+            <a className="text-white hover:text-red-500 " href="#" onMouseEnter={handleCategoriesHover}
+              onMouseLeave={handleCategoriesLeave}>Categorías</a>
 
             <div
               className="relative group"
@@ -129,10 +129,10 @@ export function Header() {
             </div>
           </li>
           <li>
-            <a className="text-white hover:text-red-500 text-2xl" href="#">Acerca de nosotros</a>
+            <a className="text-white hover:text-red-500 " href="#">Acerca de nosotros</a>
           </li>
           <li>
-            <a className="text-white hover:text-red-500 text-2xl" href="#">Contacto</a>
+            <a className="text-white hover:text-red-500 " href="#">Contacto</a>
           </li>
 
         </ul>
