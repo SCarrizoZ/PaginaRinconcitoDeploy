@@ -7,7 +7,7 @@ export const FilterComponent = ({subset, filterName,content}) => {
   return (
     <div className=" border-b-2 border-gray-400 py-3 ">
         <button className=" flex justify-between w-full" onClick={()=>{setOpenFilter(!openFilter)}}>
-          <div className="filter-name">Marcas</div>
+          <div className="filter-name">{filterName}</div>
           <div > {openFilter?"-":"+"}</div>
         </button>
           <div className="list ">

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
-export function Product({ product }) {
+export function Product({ product, gap, min_width }) {
   const { addToCart } = useContext(CartContext);
 
   // Deconstruye las propiedades del producto de la respuesta de the API
@@ -13,7 +13,7 @@ export function Product({ product }) {
 
 
   return (
-    <div className='rounded-lg border border-[#e4e4e4] bg-white'>
+    <div className={`rounded-lg border border-[#e4e4e4] bg-white ${gap ? "mx-2":""} ${min_width?"w-[200px]":""}` }>
       {/** Container de la portada TOP */}
       <div className='border-b h-[300px] mb-4 relative overflow-hidden group transition'>
         <div className='w-full h-full flex justify-center'>
@@ -42,9 +42,9 @@ export function Product({ product }) {
       </div>
       {/** Categoria, Título, y precio */}
       <div className='p-4'>
-        <div className='text-sm text-gray-500 capitalize'>{subcategoria.data.attributes.nombre}</div>
+        <div className='text-sm text-gray-500 capitalize text-ellipsis overflow-hidden ...'>{subcategoria.data.attributes.nombre}</div>
         <Link to={`/product/${id}`}>
-          <h2 className='font-semibold mb-1'>{nombre}</h2>
+          <h2 className='font-semibold mb-1 break-all ...'>{nombre}</h2>
         </Link>
         <div className='font-semibold'>{formatPrice(precio)}</div>
       </div>

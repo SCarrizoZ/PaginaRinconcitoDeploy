@@ -63,7 +63,7 @@ export function Header() {
           <div className='flex  items-center mx-auto md:mx-0 justify-center '> {/* Ajustar según tus necesidades */}
             <Link to={'/'}>
               <div className=' flex justify-center items-center '>
-                <img src={logoImg} alt="" className='w-[120px] min-w-[120px] my-auto' />
+                <img src={logoImg} alt="" className='w-[150px] min-w-[150px] my-auto' />
               </div>
               {/* <div className={' hidden md:block'} >
                 <h1 className='text-xl font-bold text-red-600 text-center titulo'>Rinconcito<br />Musical</h1>
@@ -88,7 +88,7 @@ export function Header() {
           </div>
 
           <div>
-            <Heart className='text-[2rem]' />
+            <Heart  />
           </div>
 
           <div className={'relative hidden md:block'} >
@@ -102,7 +102,7 @@ export function Header() {
       {/* BOTTOM AREA */}
       <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 '>
         <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly text-[1.2rem]">
-          <li>
+          <li className='hover:outline-blue-200 hover:outline-2'>
             <a className="text-white hover:text-red-500 " href="#">Catálogo</a>
           </li>
           <li>

@@ -121,7 +121,7 @@ export default function TransitionsModal({ user }) {
     <>
       {user ?
         (
-          <Button variant="contained" color='primary' style={{ borderRadius: 10, backgroundColor:"red" }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>Bienvenido {user.username}<br />Cerrar Sesión</Button>
+          <Button variant="contained" color='primary' style={{ borderRadius: 10, backgroundColor:"red" }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>Bienvenido {user.username}</Button>
         ) :
         (
           <Button variant="contained" color='primary' style={{ borderRadius: 10 , backgroundColor:"red"}} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleOpen}>Iniciar Sesión</Button>

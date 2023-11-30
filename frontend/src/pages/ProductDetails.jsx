@@ -1,13 +1,52 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { ProductContext } from '../context/ProductContext';
 import { formatPrice } from '../utils'
+import { FiltersContext } from '../context/FiltersContext';
+// import card from material ui. 
+// import  Card  from '@mui/material/Card';
+import { Product } from '../components/Product';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+// reset window scroll position to top on page load
+ 
+
+
+
+
 export const ProductDetails = () => {
   const { id } = useParams();
   const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
-  console.log(products)
+  const { categories } = useContext(FiltersContext);
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+  console.log(categories);
+  // iterate over categories and log the name of each category
+  // filter product by category
+  
+
+  // Scroll to top
+
 
   const productsArray = Array.isArray(products.data) ? products.data : [];
 
@@ -16,7 +55,7 @@ export const ProductDetails = () => {
     return item.id === parseInt(id);
   });
 
-  console.log(product)
+  // console.log(product);
 
   if (!product) {
     return <section className='h-full flex justify-center'></section>;
@@ -25,19 +64,51 @@ export const ProductDetails = () => {
   const { attributes } = product;
   const { nombre, precio, descripcion, portada } = attributes;
 
+  // filter products by category
+  // const relatedProducts = productsArray.filter((item) => {
+  //   return item.attributes.subcategoria.data.attributes.nombre === "Guitarras";
+  // });
+  // use categories variable to get a list with subcategories names 
+  // const subcategoriesList = categories.map((item) => {
+  //   return item.data.attributes..subcategorias.data.
+  
+
+  const productSubcategory = product?.attributes?.subcategoria?.data?.attributes.nombre;
+  console.log(productSubcategory);
+  // filter products by subcategory
+  const relatedProducts = productsArray.filter((item) => {
+    return item.attributes.subcategoria.data.attributes.nombre === productSubcategory;
+  });
+  // Similar products is an array of products with the same category as the current product
+  
+
+  // const relatedProducts = productsArray.filter((item) => {
+  //   return item.attributes.subcategoria.data.attributes.nombre === product.attributes.subcategoria.data.attributes.nombre;
+  // });
+  // // Similar products is an array of products with the same category as the current product
+  // const similarProcucts = productsArray.filter((item) => {
+  //   return item.attributes.subcategoria.data.attributes.nombre === 
+  //   product.attributes.subcategoria.data.attributes.nombre;
+  // });
+
+  // console.log(relatedProducts);
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [id])
+
   return (
     <>
-      <section className='pt-32 pb-12 lg:py-32 flex items-center h-screen'>
-        <div className="container mx-auto px-32 ">
-          <div className='flex flex-col lg:flex-row  '>
+      <section className='pt-32 pb-12 lg:py-32 flex items-center  '>
+        <div className="container mx-auto px-32  ">
+          <div className='flex flex-col lg:flex-row bg-white px-2 py-10 rounded-lg min-w-[370px]'>
             {/* Imagen */}
-            <div className='flex flex-col '>
+            {/* <div className='flex flex-col '>
               <div className=' flex-col border hidden lg:block '>
                 <img className='max-w-[100px] lg:max-w-[100px]' src="https://static.wixstatic.com/media/06c2ca_fd67b2cd651940b991c9000fc738f6d8~mv2.webp" alt="" />
                 <img className='max-w-[100px] lg:max-w-[100px]' src="https://static.wixstatic.com/media/06c2ca_53855f38e20d474fbc0eb271bb54e6e9~mv2.webp" alt="" />
               </div>
-            </div>
-            <div className='flex flex-1  justify-center items-center  lg:mb-0 border mb-4 rounded-lg'>
+            </div> */}
+            <div className='self-center lg:self-auto   justify-center items-center  lg:mb-0 border  rounded-lg'>
               <img className='max-w-[200px] lg:max-w-sm' src={portada.data.attributes.url} alt={nombre} />
             </div>
             {/* Texto */}
@@ -55,7 +126,7 @@ export const ProductDetails = () => {
       
       </section>
       <div className='flex justify-center mb-20'>
-        <div className=''>
+        {/* <div className=''>
           <div className='text-center justify-center'>
             <h2 className='text-[32px] font-bold'>Productos similares</h2>
             <div className='flex gap-20 flex-wrap justify-center'>
@@ -147,7 +218,87 @@ export const ProductDetails = () => {
             </div>
             </div>
           </div>
+        </div> */}
+
+        {/* Create a product card: must be contain an imagen at the top. Use <Card> component */}
+        <div className=' flex flex-col text-center gap-10'>
+          <h2 className='text-2xl font-bold '>Productos relacionados</h2>
+          <Carousel
+            additionalTransfrom={0}
+            arrows
+            autoPlaySpeed={3000}
+            centerMode
+            className=""
+            containerClass="container"
+            dotListClass=""
+            draggable
+            focusOnSelect={false}
+            infinite
+            itemClass=""
+            keyBoardControl
+            minimumTouchDrag={80}
+            pauseOnHover
+            renderArrowsWhenDisabled={false}
+            renderButtonGroupOutside={false}
+            renderDotsOutside={false}
+            responsive={{
+              desktop: {
+                breakpoint: {
+                  max: 3000,
+                  min: 768
+                },
+                items: 2,
+                partialVisibilityGutter: 40
+              },
+              mobile: {
+                breakpoint: {
+                  max: 640,
+                  min: 0
+                },
+                items: 3,
+                partialVisibilityGutter: 30
+              },
+              tablet: {
+                breakpoint: {
+                  max: 768,
+                  min: 640
+                },
+                items: 2,
+                partialVisibilityGutter: 30
+              }
+            }}
+            rewind={false}
+            rewindWithAnimation={false}
+            rtl={false}
+            shouldResetAutoplay
+            showDots={false}
+            sliderClass=""
+            slidesToSlide={3}
+            swipeable
+          >
+              
+                {
+                  relatedProducts.map((product, index) => (
+                    <Product key={index} product={product} gap={10} min_width={false}/>
+                  ))
+                }
+              
+              
+          
+
+          </Carousel>
         </div>
+        
+        {/* <div className='rel-products flex gap-2'>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
+            {relatedProducts
+            .map((product, index) => (
+              <Product key={index} product={product} />
+            ))}
+          </div>
+ 
+        </div> */}
+        
         
       </div>
     </>

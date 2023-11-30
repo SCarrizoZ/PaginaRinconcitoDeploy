@@ -11,13 +11,13 @@ export function Home() {
     window.scrollTo(0, 0)
   }, [])
   // Filtra solo los datos de productos (la propiedad "data" en la respuesta)
-  const productsArray = Array.isArray(products.data) ? products.data : [];
+  const productsArray = Array.isArray(products.data) ? products?.data : [];
 
   return (
     <div className="">
       <Hero />
       {/* DISEÑO DE PRODUCTOS */}
-      <section className="" style={{ backgroundColor: "#ffffff" }}>
+      <section className="" style={{  }}>
         <div className="container mx-auto py-20">
           <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">

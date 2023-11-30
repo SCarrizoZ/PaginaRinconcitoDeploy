@@ -2,6 +2,7 @@ import { useContext, useEffect, useId, useState, useRef } from "react";
 import { FiltersContext } from "../context/FiltersContext";
 import { FilterComponent } from "./FilterList"
 import { Product } from '../components/Product';
+import { formatPrice } from "../utils";
 export const Filters = ({ productList, subcategoriesList, brandList, nombre , setProductList}) => {
 
   const { setMinPrice, minPrice, subcategories, setSubcategories } = useContext(FiltersContext)
@@ -114,67 +115,71 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
 
   return (
     <>
-      <div className="flex   "> 
-        {/* FILTERS */}
-        <div className=' mt-3  p-5 hidden md:block w-[400px] '> {/* GREEN */}
-          
-          <div className='border-2 rounded-lg p-4 bg-white '>
-
-            <header className="border-b-2 pb-3">
-              <div>
-                <div className="flex justify-between">
-                  <div className="font-bold">Filtros</div>
-
-                </div>
-              </div>
-            </header>
-            <div className=''>
-              <div className="cont  p-2">
-                {/* Filter lists */}
-                <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
-                {brandList.includes("Unknown Brand") || brandList.includes(undefined)  ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
-                {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
-
-
-                <div className="price border-b-2 py-3">
-                  <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
-
-                    <div className="filter-name">Precio</div>
-                    <div className="icon"> {openFilter ? "-" : "+"}</div>
-                  </button>
-                  <div className={`flex justify-start items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
-                      <input
-                      className='accent-red-500'
-                      value={minPrice}
-                        type='range'
-                        id={minPriceFilterId}
-                        min='0'
-                        max={maxPrice}
-                        ref={rangeInputRef}
-                        onChange={handleChangeMinPrice}
-                        step={1}
-                      />
-                      <span>${minPrice}</span>
-                    </div>
-
-                </div>
-
-              </div>
-            </div>
+      <div className="flex gap-1   justify-center"> 
+        <div className="flex w-full  ">
+          {/* FILTERS */}
+          <div className=' mt-3  p-5 hidden md:block min-w-[400px] '> {/* GREEN */}
             
-          </div> 
-        </div>
-        {/* PRODUCTS */}
-        <section className=" py-16    mt-3   mx-auto">
-            <div className=" ">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
+            <div className='border-2 rounded-lg p-4 bg-white '>
 
-                {fileredProductList?.map(product => (
-                  <Product key={product.id} product={product} />
-                ))}
+              <header className="border-b-2 pb-3">
+                <div>
+                  <div className="flex justify-between">
+                    <div className="font-bold">Filtros</div>
+
+                  </div>
+                </div>
+              </header>
+              <div className=''>
+                <div className="cont  p-2">
+                  {/* Filter lists */}
+                  <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
+                  {brandList.includes("Unknown Brand") || brandList.includes(undefined)  ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
+                  {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
+
+
+                  <div className="price border-b-2 py-3">
+                    <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
+
+                      <div className="filter-name">Precio</div>
+                      <div className="icon"> {openFilter ? "-" : "+"}</div>
+                    </button>
+                    <div className={`flex justify-start items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
+                        <input
+                        className='accent-red-500'
+                        value={minPrice}
+                          type='range'
+                          id={minPriceFilterId}
+                          min='0'
+                          max={maxPrice}
+                          ref={rangeInputRef}
+                          onChange={handleChangeMinPrice}
+                          step={100}
+                        />
+                        <span>${formatPrice(minPrice)}</span>
+                      </div>
+
+                  </div>
+
+                </div>
               </div>
-            </div>
-        </section>
+              
+            </div> 
+          </div>
+          {/* PRODUCTS */}
+          <section className=" py-16    mt-3   max-w-[100%] ">
+              <div className=" ">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
+
+                  {fileredProductList?.map(product => (
+                    <Product key={product.id} product={product} />
+                  ))}
+                </div>
+              </div>
+          </section>
+
+        </div>
+        
       </div>
 
 

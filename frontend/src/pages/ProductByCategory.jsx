@@ -49,7 +49,7 @@ export const ProductByCategory = () => {
   // get products by category function
   const getProductsByCategory = (category) => {
     const filteredProductsByCategory = products?.data?.filter((product) => {
-      return subcategoriesIds?.includes(product?.attributes.subcategoria.data.id)
+      return subcategoriesIds?.includes(product?.attributes?.subcategoria?.data?.id)
     });
     setProductList(filteredProductsByCategory);
   }
