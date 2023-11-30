@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
+import Heart from './Icons/Heart'
 export function Product({ product, gap, min_width }) {
   const { addToCart } = useContext(CartContext);
 
