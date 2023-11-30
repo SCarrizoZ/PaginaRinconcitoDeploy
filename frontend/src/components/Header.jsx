@@ -25,16 +25,6 @@ export function Header() {
   const [showCategories, setShowCategories] = useState(false);
   const [isSelect, setIsSelect] = useState(false)
   const [results, setResults] = useState([])
-  const [user, setUser] = useState(getUser())
-
-  function getUser() {
-    const user = JSON.parse(localStorage.getItem('user'))
-    if (user) {
-      return user
-    } else {
-      return null
-    }
-  }
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -92,7 +82,7 @@ export function Header() {
           </div>
 
           <div className={'relative hidden md:block'} >
-            <TransitionsModal user={user} />
+            <TransitionsModal />
           </div>
 
         </div>
@@ -118,7 +108,7 @@ export function Header() {
               {showCategories && (
                 <div className="absolute top-full left-0 bg-white p-2 border border-gray-300 shadow-lg rounded-lg">
 
-                  {categories.data.map((category) => {
+                  {categories?.data?.map((category) => {
                     const { id, attributes } = category;
                     const { nombre } = attributes;
                     return <Link key={id} to={`/Categoria/${nombre}`} className="block text-black">{nombre}</Link>

@@ -118,12 +118,12 @@ export const ProductDetails = () => {
               <p className='mb-8'>{descripcion}</p>
               <div className='flex justify-center items-center lg:justify-end'>
                 <button className="bg-red-500 py-4 px-8 text-white text-b flex mb-20 rounded-[100px]" onClick={() => { addToCart({ ...product, precio }, product.id); }}>Añadir al carrito de compras</button>
-                
+
               </div>
             </div>
           </div>
         </div>
-      
+
       </section>
       <div className='flex justify-center mb-20'>
         {/* <div className=''>
@@ -168,54 +168,54 @@ export const ProductDetails = () => {
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
 
-          <div  className='text-center justify-center mt-4'>
+          <div className='text-center justify-center mt-4'>
             <h2 className='text-[32px] font-bold'>Productos relacionados</h2>
             <div>
-            <div className='flex gap-20 flex-wrap justify-center'>
-            <div className=' flex-col border  p-4'>
-                <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_6a00146bad6d45478eede2adac21d7ca~mv2.webp" alt="" />
-                <div className='flex flex-wrap justify-center'>
-                  <div className='flex flex-col'>
-                    <p className='text-[16px] font-medium mb-2'>Acústica Alhambra 3C</p>
-                    <p className='text-[16px] font-medium mb-2'>$699.900</p>
+              <div className='flex gap-20 flex-wrap justify-center'>
+                <div className=' flex-col border  p-4'>
+                  <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_6a00146bad6d45478eede2adac21d7ca~mv2.webp" alt="" />
+                  <div className='flex flex-wrap justify-center'>
+                    <div className='flex flex-col'>
+                      <p className='text-[16px] font-medium mb-2'>Acústica Alhambra 3C</p>
+                      <p className='text-[16px] font-medium mb-2'>$699.900</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className=' flex-col border p-4 '>
-                <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_e2adbe768d2c48a3b8687c39f89e75f9~mv2.webp" alt="" />
-                <div className='flex flex-wrap justify-center'>
-                  <div className='flex flex-col'>
-                    <p className='text-[16px] font-medium mb-2'>Acústica Alhambra 1C</p>
-                    <p className='text-[16px] font-medium mb-2'>$499.900</p>
+                <div className=' flex-col border p-4 '>
+                  <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_e2adbe768d2c48a3b8687c39f89e75f9~mv2.webp" alt="" />
+                  <div className='flex flex-wrap justify-center'>
+                    <div className='flex flex-col'>
+                      <p className='text-[16px] font-medium mb-2'>Acústica Alhambra 1C</p>
+                      <p className='text-[16px] font-medium mb-2'>$499.900</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className=' flex-col border  p-4'>
-                <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_3bbf8a40ad4e4852b435016fa5c9b61d~mv2.webp" alt="" />
-                <div className='flex flex-wrap justify-center'>
-                  <div className='flex flex-col'>
-                    <p className='text-[16px] font-medium mb-2'>Acústica Alhambra Z</p>
-                    <p className='text-[16px] font-medium mb-2'>$399.900</p>
+                <div className=' flex-col border  p-4'>
+                  <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_3bbf8a40ad4e4852b435016fa5c9b61d~mv2.webp" alt="" />
+                  <div className='flex flex-wrap justify-center'>
+                    <div className='flex flex-col'>
+                      <p className='text-[16px] font-medium mb-2'>Acústica Alhambra Z</p>
+                      <p className='text-[16px] font-medium mb-2'>$399.900</p>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className=' flex-col border  p-4'>
-                <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_e7931e6ae773402a8010d4ef5ce1ecf0~mv2.webp" alt="" />
-                <div className='flex flex-wrap justify-center'>
-                  <div className='flex flex-col'>
-                    <p className='text-[16px] font-medium mb-2'>Acústica Alhambra college</p>
-                    <p className='text-[16px] font-medium mb-2'>$349.900</p>
+                <div className=' flex-col border  p-4'>
+                  <img className='max-w-[200px] lg:max-w-[200px]' src="https://static.wixstatic.com/media/06c2ca_e7931e6ae773402a8010d4ef5ce1ecf0~mv2.webp" alt="" />
+                  <div className='flex flex-wrap justify-center'>
+                    <div className='flex flex-col'>
+                      <p className='text-[16px] font-medium mb-2'>Acústica Alhambra college</p>
+                      <p className='text-[16px] font-medium mb-2'>$349.900</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div> */}
@@ -302,6 +302,6 @@ export const ProductDetails = () => {
         
       </div>
     </>
-    
+
   );
 };
