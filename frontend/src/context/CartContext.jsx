@@ -9,6 +9,19 @@ export function CartProvider({ children }) {
   const [total, setTotal] = useState(0)
   const [itemAmount, setItemAmount] = useState(0)
   const [cart, setCart] = useState([])
+
+  // Can i add a useEffect to save the cart in local storage? 
+  // Add to cart
+  useEffect(() => {
+    const cart = localStorage.getItem('cart')
+    if (cart) {
+      setCart(JSON.parse(cart))
+    } 
+  }, [])
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }, [cart])
+
   const addToCart = (product, id) => {
     const newItem = { ...product, amount: 1 }
 

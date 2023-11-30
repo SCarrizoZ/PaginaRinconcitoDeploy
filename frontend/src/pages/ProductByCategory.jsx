@@ -173,36 +173,6 @@ export const ProductByCategory = () => {
     <div className='flex justify-start  h-full '>
       <div className="flex  w-full justify-center">
         <Filters brandList={brandList} subcategoriesList={subcategoriesList} setProductList={setProductList} nombre={nombre} productList={productList} />
-        {/* <Filters /> */}
-        {/* <div className='border-2 rounded-lg p-4 bg-gray-100 '>
-
-                  <header className="border-b-2 pb-3">
-                    <div>
-                      <div className="flex justify-between">
-                        <div className="font-bold">Filter</div>
-          
-                      </div>
-                    </div>
-                  </header>
-                  <div className=''>
-                    <div className="cont">
-                                 <FilterComponent subset={subcategoriesList} filterName={"Categories"} content={{"name":"categories","addElement":addCategory,"removeElement":removeCategory, "selectedElements":selectedCategories}} />
-                                
-                                {brandList.includes(undefined) ? "":<FilterComponent subset={brandList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/>} 
-                                 <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/>
-                              
-                                
-                                <div className="price border-b-2 py-3">
-                                  <button className="flex justify-between w-full" onClick={()=>{setOpenFilter(!openFilter)}}>
-
-                                    <div className="filter-name">Precio</div>
-                                    <div className="icon"> {openFilter?"-":"+"}</div>
-                                  </button>
-                                </div>
-
-                    </div>
-                  </div>
-                </div>  */}
 
       </div>
     </div>

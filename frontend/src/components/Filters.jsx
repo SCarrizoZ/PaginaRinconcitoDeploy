@@ -56,6 +56,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
     }
     resetRangeSlider()  
   }
+  // FILTERS CALCULATION
   const applyFilter = () => {
     // if(productList!==undefined){
     //   console.log(productList[0]?.attributes?.subcategoria?.data?.attributes?.nombre)
@@ -113,9 +114,9 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
 
   return (
     <>
-      <div className="flex container ">
-
-        <div className=' mt-3 mx-3 p-10 hidden md:block  '> {/* GREEN */}
+      <div className="flex   "> 
+        {/* FILTERS */}
+        <div className=' mt-3  p-5 hidden md:block w-[400px] '> {/* GREEN */}
           
           <div className='border-2 rounded-lg p-4 bg-white '>
 
@@ -128,10 +129,10 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
               </div>
             </header>
             <div className=''>
-              <div className="cont">
+              <div className="cont  p-2">
                 {/* Filter lists */}
                 <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
-                {brandList.includes("Unknown Brand") ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
+                {brandList.includes("Unknown Brand") || brandList.includes(undefined)  ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
                 {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
 
 
@@ -141,7 +142,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
                     <div className="filter-name">Precio</div>
                     <div className="icon"> {openFilter ? "-" : "+"}</div>
                   </button>
-                  <div className={`flex justify-center items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
+                  <div className={`flex justify-start items-center ${openFilter ? "max-h-40 ":" max-h-0"}   transition-all duration-300 overflow-hidden `}>
                       <input
                       className='accent-red-500'
                       value={minPrice}
@@ -160,13 +161,13 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
 
               </div>
             </div>
-            {/* <button onClick={()=>{console.log(products)}} className="bg-slate-200">Click Me😡</button> */}
+            
           </div> 
         </div>
-        {/* pink be */}
-        <section className=" py-16  mx-2  mt-3  flex-1">
-            <div className=" w-full">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
+        {/* PRODUCTS */}
+        <section className=" py-16    mt-3   mx-auto">
+            <div className=" ">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
 
                 {fileredProductList?.map(product => (
                   <Product key={product.id} product={product} />
