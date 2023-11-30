@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import Backdrop from '@mui/material/Backdrop';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
@@ -12,6 +12,8 @@ import Checkbox from '@mui/material/Checkbox';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { loginUser, registerUser } from '../api/ManageUser.api';
+import { getUser } from '../utils';
+import { ToastContext } from '../context/ToastProvider';
 
 const style = {
   position: 'absolute',
@@ -25,9 +27,12 @@ const style = {
   p: 4,
 };
 
-export default function TransitionsModal({ user }) {
+
+
+export default function TransitionsModal() {
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(!!getUser());
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -40,6 +45,10 @@ export default function TransitionsModal({ user }) {
     login_email: '',
     login_password: '',
   });
+
+  const showToast = useContext(ToastContext);
+
+
 
   const limpiarFormulario = () => {
     setFormData({
@@ -71,23 +80,32 @@ export default function TransitionsModal({ user }) {
     }));
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Llamar a la función registerUser con los datos del formulario.
-    loginUser({
-      identifier: loginFormData.login_email,
-      password: loginFormData.login_password,
-    });
+    try {
+      const user = await loginUser({
+        identifier: loginFormData.login_email,
+        password: loginFormData.login_password,
+      });
 
-    // Cerrar el modal.
-    handleClose()
-    limpiarFormulario()
-  };
+      setIsLoggedIn(true);
+      handleClose();
+      limpiarFormulario();
+      showToast('Inicio de sesión exitoso', 'success');
+
+    } catch (error) {
+      // Manejar errores de inicio de sesión
+      console.error(error);
+      setIsLoggedIn(false); // Asegurar que se establezca en false en caso de error
+      showToast('Error al iniciar sesión', 'error');
+    }
+  }
 
   const handleLogout = (e) => {
-    localStorage.clear()
-    window.location.reload()
+    localStorage.clear();
+    setIsLoggedIn(false);
+    showToast('Cierre de sesión exitoso', 'success');
   }
 
   const handleSubmit = (e) => {
@@ -103,15 +121,18 @@ export default function TransitionsModal({ user }) {
       username: formData.username,
       email: formData.email,
       password: formData.password,
-    });
+    })
 
     // Cerrar el modal.
     handleClose()
     limpiarFormulario()
+    showToast('Registro exitoso', 'success');
   };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const user = getUser();
 
   const handleTabChange = (e, tabIndex) => {
     setActiveTab(tabIndex);
@@ -119,9 +140,9 @@ export default function TransitionsModal({ user }) {
 
   return (
     <>
-      {user ?
+      {isLoggedIn ?
         (
-          <Button variant="contained" color='primary' style={{ borderRadius: 10 }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>Bienvenido {user.username}<br />Cerrar Sesión</Button>
+          <Button variant="contained" color='primary' style={{ borderRadius: 10 }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>Bienvenido {user?.username}<br />Cerrar Sesión</Button>
         ) :
         (
           <Button variant="contained" color='primary' style={{ borderRadius: 10 }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleOpen}>Iniciar Sesión</Button>

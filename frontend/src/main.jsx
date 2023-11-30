@@ -7,19 +7,22 @@ import { ProductProvider } from "./context/ProductContext"
 import { SidebarProvider } from './context/SidebarContext'
 import { CartProvider } from './context/CartContext.jsx'
 import FiltersProvider from './context/FiltersContext.jsx'
+import ToastProvider from './context/ToastProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <FiltersProvider>
-    <SidebarProvider>
-      <CartProvider>
-        <ProductProvider>
-          <React.StrictMode>
-            <App />
-          </React.StrictMode>
-        </ProductProvider>
-      </CartProvider>
-    </SidebarProvider>
-  </FiltersProvider>
+  <ToastProvider>
+    <FiltersProvider>
+      <SidebarProvider>
+        <CartProvider>
+          <ProductProvider>
+            <React.StrictMode>
+              <App />
+            </React.StrictMode>
+          </ProductProvider>
+        </CartProvider>
+      </SidebarProvider>
+    </FiltersProvider>
+  </ToastProvider>
 
 
 )

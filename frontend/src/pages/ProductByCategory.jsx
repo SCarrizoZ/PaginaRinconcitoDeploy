@@ -4,14 +4,14 @@ import { ProductContext } from '../context/ProductContext';
 import { Product } from '../components/Product';
 import { FiltersContext } from '../context/FiltersContext';
 import { Filters } from '../components/Filters';
-import {FilterComponent} from '../components/FilterList'
+import { FilterComponent } from '../components/FilterList'
 
 export const ProductByCategory = () => {
   const { nombre } = useParams();
   const { products } = useContext(ProductContext);
   const { categories, minPrice, setMinPrice, setSubcategories, subcategories } = useContext(FiltersContext);
 
-  const [filteredProduct, setFilteredProduct] = useState([ products?.data]);
+  const [filteredProduct, setFilteredProduct] = useState([products?.data]);
   // delete this
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [selectedBrands, setSelectedBrands] = useState([]); // this will be used to filter the products based on brands
@@ -21,7 +21,7 @@ export const ProductByCategory = () => {
   const [subcategoriesList, setSubcategoriesList] = useState([]);
   const [productList, setProductList] = useState([]);
 
-  
+
 
 
   // get products filtered by category from useparams. ALso, get the brands of all products filtered previosly. use useEffect
@@ -54,8 +54,8 @@ export const ProductByCategory = () => {
     setProductList(filteredProductsByCategory);
   }
 
-  
-  
+
+
 
   const getSubcategories = (category) => {
     const actualCategory = categories?.data?.find((category) => {
@@ -70,32 +70,32 @@ export const ProductByCategory = () => {
   // get brands based on filteredproductsbycategory
   const getBrands = (filteredProductsByCategory) => {
     console.log(filteredProductsByCategory);
-  
+
     const brandsList = getUniqueBrands(
       filteredProductsByCategory?.map((product) => {
         const brandName = product?.attributes?.marca?.data?.attributes?.nombre;
         return brandName !== undefined ? brandName : "Unknown Brand";
       })
     );
-  
+
     setBrandList(brandsList);
   };
-  
+
 
   useEffect(() => {
-    console.log("cambio:",nombre)
-    const getElements =  () => {
+    console.log("cambio:", nombre)
+    const getElements = () => {
       getProductsByCategory(nombre);
       getSubcategories(nombre);
-    } 
+    }
     getElements();
     // getBrands(productList?.data);
   }, [categories, nombre, setSubcategories, products?.data]);
   useEffect(() => {
     getBrands(productList);
   }, [productList]);
-    // call getProductsByCategory function
-    
+  // call getProductsByCategory function
+
 
   // Filter products by price using useMemo to avoid unnecessary recalculations
   // const filteredProductsByPrice = useMemo(() => {
@@ -104,14 +104,14 @@ export const ProductByCategory = () => {
   //   });
   // }, [filteredProductsByCategory, minPrice]);
 
-  
+
   // console.log(filteredProduct)
 
   // when the page load 
 
   // useEffect(() => {
   //   // Get subcategories from category nombre variable from useParams. also get brands from all products belongs that category
-    
+
 
   //   // setFilteredProduct(filteredProductsByCategory);
 
@@ -122,7 +122,7 @@ export const ProductByCategory = () => {
 
 
   // }, [categories, nombre, setSubcategories, products?.data]);
-  
+
 
   // console.log(products?.data)
   // console.log(subcategories)
@@ -154,14 +154,14 @@ export const ProductByCategory = () => {
   // }, [categories, nombre, setSubcategories]);
 
   // console.log(subcategories)
-  
+
 
   // get BRANDS with products list and BRANDS array
-  
 
-  
 
-  
+
+
+
   console.log(actualCategory?.attributes.nombre)
   // console.log(subcategories2)
   // console.log(brandsList)
@@ -169,12 +169,12 @@ export const ProductByCategory = () => {
 
 
   return (
- 
+
     <div className='flex justify-start  h-full '>
       <div className="flex  w-full justify-center">
         <Filters brandList={brandList} subcategoriesList={subcategoriesList} setProductList={setProductList} nombre={nombre} productList={productList} />
-      {/* <Filters /> */}
-      {/* <div className='border-2 rounded-lg p-4 bg-gray-100 '>
+        {/* <Filters /> */}
+        {/* <div className='border-2 rounded-lg p-4 bg-gray-100 '>
 
                   <header className="border-b-2 pb-3">
                     <div>
@@ -203,7 +203,7 @@ export const ProductByCategory = () => {
                     </div>
                   </div>
                 </div>  */}
-              
+
       </div>
     </div>
   );
