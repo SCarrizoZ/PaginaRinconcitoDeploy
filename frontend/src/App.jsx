@@ -48,8 +48,8 @@ export default function App() {
           {/* <div className="mb-[20%] "> */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/product/*" element={<ProductDetails />} />
-            <Route path="/categoria/*" element={<ProductByCategory />} />
+            <Route path="/product/:id" element={<ProductDetails />} />
+            <Route path="/categoria/:nombre" element={<ProductByCategory />} />
           </Routes>
           {/* </div> */}
           <Sidebar />
