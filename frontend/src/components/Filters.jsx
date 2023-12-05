@@ -23,7 +23,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
       setSelectedCategories(prev => ([...prev, category]))
 
     }
-    // resetRangeSlider()  
+    resetRangeSlider()  
 
   }
   const resetFilters = () => {
@@ -77,43 +77,51 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
       
     // }
 
-    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0 && lowerToHigher === false && higherToLower === false) {
+    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0 ) {
       console.log("no hay nada seleccionado")
       return products
-    }else{
-      let filteredItems = []
+    }
+    else{
+      console.log("hay algo seleccionado")
+      
+      let filteredItems = products
       if(selectedCategories.length !== 0){
-        filteredItems = products.filter(product => {
+        filteredItems = filteredItems?.filter(product => {
           return selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)
         })
+      }
+      console.log("POS-CAT: ",filteredItems)
       if(selectedBrands.length !== 0){
-        filteredItems = filteredItems.filter(product => {
+        filteredItems = filteredItems?.filter(product => {
           return selectedBrands.includes(product?.attributes?.marca?.data?.attributes?.nombre)
         })
 
       }
+      console.log("POS-BR: ",filteredItems)
       if(minPrice !== 0){
-        filteredItems = filteredItems.filter(product => {
+        filteredItems = filteredItems?.filter(product => {
           return parseInt(product?.attributes?.precio) >= minPrice
         })
       }
+      return filteredItems
+    }
       // higher to lower price sort
       
       // filteredItems.sort((a,b)=>(a?.attributes?.precio - b?.attributes?.precio))
-      filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
+      // filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
       // filter by alphabetical order
       // filteredItems.sort((a,b)=>(a?.attributes?.nombre.localeCompare(b?.attributes?.nombre)))
       // filter by alphabetical order reverse
-      filteredItems.sort((a,b)=>(b?.attributes?.nombre.localeCompare(a?.attributes?.nombre)))
+      // filteredItems.sort((a,b)=>(b?.attributes?.nombre.localeCompare(a?.attributes?.nombre)))
 
       // lower to higher price sort
       // if(lowerToHigher){
       //   filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
       // }
       
-    }
-    return filteredItems
-    }
+    
+    // return filteredItems
+    // }
     
     // return products.filter(product => {
     //   return (selectedCategories.length === 0 || selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)) &&
@@ -132,7 +140,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
     setFilteredProductList(filteredList);
     // console.log(filteredList)
     // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-  }, [selectedCategories, selectedBrands, minPrice, products, lowerToHigher, higherToLower]);
+  }, [selectedCategories, selectedBrands, minPrice, products]);
 
   useEffect(() => {
     resetFilters();

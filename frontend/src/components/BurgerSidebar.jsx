@@ -50,7 +50,7 @@ export const BurgerSidebar = () => {
        {
           categories?.data?.map((category) => {
             return (
-                <Link key={category.id} to={`/categoria/${category?.attributes?.nombre}`} className='w-full flex items-center justify-between py-4 border-b' onClick={handleBurgerClose}>
+                <Link key={category.id} to={`/categoria/${category?.attributes?.nombre}`} className='hover:bg-gray-200 w-full flex items-center justify-between py-4 border-b' onClick={handleBurgerClose}>
                   <div className='w-8 h-8  justify-center items-center order-1 hidden sm:block'>
                     <IoMdArrowForward className='text-xl' />
                   </div>
@@ -61,7 +61,7 @@ export const BurgerSidebar = () => {
             )
           })
        }
-       
+      
       </div>
 
       {/* FOOT */}
@@ -74,6 +74,7 @@ export const BurgerSidebar = () => {
       </div>
       <div className='border-b'>
        CERRAR SESIÓN
+       {/* <CSSTransition><div>asd</div></CSSTransition> */}
       </div>
       <div className='flex items-center justify-between py-6 border-b '>
         

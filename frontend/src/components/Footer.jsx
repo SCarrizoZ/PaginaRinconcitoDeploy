@@ -14,6 +14,7 @@ export function Footer() {
                 </div>
                 <span className='font-bold text-white text-xl'>Rinconcito Musical</span>
               </div>
+              <div>REDES ICON</div>
             </div>
 
             <div className=' flex flex-wrap gap-1 md:gap-0  p-2 w-full lg:w-[80%] justify-center'>

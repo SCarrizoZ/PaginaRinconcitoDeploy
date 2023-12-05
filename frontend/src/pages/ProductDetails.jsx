@@ -56,7 +56,7 @@ export const ProductDetails = () => {
   // Scroll to top
 
 
-  const productsArray = Array.isArray(products.data) ? products.data : [];
+  const productsArray = Array.isArray(products?.data) ? products?.data : [];
 
   // Obtén el producto por su id
   const product = productsArray.find((item) => {
@@ -108,8 +108,6 @@ export const ProductDetails = () => {
     <>
       <div className='flex justify-center'>
         <div className='container bg-red-300'>
-
-
             <section className='pt-32 pb-12 lg:py-32 flex items-center  '>
               <div className="container mx-auto px-32 bg-orange-300 ">
                 <div className='flex flex-col lg:flex-row bg-white px-2 py-10 rounded-lg '>
@@ -150,7 +148,7 @@ export const ProductDetails = () => {
                     <h2>Productos relacionados</h2>
                   </div>
                   <div>
-                    <Carousel responsive={responsive} infinite arrows draggable={false} autoPlay >
+                    <Carousel responsive={responsive} infinite arrows draggable={false} autoPlay swipeable={false} >
                       {
                         relatedProducts.map((product, index) => (
                           <Product key={index} product={product} gap={10} min_width={false} />
