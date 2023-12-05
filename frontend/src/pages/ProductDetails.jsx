@@ -10,6 +10,7 @@ import { Product } from '../components/Product';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+
 // reset window scroll position to top on page load
  
 

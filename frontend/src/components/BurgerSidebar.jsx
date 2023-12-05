@@ -8,17 +8,19 @@ import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
 import { Link } from 'react-router-dom';
 import { FiltersContext } from '../context/FiltersContext';
-import { CSSTransition } from 'react-transition-group';
+// import { CSSTransition } from 'react-transition-group';
 // import index.css file 
 import '../index.css';
 
 export const BurgerSidebar = () => {
-  const { isOpen,
+  const { 
+          isOpen,
           setIsOpen,
           handleClose,
           isBurgerOpen,
           setIsBurgerOpen,
-          handleBurgerClose } = useContext(SidebarContext);
+          handleBurgerClose
+        } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
   const subtotal = total.toFixed(0);
   const {categories} = useContext(FiltersContext);
