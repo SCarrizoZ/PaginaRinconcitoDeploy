@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 
 import { RiAlignJustify } from "react-icons/ri"
@@ -18,7 +18,11 @@ import TransitionsModal from './LoginModal';
 
 export function Header() {
   const { itemAmount, setItemAmount } = useContext(CartContext);
-  const { isOpen, setIsOpen } = useContext(SidebarContext);
+  const { isOpen,
+          setIsOpen,
+          isBurgerOpen,
+          setIsBurgerOpen
+           } = useContext(SidebarContext);
   const { categories } = useContext(FiltersContext)
 
   const [isActive, setIsActive] = useState(false);
@@ -39,12 +43,16 @@ export function Header() {
   const handleCategoriesLeave = () => {
     setShowCategories(false);
   };
+  const headerHeight = useRef(null);
+  // Obten la altura del header cada vez que cambie.
+  
+
 
   return (
-    <header style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-10 transition-all sticky top-0 min-w-[360px] flex flex-col  `}>
+    <header onResize={()=>{console.log("resized")}} style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-[1001] transition-all sticky top-0 min-w-[360px] flex flex-col  `}>
       {/* TOP AREA */}
       <div className=' relative flex h-16 items-center justify-around py-14 px-10  hidde container self-center '>
-        <div className='flex gap-x-4 absolute inset-y-0 left-0  md:hidden pl-4  items-center  sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
+        <div onClick={() => setIsBurgerOpen(!isBurgerOpen)} className='cursor-pointer flex gap-x-4 absolute inset-y-0 left-0  md:hidden pl-4  items-center  sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
           <RiAlignJustify className='text-[2rem] ' color='red' />
         </div>
         <div className='container flex flex-1 items-center  gap-3  '>
@@ -91,7 +99,7 @@ export function Header() {
       </div>
       {/* BOTTOM AREA */}
       <div style={{ background: "#373333" }} className='nav-links duration-500 hidden  md:block md:min-h-fit min-h-0 left-0 top-[-100%] md:w-auto  w-full flex items-center justify-center px-5 py-1.5 '>
-        <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly text-[1.2rem]">
+        <ul className="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 justify-evenly text-[1rem]">
           <li className='hover:outline-blue-200 hover:outline-2'>
             <a className="text-white hover:text-red-500 " href="#">Catálogo</a>
           </li>
@@ -119,10 +127,11 @@ export function Header() {
             </div>
           </li>
           <li>
-            <a className="text-white hover:text-red-500 " href="#">Acerca de nosotros</a>
+            <Link to={"/acerca"} className="text-white hover:text-red-500 " href="#">Acerca de nosotros</Link>
           </li>
           <li>
-            <a className="text-white hover:text-red-500 " href="#">Contacto</a>
+            <Link to="/contacto" className="text-white hover:text-red-500 " >Contacto</Link>
+            {/* <Link to={"/acerca"} className="text-white hover:text-red-500 " >Contacto/> */}
           </li>
 
         </ul>

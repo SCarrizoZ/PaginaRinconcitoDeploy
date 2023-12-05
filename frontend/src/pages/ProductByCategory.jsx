@@ -11,11 +11,7 @@ export const ProductByCategory = () => {
   const { products } = useContext(ProductContext);
   const { categories, minPrice, setMinPrice, setSubcategories, subcategories } = useContext(FiltersContext);
 
-  const [filteredProduct, setFilteredProduct] = useState([products?.data]);
-  // delete this
-  const [selectedCategories, setSelectedCategories] = useState([]);
-  const [selectedBrands, setSelectedBrands] = useState([]); // this will be used to filter the products based on brands
-  const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
+
 
   const [brandList, setBrandList] = useState([]);
   const [subcategoriesList, setSubcategoriesList] = useState([]);
@@ -94,83 +90,18 @@ export const ProductByCategory = () => {
   useEffect(() => {
     getBrands(productList);
   }, [productList]);
-  // call getProductsByCategory function
-
-
-  // Filter products by price using useMemo to avoid unnecessary recalculations
-  // const filteredProductsByPrice = useMemo(() => {
-  //   return filteredProductsByCategory?.filter((product) => {
-  //     return parseInt(product.attributes.precio) >= minPrice
-  //   });
-  // }, [filteredProductsByCategory, minPrice]);
-
-
-  // console.log(filteredProduct)
-
-  // when the page load 
-
-  // useEffect(() => {
-  //   // Get subcategories from category nombre variable from useParams. also get brands from all products belongs that category
-
-
-  //   // setFilteredProduct(filteredProductsByCategory);
-
-  //   // console.log(products?.data);
-  //   // console.log(subcategories);
-  //   // console.log(brands);
-  //   console.log("asd")
-
-
-  // }, [categories, nombre, setSubcategories, products?.data]);
-
-
-  // console.log(products?.data)
-  // console.log(subcategories)
-  // console.log(brands)
-
-
-  // useEffect(() => {
-  //   // console.log(productList)
-  //   // console.log(selectedBrands);
-  //   const filteredList = applyFilter();
-  //   console.log(filteredList)
-  //   setFilteredProduct(filteredList);
-  //   // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-  // }, [selectedCategories, products?.data, selectedBrands, minPrice]);
-
-  // useEffect(() => {
-  //   setMinPrice(0);
-  //   // You may also want to reset other relevant state values here
-  // }, [nombre, setMinPrice]);
-
-  // useEffect(() => {
-  //   const actualCategory = categories?.data?.find((category) => {
-  //     return category.attributes.nombre === nombre
-  //   });
-  //   const subcategories = actualCategory?.attributes?.subcategorias?.data?.map((subcategory) => {
-  //     return subcategory?.attributes.nombre
-  //   });
-  //   setSubcategories(subcategories);
-  // }, [categories, nombre, setSubcategories]);
-
-  // console.log(subcategories)
-
-
-  // get BRANDS with products list and BRANDS array
 
 
 
 
 
   console.log(actualCategory?.attributes.nombre)
-  // console.log(subcategories2)
-  // console.log(brandsList)
-  // console.log(filteredProductsByCategory)
+
 
 
   return (
 
-    <div className='flex justify-start  h-full '>
+    <div className='flex justify-start  h-full bg-red-200  '>
       <div className="flex  w-full justify-center">
         <Filters brandList={brandList} subcategoriesList={subcategoriesList} setProductList={setProductList} nombre={nombre} productList={productList} />
 

@@ -22,10 +22,10 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   }
   const handleKeyDown = (e) => {
     // console.log(e.key, selectedItem)
-    if (selectedItem < searchData.length) {
+    if (selectedItem < searchData?.length) {
       if (e.key === "ArrowUp" && selectedItem > 0) {
         setSelectedItem(prev => prev - 1)
-      } else if (e.key === "ArrowDown" && selectedItem < searchData.length - 1) {
+      } else if (e.key === "ArrowDown" && selectedItem < searchData?.length - 1) {
         setSelectedItem(prev => prev + 1)
       } else if (e.key === "Enter" && selectedItem > -1) {
         // If user enters, redirect to the /product/:id
@@ -71,8 +71,8 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
       // })
       // FILTER LOCAL DATA
 
-      const newFilterData = products.data.filter(product => {
-        const productName = product.attributes.nombre.toLowerCase()
+      const newFilterData = products?.data?.filter(product => {
+        const productName = product?.attributes?.nombre.toLowerCase()
         return productName.includes(input.toLowerCase())
 
       })
@@ -111,7 +111,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
 
         {/* <FaSearch className='absolute right-0 top-0 mt-3 mr-4' onClick={()=>{resetInput()}}/> */}
       </div>
-      <div className={`  shadow-lg ${searchData.length === 0 ? "h-0 hidden" : "h-[500px] block"}  transition-all result bg-white w-[400px]  mt-2 absolute overflow-y-auto p-2 rounded-lg duration-1000 z-10`}>
+      <div className={`  shadow-lg ${searchData?.length === 0 ? "h-0 hidden" : "h-[500px] block"}  transition-all result bg-white w-[400px]  mt-2 absolute overflow-y-auto p-2 rounded-lg duration-1000 z-10`}>
         {
           searchData.map((product, index) => {
 
@@ -120,16 +120,16 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
               <div  className={`  flex m-x-5 gap-x-4 hover:bg-red-100 items-center ${selectedItem === index ? "bg-red-100" : " bg-white"}`}>
                 <div className='p-4'>
                   {/* <Link key={index} to={`/product/${product.id} `} onClick={handleClose}> */}
-                    <img src={product.attributes.portada.data.attributes.url} alt="" className='w-[50px] h-auto' />
+                    <img src={product?.attributes?.portada?.data?.attributes?.url} alt="" className='w-[50px] h-auto' />
                   {/* </Link> */}
 
                 </div>
                 <div className='w-[400px]'>
                   <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>
-                    {product.attributes.nombre}
+                    {product?.attributes?.nombre}
                   </Link>
                   <p className='text-gray-500'>
-                    {formatPrice(product.attributes.precio)}
+                    {formatPrice(product?.attributes?.precio)}
                   </p>
                 </div>
 

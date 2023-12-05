@@ -2,7 +2,7 @@ import { useState, useId,useRef, useEffect } from "react";
 
 export const FilterComponent = ({subset, filterName,content}) => {
   const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
-  console.log(subset)
+  // console.log(subset)
 
   return (
     <div className=" border-b-2 border-gray-400 py-3 ">

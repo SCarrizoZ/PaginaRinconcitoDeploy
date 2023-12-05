@@ -5,11 +5,14 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // Pages
 import { Home } from './pages/Home';
 import { ProductDetails } from "./pages/ProductDetails"
+import { ProductByCategory } from "./pages/ProductByCategory";
+import {Cart} from "./pages/Cart"
 // Components
 import { Header } from "./components/Header"
 import { Sidebar } from "./components/Sidebar"
 import { Footer } from "./components/Footer"
-import { ProductByCategory } from "./pages/ProductByCategory";
+import { BurgerSidebar } from "./components/BurgerSidebar";
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const THEME = createTheme({
@@ -50,8 +53,13 @@ export default function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
             <Route path="/categoria/:nombre" element={<ProductByCategory />} />
+            <Route path="/carrito" element={<Cart />} />
+            <Route path="/acerca" element={<h1>4044</h1>} />
+            <Route path="/contacto" element={<h1>40644</h1>} />
+            <Route path="*" element={<h1 className="text-[100px] font-[Germania One]"> PÁGINA NO ENCONTRADA 404</h1>} />
           </Routes>
           {/* </div> */}
+          <BurgerSidebar />
           <Sidebar />
           <Footer />
         </BrowserRouter>

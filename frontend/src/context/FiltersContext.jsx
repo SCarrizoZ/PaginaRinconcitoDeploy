@@ -15,7 +15,7 @@ export const FiltersProvider = ({ children }) => {
     // metodo getCategories
     async function fetchCategories() {
       const data = await getCategories()
-      // console.log(data)
+      console.log(data)
       setCategories(data)
     }
     async function fetchBrands() {

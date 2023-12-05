@@ -3,6 +3,7 @@ import { FiltersContext } from "../context/FiltersContext";
 import { FilterComponent } from "./FilterList"
 import { Product } from '../components/Product';
 import { formatPrice } from "../utils";
+import {Select, MenuItem} from "@mui/material";
 export const Filters = ({ productList, subcategoriesList, brandList, nombre , setProductList}) => {
 
   const { setMinPrice, minPrice, subcategories, setSubcategories } = useContext(FiltersContext)
@@ -13,13 +14,16 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
   const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
   const [products, setProducts] = useState(); // this will be used to filter the products based on brands
   const rangeInputRef = useRef(null);
+  const [lowerToHigher, setLowerToHigher] = useState(false); // this will be used to filter the products based on brands
+  const [higherToLower, setHigherToLower] = useState(false); // this will be used to filter the products based on brands
+  const [selectValue, setSelectValue] = useState(1); // this will be used to filter the products based on brands
   // CATEGORIES OP
   const addCategory = (category) => {
     if (!selectedCategories.includes(category)) {
       setSelectedCategories(prev => ([...prev, category]))
 
     }
-    resetRangeSlider()  
+    // resetRangeSlider()  
 
   }
   const resetFilters = () => {
@@ -57,6 +61,13 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
     }
     resetRangeSlider()  
   }
+  const handleLowerToHigher = () => {
+    setLowerToHigher(!lowerToHigher)
+  }
+  const handleHigherToLower = () => {
+    setHigherToLower(!higherToLower)
+  }
+
   // FILTERS CALCULATION
   const applyFilter = () => {
     // if(productList!==undefined){
@@ -66,17 +77,51 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
       
     // }
 
-    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0) {
+    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0 && lowerToHigher === false && higherToLower === false) {
       console.log("no hay nada seleccionado")
       return products
+    }else{
+      let filteredItems = []
+      if(selectedCategories.length !== 0){
+        filteredItems = products.filter(product => {
+          return selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)
+        })
+      if(selectedBrands.length !== 0){
+        filteredItems = filteredItems.filter(product => {
+          return selectedBrands.includes(product?.attributes?.marca?.data?.attributes?.nombre)
+        })
+
+      }
+      if(minPrice !== 0){
+        filteredItems = filteredItems.filter(product => {
+          return parseInt(product?.attributes?.precio) >= minPrice
+        })
+      }
+      // higher to lower price sort
+      
+      // filteredItems.sort((a,b)=>(a?.attributes?.precio - b?.attributes?.precio))
+      filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
+      // filter by alphabetical order
+      // filteredItems.sort((a,b)=>(a?.attributes?.nombre.localeCompare(b?.attributes?.nombre)))
+      // filter by alphabetical order reverse
+      filteredItems.sort((a,b)=>(b?.attributes?.nombre.localeCompare(a?.attributes?.nombre)))
+
+      // lower to higher price sort
+      // if(lowerToHigher){
+      //   filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
+      // }
+      
+    }
+    return filteredItems
     }
     
-    return products.filter(product => {
-      return (selectedCategories.length === 0 || selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)) &&
-        (selectedBrands.length === 0 || selectedBrands.includes(product?.attributes?.marca?.data?.attributes?.nombre)) &&
-        (minPrice === 0 || parseInt(product?.attributes?.precio) >= minPrice)
-    }
-    );
+    // return products.filter(product => {
+    //   return (selectedCategories.length === 0 || selectedCategories.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)) &&
+    //     (selectedBrands.length === 0 || selectedBrands.includes(product?.attributes?.marca?.data?.attributes?.nombre)) &&
+    //     (minPrice === 0 || parseInt(product?.attributes?.precio) >= minPrice)
+    // }
+
+    // );
   };
   useEffect(() => {
     setProducts(productList)
@@ -87,7 +132,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
     setFilteredProductList(filteredList);
     // console.log(filteredList)
     // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-  }, [selectedCategories, selectedBrands, minPrice, products]);
+  }, [selectedCategories, selectedBrands, minPrice, products, lowerToHigher, higherToLower]);
 
   useEffect(() => {
     resetFilters();
@@ -115,10 +160,10 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
 
   return (
     <>
-      <div className="flex gap-1   justify-center"> 
+      <div className="flex gap-1   justify-center bg-blue-300 p-2 container"> 
         <div className="flex w-full  ">
           {/* FILTERS */}
-          <div className=' mt-3  p-5 hidden md:block min-w-[400px] '> {/* GREEN */}
+          <div className=' mt-3  p-5 hidden md:block min-w-[400px] bg-pink-300  '> {/* GREEN */}
             
             <div className='border-2 rounded-lg p-4 bg-white '>
 
@@ -167,9 +212,21 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
             </div> 
           </div>
           {/* PRODUCTS */}
-          <section className=" py-16    mt-3   max-w-[100%] ">
+          
+          <section className=" pb-16    mt-3   max-w-[100%] bg-green-200 w-full">
+            {/* Filtros dropdown */}
+            <div className="p-4">
+              <div className="flex justify-start items-center">
+                
+                <div className="font-bold"> {fileredProductList?.length} productos</div>
+                {/* DROPDOWN */}
+                <div>
+                  
+                </div>
+              </div>
+            </div>
               <div className=" ">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
+                <div className=" transition-all duration-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">
 
                   {fileredProductList?.map(product => (
                     <Product key={product.id} product={product} />
