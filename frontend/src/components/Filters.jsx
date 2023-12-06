@@ -14,9 +14,8 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
   const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
   const [products, setProducts] = useState(); // this will be used to filter the products based on brands
   const rangeInputRef = useRef(null);
-  const [lowerToHigher, setLowerToHigher] = useState(false); // this will be used to filter the products based on brands
-  const [higherToLower, setHigherToLower] = useState(false); // this will be used to filter the products based on brands
-  const [selectValue, setSelectValue] = useState(1); // this will be used to filter the products based on brands
+ // this will be used to filter the products based on brands
+  const [selectValue, setSelectValue] = useState('Default'); // this will be used to filter the products based on brands
   // CATEGORIES OP
   const addCategory = (category) => {
     if (!selectedCategories.includes(category)) {
@@ -77,7 +76,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
       
     // }
 
-    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0 ) {
+    if (selectedCategories.length === 0 && selectedBrands.length === 0 && minPrice === 0 && selectValue === 'Default') {
       console.log("no hay nada seleccionado")
       return products
     }
@@ -103,6 +102,23 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
           return parseInt(product?.attributes?.precio) >= minPrice
         })
       }
+      console.log(selectValue)
+
+      switch(selectValue) {
+        case "ascending":
+          filteredItems.sort((a,b)=>(a?.attributes?.nombre.localeCompare(b?.attributes?.nombre)))
+          break
+        case "descending":
+          filteredItems.sort((a,b)=>(b?.attributes?.nombre.localeCompare(a?.attributes?.nombre)))
+          break
+        case "high-price":
+          filteredItems.sort((a,b)=>(b?.attributes?.precio - a?.attributes?.precio))
+          break
+        case "low-price":
+          filteredItems.sort((a,b)=>(a?.attributes?.precio - b?.attributes?.precio))
+          break
+      }
+      
       return filteredItems
     }
       // higher to lower price sort
@@ -140,7 +156,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
     setFilteredProductList(filteredList);
     // console.log(filteredList)
     // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-  }, [selectedCategories, selectedBrands, minPrice, products]);
+  }, [selectedCategories, selectedBrands, minPrice, products,selectValue]);
 
   useEffect(() => {
     resetFilters();
@@ -165,7 +181,28 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
       rangeInput.value = 0;
     }
   }, [minPriceFilterId]);
+  
 
+  const handleSelectItem = (e) => {
+    const value = e.target.value
+    console.log(value)
+    setSelectValue(value)
+    // switch(value) {
+    //     case "ascending":
+    //         setSelectValue('as')
+            
+    //         break
+    //     case "descending":
+    //         setSelectValue('des')
+    //         break
+    //     case "high-price":
+    //         setHigherToLower(true)
+    //         break
+    //     case "low-price":
+    //          setLowerToHigher(true)
+    //         break
+    // }
+  }
   return (
     <>
       <div className="flex gap-1   justify-center bg-blue-300 p-2 container"> 
@@ -224,14 +261,66 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre , se
           <section className=" pb-16    mt-3   max-w-[100%] bg-green-200 w-full">
             {/* Filtros dropdown */}
             <div className="p-4">
-              <div className="flex justify-start items-center">
+              {/* CATEGORY NAME */}
+              <div className="bg-orange-200 flex items-center gap-2">
+                <div className="font-bold text-2xl">{nombre}</div>
+                <span className="font-bold">({fileredProductList?.length} productos)</span>
+              </div>
+              {/* FILTERS */}
+              <div className="flex justify-start items-center bg-red-200 p-4">
                 
-                <div className="font-bold"> {fileredProductList?.length} productos</div>
+                
+                {/* filtros mobile button with filter icon*/}
+                <div className="flex justify-center items-center">
+                  <button className="flex justify-center items-center p-2 bg-pink-400 rounded-lg gap-2 md:hidden">
+                    {/* filter icon */}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-6 w-6 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"
+                      />
+                    </svg>
+                    <div className="icon">Filtros</div>
+                  </button>
+                </div>
+               
                 {/* DROPDOWN */}
-                <div>
-                  
+                <div className="ml-auto">
+                  <div className="sorting__widget text-end">
+                    <select className="w-50" onChange={handleSelectItem}>
+                      <option>Default</option>
+                      <option value="ascending">Alphabetically, A-Z</option>
+                      <option value="descending">Alphabetically, Z-A</option>
+                      <option value="high-price">High Price</option>
+                      <option value="low-price">Low Price</option>
+                    </select>
+                  </div>
                 </div>
               </div>
+              {/* <div className="bg-slate-200 overflow-x w-[90%]">
+
+                  <div className="flex gap-2 p-2 overflow-x-auto">
+                    {selectedCategories.map((category) => (
+                      <div className="flex justify-center items-center p-2 bg-white rounded-lg ">
+                        <div className="font-bold text-[0.5rem]">{category}</div>
+                        <div className="icon cursor-pointer" onClick={() => { removeCategory(category) }}>
+       
+                          <svg width="15px" height="10px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 5L19 19M5 19L19 5" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                        </div>
+                      </div>
+                    ))}
+                    
+                </div>
+              </div> */}
             </div>
               <div className=" ">
                 <div className=" transition-all duration-700 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px] x max-w-sm mx-auto md:max-w-none px-2">

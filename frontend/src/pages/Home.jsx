@@ -17,12 +17,16 @@ export function Home() {
     <>
       
       <div className=''>
-        
-          <Hero />
+        <div className='flex justify-center'>
 
+          
+
+            <Hero  />
+          
+        </div>
         
         <div className="container mx-auto">
-          
+        
           {/* DISEÑO DE PRODUCTOS */}
           <section className="" style={{  }}>
             <div className="container mx-auto py-20">
