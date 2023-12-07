@@ -14,6 +14,7 @@ import Tabs from '@mui/material/Tabs';
 import { loginUser, registerUser } from '../api/ManageUser.api';
 import { getUser } from '../utils';
 import { ToastContext } from '../context/ToastProvider';
+import { capitalize } from '@mui/material';
 
 const style = {
   position: 'absolute',
@@ -142,10 +143,14 @@ export default function TransitionsModal() {
     <>
       {isLoggedIn ?
         (
-          <Button variant="contained" color='primary' style={{ borderRadius: 10 }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>Bienvenido {user?.username}</Button>
+          <Button variant="contained" color='primary' style={{ borderRadius: 10,textTransform:'capitalize',fontWeight:'bold' }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleLogout}>
+            Bienvenido {user?.username}
+          </Button>
         ) :
         (
-          <Button variant="contained" color='primary' style={{ borderRadius: 10 }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleOpen}>Iniciar Sesión</Button>
+          <Button  variant="contained" color='primary' style={{ borderRadius: 10, textTransform:'capitalize',fontWeight:'bold' }} startIcon={<BiUserCircle></BiUserCircle>} onClick={handleOpen}>
+            Iniciar Sesión 
+          </Button>
         )
       }
       <Modal
