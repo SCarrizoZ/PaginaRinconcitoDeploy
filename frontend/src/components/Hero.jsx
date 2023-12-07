@@ -6,7 +6,7 @@ export function Hero() {
     <div className="  ">
       <div className="w-full overflow-hidden">
         <div className="flex">
-          <div className="w-screen">
+          <div className="">
             <img src={rinconcito_hero} alt="Imagen 1" className="" />
           </div>
         </div>

@@ -1,7 +1,7 @@
 import logoImg from '../img/logonuevofinal_edited.png'
 export function Footer() {
   return (
-    <footer className='bg-[#373333] py-12  mb-0 sticky top-[100%]'>
+    <footer className='bg-[#373333] py-12   sticky top-[100%]'>
       <div className="container mx-auto  py-11 px-[0.5625rem] flex flex-col ">
           {/* TOP */}
           <div className=" border-b border-[#F36060] flex flex-wrap-reverse  w-full pb-3 ">

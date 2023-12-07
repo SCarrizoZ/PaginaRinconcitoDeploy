@@ -92,7 +92,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   return (
     <div className="search-section" ref={menuRef}>
 
-      <div className='w-[400px]  relative rounded-lg flex items-center  text-gray-600'>
+      <div className='w-[200px] md:w-[400px]  relative rounded-lg flex items-center  text-gray-600'>
         {/* <FaSearch className='search-icon' onClick={()=>{resetInput()}}/> */}
         <input className='bg-white h-10 px-5 pr-10 w-full rounded-full text-sm focus:outline-none transition-all'
           type='text'
@@ -125,9 +125,9 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
 
                 </div>
                 <div className='w-[400px]'>
-                  <Link key={index} to={`/product/${product.id} `} onClick={handleClose}>
+                  {/* <Link key={index} to={`/product/${product.id} `} onClick={handleClose}> */}
                     {product?.attributes?.nombre}
-                  </Link>
+                  {/* </Link> */}
                   <p className='text-gray-500'>
                     {formatPrice(product?.attributes?.precio)}
                   </p>
