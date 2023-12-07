@@ -11,17 +11,19 @@ import ToastProvider from './context/ToastProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ToastProvider>
+    <ProductProvider>
     <FiltersProvider>
       <SidebarProvider>
         <CartProvider>
-          <ProductProvider>
+          {/* <ProductProvider> */}
             <React.StrictMode>
               <App />
             </React.StrictMode>
-          </ProductProvider>
+          {/* </ProductProvider> */}
         </CartProvider>
       </SidebarProvider>
     </FiltersProvider>
+    </ProductProvider>
   </ToastProvider>
 
 

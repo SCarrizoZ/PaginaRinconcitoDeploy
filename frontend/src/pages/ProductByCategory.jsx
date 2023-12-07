@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { ProductContext } from '../context/ProductContext';
 import { Product } from '../components/Product';
 import { FiltersContext } from '../context/FiltersContext';
-import { Filters } from '../components/Filters';
+import { Filters } from '../components/FilterSection';
 import { FilterComponent } from '../components/FilterList'
 
 export const ProductByCategory = () => {

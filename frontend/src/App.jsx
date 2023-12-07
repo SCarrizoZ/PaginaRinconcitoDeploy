@@ -14,6 +14,7 @@ import { Footer } from "./components/Footer"
 import { BurgerSidebar } from "./components/BurgerSidebar";
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useParams } from "react-router-dom";
 
 const THEME = createTheme({
   palette: {
@@ -36,13 +37,30 @@ const THEME = createTheme({
     "fontWeightMedium": 500
   }
 });
+// I need a way to know when the user change to other page, so i can reset scroll to 0,0
+// I can use useEffect to do this, but i need to know when the user change to other page
+// I can use a state to do this, but i need to know when the user change to other page
+// I can use a context to do this, but i need to know when the user change to other page
+// I can use a router to do this, but i need to know when the user change to other page
+// I can use a history to do this, but i need to know when the user change to other page
+// I can use a location to do this, but i need to know when the user change to other page
+// I can use a match to do this, but i need to know when the user change to other page
+// I can use a useparams to do this, but i need to know when the user change to other page
+
 
 export default function App() {
+  const {nombre, id} = useParams();
+  // console.log(comp)
   // add code for reset scroll to 0,0
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
+  useEffect(() => {
+    
+    window.scrollTo(0, 0)
+    
+  }, [nombre,id])
   return (
     <div className="bg-gray-200 min-h-[100vh]">
       <ThemeProvider theme={THEME}>

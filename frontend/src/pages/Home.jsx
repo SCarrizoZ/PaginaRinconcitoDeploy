@@ -16,7 +16,7 @@ export function Home() {
   return (
     <>
       
-      <div className=''>
+      <div className='qweW'>
         <div className='flex justify-center'>
 
           
@@ -25,7 +25,7 @@ export function Home() {
           
         </div>
         
-        <div className="container mx-auto">
+        <div className="">
         
           {/* DISEÑO DE PRODUCTOS */}
           <section className="" style={{  }}>
