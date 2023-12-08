@@ -7,6 +7,7 @@ import { SidebarContext } from '../context/SidebarContext';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
 import { Link } from 'react-router-dom';
+import { RiArrowRightLine } from "react-icons/ri";
 export function Sidebar() {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
@@ -23,8 +24,8 @@ export function Sidebar() {
       className={`${isOpen ? 'right-0' : '-right-full'
         } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px]`}
     >
-      <div className='flex items-center justify-between py-6 border-b'>
-        <div className='uppercase text-sm font-semibold'>
+      <div className='flex items-center justify-between py-6 border-b '>
+        <div className='uppercase text-sm font-semibold order-1'>
           Carrito de compras ({cart.length})
         </div>
         {/**Icono */}
@@ -32,7 +33,7 @@ export function Sidebar() {
           onClick={handleClose}
           className='cursor-pointer w-8 h-8 flex justify-center items-center'
         >
-          <RiCloseFill className='text-2xl' />
+          <RiArrowRightLine className='text-2xl' />
         </div>
       </div>
       <div className='flex flex-col h-[540px] lg:h-[640px] overflow-y-auto overflow-x-hidden border-b'>
@@ -49,7 +50,7 @@ export function Sidebar() {
           </div>
           {/*Icono para limpiar */}
           <div
-            className='bg-red-500 w-12 h-12 flex justify-center items-center text-xl py-4 cursor-pointer transition-all text-white '
+            className='bg-red-500 hover:bg-red-600 w-12 h-12 flex justify-center items-center text-xl py-4 cursor-pointer transition-all text-white rounded-lg '
             onClick={() => {
               clearAllItems();
             }}
@@ -61,7 +62,7 @@ export function Sidebar() {
         <Link
         onClick={handleClose}
           to='/carrito'
-          className='bg-red-500 w-full py-3 flex justify-center items-center text-xl cursor-pointer transition-all text-white '
+          className='bg-red-500 hover:bg-red-600 w-full py-3 flex justify-center items-center text-xl cursor-pointer transition-all text-white rounded-lg'
         >
           <span>Ver carrito</span>
           <IoMdArrowForward className='ml-2' />

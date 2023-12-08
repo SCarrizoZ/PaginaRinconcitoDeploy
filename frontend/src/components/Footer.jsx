@@ -1,3 +1,5 @@
+import { RiInstagramLine,RiFacebookCircleLine, RiWhatsappLine} from "react-icons/ri";
+
 import logoImg from '../img/logonuevofinal_edited.png'
 export function Footer() {
   return (
@@ -14,7 +16,28 @@ export function Footer() {
                 </div>
                 <span className='font-bold text-white text-xl'>Rinconcito Musical</span>
               </div>
-              <div>REDES ICON</div>
+              <div>
+                {/* Facebook -> https://www.facebook.com/PlanetaR.calama , Instagram ->  https://www.instagram.com/rinconcito.musical/ ICONS */}
+                <div className='flex justify-center items-center gap-3'>
+                  <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+                    <a href="https://www.facebook.com/PlanetaR.calama" target="_blank" rel="noopener noreferrer">
+                      <RiFacebookCircleLine className='text-white text-xl' />
+                    </a>
+                  </div>
+                  <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+                    <a href="https://www.instagram.com/rinconcito.musical/" target="_blank" rel="noopener noreferrer">
+                      <RiInstagramLine className='text-white text-xl' />
+                    </a>
+                  </div>
+
+                  <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+                    <a href="https://wa.me/56993400280" target="_blank" rel="noopener noreferrer">
+                      <RiWhatsappLine className='text-white text-xl' />
+                    </a>
+                  </div>
+
+                </div>
+                </div>
             </div>
 
             <div className=' flex flex-wrap gap-1 md:gap-0  p-2 w-full lg:w-[80%] justify-center'>

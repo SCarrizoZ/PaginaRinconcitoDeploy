@@ -12,7 +12,7 @@ import { Header } from "./components/Header"
 import { Sidebar } from "./components/Sidebar"
 import { Footer } from "./components/Footer"
 import { BurgerSidebar } from "./components/BurgerSidebar";
-
+import {FilterSidebar} from "./components/FilterSidebar"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
 
@@ -79,6 +79,7 @@ export default function App() {
           {/* </div> */}
           <BurgerSidebar />
           <Sidebar />
+          <FilterSidebar />
           <Footer />
         </BrowserRouter>
       </ThemeProvider>

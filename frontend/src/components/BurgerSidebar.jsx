@@ -1,8 +1,11 @@
 import { useContext, useState, useRef } from 'react';
+
 import { IoMdArrowForward } from 'react-icons/io';
 import { RiCloseFill } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
 import { CartItem } from '../components/CartItem';
+import { RiPriceTag3Line,RiArrowLeftLine  } from "react-icons/ri";
+
 import { SidebarContext } from '../context/SidebarContext';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
@@ -33,6 +36,8 @@ export const BurgerSidebar = () => {
       <div className='flex items-center justify-between py-6 border-b '>
         
         <div className='uppercase text-sm font-semibold'>
+          {/* tag icon */}
+          {/* <RiPriceTag3Line className='inline-block mr-2' /> */}
           Categorías
         </div>
         {/**Icono */}
@@ -40,7 +45,10 @@ export const BurgerSidebar = () => {
           onClick={handleBurgerClose}
           className='cursor-pointer w-8 h-8 flex justify-center items-center'
         >
-          <RiCloseFill className='text-2xl' />
+          {/* Arrow icon pls. Opposite direction pls */}
+           < RiArrowLeftLine  className='text-2xl' />
+           
+          {/* <RiCloseFill className='text-2xl' /> */}
         </div>
       </div>
       {/* BODY */}

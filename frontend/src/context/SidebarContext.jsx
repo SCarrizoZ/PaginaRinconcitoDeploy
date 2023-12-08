@@ -18,6 +18,12 @@ export function SidebarProvider({ children }) {
       setIsBurgerOpen(false)
     }
   }
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const handleFilterClose = () => {
+    {
+      setIsFilterOpen(false)
+    }
+  }
   return (
 
     <SidebarContext.Provider value={{ 
@@ -26,6 +32,9 @@ export function SidebarProvider({ children }) {
       handleClose,
       isBurgerOpen,
       setIsBurgerOpen,
-      handleBurgerClose }}>{children}</SidebarContext.Provider>
+      handleBurgerClose,
+      isFilterOpen,
+      setIsFilterOpen,
+      handleFilterClose }}>{children}</SidebarContext.Provider>
   )
 }
