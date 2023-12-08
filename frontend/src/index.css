@@ -19,3 +19,6 @@ html{
 
 
 }
+.react-multi-carousel-dot--active button{
+  background-color: red;
+}

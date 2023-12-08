@@ -1,18 +1,46 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../context/ProductContext';
 import { Product } from '../components/Product';
 import { Hero } from '../components/Hero';
 import marcas from '../img/marcas.png';
 import Carousel from 'react-multi-carousel';
+// import { RightCustomButton } from '../components/Buttons/RightCustomButton';
+import { Button } from '@mui/material';
+import { RiArrowRightSLine } from 'react-icons/ri';
+// import { LeftCustomButton } from '../components/Buttons/LeftCustomButton';
 export function Home() {
   // Obtén los productos del contexto
   const { products } = useContext(ProductContext);
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+  
   // Filtra solo los datos de productos (la propiedad "data" en la respuesta)
   const productsArray = Array.isArray(products?.data) ? products?.data : [];
-
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1025 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 1024, min: 769 },
+      items: 4,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 768, min: 641 },
+      items: 3,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 640, min: 401 },
+      items: 2,
+      slidesToSlide: 1 // optional, default to 1.
+    },
+    smobile: {
+      breakpoint: { max: 400, min: 0 },
+      items: 1,
+      slidesToSlide: 1 // optional, default to 1.
+    }
+  };
   return (
     <>
       
@@ -31,10 +59,30 @@ export function Home() {
           <section className="" style={{  }}>
             <div className="container mx-auto py-20">
               <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-[30px] max-w-sm mx-auto md:max-w-none">
-                {productsArray?.slice(0, 5).map(product => (
+              <div className="">
+                {/* {productsArray?.slice(0, 5).map(product => (
                   <Product key={product?.id} product={product} />
-                )).slice(0, 5)}
+                )).slice(0, 5)} */}
+                <Carousel
+                 responsive={responsive} 
+                 infinite 
+                 arrows ={true}
+                 draggable={false} 
+                 autoPlay 
+                 customRightArrow={ <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500' />
+                  </button>
+                  }
+                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
+                  </button>}
+                 >
+                  {productsArray?.map(product => (
+                    <Product key={product?.id} product={product} gap={10} />
+                  ))}
+                </Carousel>
+                
+                
               </div>
             </div>
           </section>
@@ -44,22 +92,33 @@ export function Home() {
         </div>
         {/* CAROUSEL */}
         <section>
-            <div className='bg-red-200 flex justify-center w-full'>
+            <div className='bg-red-200 flex justify-center  container mx-auto'>
               <Carousel
               autoPlay
                 className='w-full  bg-red-200'
                 additionalTransfrom={0}
                 arrows
+                
+                
                 autoPlaySpeed={3000}
                 centerMode={false}
-
+                // customRightArrow={<RightCustomButton elem={this}/>}
+                customRightArrow={ <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                <RiArrowRightSLine className='text-2xl text-red-500' />
+                </button>
+                }
+              customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
+                </button>}
                 containerClass=" w-full h-auto"
-                dotListClass=""
+                dotListClass="flex gap-1 pb-1"
                 // customRightArrow={<CustomRightArrow />}      
                 // customLeftArrow={<button className='bg-red-500'>left</button>}
                 focusOnSelect={false}
+                // i want dots that fills with red color when active
+                
                 infinite
-                itemClass=""
+                itemClass="p-4 "
                 keyBoardControl
                 minimumTouchDrag={80}
                 pauseOnHover
@@ -91,7 +150,7 @@ export function Home() {
                 }}
                 // rewind={false}
                 // rewindWithAnimation={false}
-                rtl={false}
+                
                 shouldResetAutoplay
                 showDots
                 sliderClass=""
@@ -108,6 +167,7 @@ export function Home() {
                     margin: 'auto',
                     width: '100%'
                   }}
+                  className='aspect-w-3 aspect-h-4'
                 />
                 <img
                   // select image from public/images folder
@@ -136,6 +196,57 @@ export function Home() {
             </div>
         </section>
         {/* FIN CAROUSEL */}
+        <section>
+          <div className='container mx-auto py-20'>
+            <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Nuevos Productos</h2>
+            <div className=''>
+              <Carousel
+                responsive={responsive}
+                infinite
+                arrows={true}
+                draggable={false}
+                autoPlay
+                customRightArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500' />
+                </button>
+                }
+                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
+                </button>}
+              >
+                {productsArray?.map(product => (
+                  <Product key={product?.id} product={product} gap={10} />
+                ))}
+              </Carousel>
+            </div>
+          </div>
+        </section>
+        {/* Categorías populares */}
+        <section>
+          <div className='container mx-auto py-20'>
+            <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Categorías Populares</h2>
+            <div className=''>
+              <Carousel
+                responsive={responsive}
+                infinite
+                arrows={true}
+                draggable={false}
+                autoPlay
+                customRightArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500' />
+                </button>
+                }
+                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
+                </button>}
+              >
+                {productsArray?.map(product => (
+                  <Product key={product?.id} product={product} gap={10} />
+                ))}
+              </Carousel>
+            </div>
+          </div>
+        </section>
 
         {/* MARCAS */}
         <section style={{ backgroundColor: "#000000" }}>

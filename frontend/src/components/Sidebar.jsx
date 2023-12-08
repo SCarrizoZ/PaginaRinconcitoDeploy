@@ -8,10 +8,16 @@ import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
 import { Link } from 'react-router-dom';
 import { RiArrowRightLine } from "react-icons/ri";
+import { scrollToTop } from '../utils';
 export function Sidebar() {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
 
+
+  const handleSidebarClose = () => {
+    handleClose();
+    scrollToTop();
+  }
   // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
 
 
@@ -60,7 +66,7 @@ export function Sidebar() {
         </div>
         {/* See cart  */}
         <Link
-        onClick={handleClose}
+        onClick={handleSidebarClose}
           to='/carrito'
           className='bg-red-500 hover:bg-red-600 w-full py-3 flex justify-center items-center text-xl cursor-pointer transition-all text-white rounded-lg'
         >

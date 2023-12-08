@@ -14,7 +14,7 @@ import { FiltersContext } from '../context/FiltersContext'
 import { SearchBar } from './SearchBar'
 
 import TransitionsModal from './LoginModal';
-
+import { scrollToTop } from '../utils';
 
 export function Header() {
   const { itemAmount, setItemAmount } = useContext(CartContext);
@@ -119,7 +119,7 @@ export function Header() {
                   {categories?.data?.map((category) => {
                     const { id, attributes } = category;
                     const { nombre } = attributes;
-                    return <Link key={id} to={`/Categoria/${nombre}`} className="block text-black">{nombre}</Link>
+                    return <Link onClick={scrollToTop} key={id} to={`/Categoria/${nombre}`} className="block text-black">{nombre}</Link>
                   })}
 
                 </div>

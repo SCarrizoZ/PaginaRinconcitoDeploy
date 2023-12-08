@@ -11,10 +11,12 @@ export function Product({ product, gap, min_width }) {
   const { id, attributes } = product;
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
   // console.log(product)
-
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  };
 
   return (
-    <div className={`rounded-lg border border-[#e4e4e4] bg-white ${gap ? "mx-2":""} ${min_width?"w-[200px]":""}` }>
+    <div className={`rounded-lg border border-[#e4e4e4] bg-white ${gap ? "mx-2":""} ${min_width?"w-[200px]":""} h-full` }>
       {/** Container de la portada TOP */}
       <div className='border-b h-[300px] mb-4 relative overflow-hidden group transition'>
         <div className='w-full h-full flex justify-center'>
@@ -35,7 +37,7 @@ export function Product({ product, gap, min_width }) {
                 <BsPlus className="text-3xl" />
               </div>
             </button>
-            <Link to={`/product/${id}`} className='w-12 h-12 bg-white flex justify-center items-center drop-shadow-xl'>
+            <Link onClick={scrollToTop} to={`/product/${id}`} className='w-12 h-12 bg-white flex justify-center items-center drop-shadow-xl'>
               <BsEyeFill />
             </Link>
             <button onClick={() => {
