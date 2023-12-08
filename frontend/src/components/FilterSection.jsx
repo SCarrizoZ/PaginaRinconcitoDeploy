@@ -69,6 +69,11 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
 
   useEffect(() => {
     console.log(selectValue)
+    console.log(filteredProductList)
+    console.log(products)
+    if(filteredProductList === undefined){
+      return;
+    }
     let newList = [...filteredProductList]
     newList = applySort(newList)
     setFilteredProductList(newList)
@@ -203,6 +208,11 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                   <div className="sorting__widget text-end">
                     <select className="w-50" value={selectValue} onChange={
                       (e) => {
+                        if(filteredProductList === undefined){
+                          e.target.value = 'Default'
+                          return;
+                        }
+
                         if (e.target.value === 'ascending') {
                           setSelectValue('ascending')
                         }

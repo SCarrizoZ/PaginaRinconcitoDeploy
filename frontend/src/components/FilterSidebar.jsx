@@ -44,6 +44,7 @@ export const FilterSidebar = () => {
     setBrands,
     filterBrands,
     setFilterBrands,
+    setMinPrice
     
     } = useContext(FiltersContext);
   console.log(filterBrands)
