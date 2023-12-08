@@ -42,7 +42,7 @@ export function Product({ product, gap, min_width }) {
               addToCart(({ ...product, precio }), id);
             }}>
               <div className='flex justify-center items-center text-white w-12 h-12 bg-white'>
-                <Heart />
+              <Heart borderColor="red" bgColor={"red"} />
               </div>
             </button>
           </div>
