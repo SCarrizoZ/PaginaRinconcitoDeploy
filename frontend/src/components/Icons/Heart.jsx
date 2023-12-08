@@ -1,18 +1,18 @@
 import { useState } from 'react';
 
-const Heart = () => {
+const Heart = ({borderColor, bgColor}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const iconStyle = {
     cursor: 'pointer',
-    fill: isOpen ? 'red' : 'none',
+    fill: isOpen ? `${bgColor}` : 'none',
     transition: 'fill 0.3s',
   };
 
   return (
     <div
       onClick={() => setIsOpen(!isOpen)}
-      className='flex relative hidden md:block'
+      className=' '
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -21,7 +21,7 @@ const Heart = () => {
         height="2rem"
         viewBox="0 0 24 24"
         strokeWidth="2"
-        stroke="red"
+        stroke={borderColor}
         fill="none"
         strokeLinecap="round"
         strokeLinejoin="round"

@@ -49,7 +49,7 @@ export function Header() {
 
 
   return (
-    <header onResize={()=>{console.log("resized")}} style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-[1001] transition-all sticky top-0 min-w-[360px] flex flex-col md:px-10 `}>
+    <header onResize={()=>{console.log("resized")}} style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-[1001] transition-all sticky top-0 min-w-[360px] flex flex-col md:px-20 `}>
       {/* TOP AREA RED */}
       <div className=' relative flex items-center justify-around md:px-10    '>
         <div onClick={() => setIsBurgerOpen(!isBurgerOpen)} 
@@ -58,7 +58,7 @@ export function Header() {
         </div>
         
         <div className='container       gap-3 p-1'>
-          {/* Logo */}
+          
           <div className='flex items-center  gap-3 '>
             <div className='flex   mx-auto md:mx-0 justify-center '> {/* Ajustar según tus necesidades */}
               <Link to={'/'}>
@@ -87,11 +87,11 @@ export function Header() {
             </div>
           </div>
 
-          <div>
-            <Heart  />
+          <div className='hidden md:block'>
+            <Heart borderColor="red" bgColor={"red"} />
           </div>
 
-          <div className={'relative hidden md:block ml-auto'} >
+          <div className={'relative hidden md:block '} >
             <TransitionsModal />
           </div>
 
