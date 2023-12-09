@@ -103,15 +103,15 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
   }
   return (
     <>
-      <div className="flex flex-col gap-1   justify-center bg-blue-300 px-2 py-10 container">
+      <div className="flex flex-col gap-1   justify-center  px-2 py-10 container">
 
         <div className="flex w-full  ">
           {/* FILTERS */}
-          <div className='   p-5 hidden md:block min-w-[350px] bg-pink-300  '> {/* GREEN */}
+          <div className='   p-5 hidden md:block min-w-[350px]  '> {/* GREEN */}
 
-            <div className='border-2 rounded-lg p-3 bg-orange-200 '>
+            <div className='border-2 rounded-lg p-3 border-black sticky top-[112px] md:top-[152px]  '>
 
-              <header className="border-b-2 pb-3">
+              <header className="border-b-2 pb-3 border-black">
                 <div>
                   <div className="flex justify-between">
                     <div className="font-bold">Filtros</div>
@@ -170,16 +170,16 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
           </div>
           {/* PRODUCTS */}
 
-          <section className="       max-w-[100%] bg-green-200 w-full">
+          <section className="       max-w-[100%]  w-full">
             {/* Filtros dropdown */}
-            <div className="p-4">
+            <div className="p-4 border-2 border-black rounded border-opacity-[10%]">
               {/* CATEGORY NAME */}
-              <div className="bg-orange-200 flex items-center gap-2">
+              <div className=" flex items-center gap-2">
                 <div className="font-bold text-2xl">{nombre}</div>
                 <span className="font-bold">({filteredProductList?.length} productos)</span>
               </div>
               {/* FILTERS */}
-              <div className="flex justify-start items-center bg-red-200 p-4">
+              <div className="flex justify-start items-center  p-4">
 
 
                 {/* filtros mobile button with filter icon*/}
@@ -243,7 +243,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
               {/* SELECTED FILTERS */}
               {/* if there are more than three filters put text on that say N more categories */}
 
-              <div className="bg-slate-200 max-w-[500px]">
+              <div className=" max-w-[500px]">
 
                 <div className="flex container">
 
@@ -251,7 +251,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
               </div>
             </div >
 
-            <div className={`bg-yellow-200 ${filteredProductList?.length === 0 ? "h-[500px] p-2":""}  flex justify-center items-center` }>
+            <div className={` ${filteredProductList?.length === 0 ? "h-[500px] p-2":""}  flex justify-center items-center` }>
 
               {
                 filteredProductList?.length ===0 ?

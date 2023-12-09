@@ -1,5 +1,5 @@
 import { useState, useId,useRef, useEffect } from "react";
-
+import { scrollToTop } from "../utils";
 export const FilterComponent = ({subset, filterName,content}) => {
   const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
   // console.log(subset)
@@ -15,7 +15,7 @@ export const FilterComponent = ({subset, filterName,content}) => {
               <ul className="">
                 {
                   subset?.map((item,index) => (
-                    <li key={index} className="category hover:cursor-pointer w-full flex justify-start">
+                    <li onClick={scrollToTop} key={index} className="category hover:cursor-pointer w-full flex justify-start">
                       {/* <a href="" className=" w-full flex justify-between">
                         <span className="before:content-['+']">{item}</span>
                         <span>100</span>

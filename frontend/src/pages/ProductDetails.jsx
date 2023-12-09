@@ -120,9 +120,9 @@ export const ProductDetails = () => {
   return (
     <>
       <div className='flex justify-center'>
-        <div className='container bg-red-300'>
+        <div className='container '>
           <SingleProduct product={product} precio={precio} />
-          <div className=' mb-10 bg-green-300 '>
+          <div className=' mb-10  '>
             {/* Create a product card: must be contain an imagen at the top. Use <Card> component */}
             <div className='flex flex-col py-10'>
 
@@ -131,7 +131,7 @@ export const ProductDetails = () => {
               </div>
               <ProductCarousel products={similarProducts} />
             </div>
-            <div className='flex flex-col py-10 bg-pink-400'>
+            <div className='flex flex-col py-10 '>
               <div className='text-center  mb-10'>
                 <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Productos Relacionados</h2>
               </div>

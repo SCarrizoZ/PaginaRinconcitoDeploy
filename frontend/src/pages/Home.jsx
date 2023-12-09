@@ -205,9 +205,11 @@ export function Home() {
                   customLeftArrow={
                     <CustomLeftArrow />}
                 >
-                  {productsArray?.map(product => (
-                    <Product key={product?.id} product={product} gap={10} />
-                  ))}
+                  {
+                    productsArray?.map(product => (
+                      <Product key={product?.id} product={product} gap={10} />
+                    )).slice(0, 5)
+                  }
                 </Carousel>
               </div>
             </div>
@@ -238,16 +240,18 @@ export function Home() {
                   <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
                 </button>}
               >
-                {productsArray?.map(product => (
-                  <Product key={product?.id} product={product} gap={10} />
-                ))}
+                {
+                  productsArray?.map(product => (
+                    <Product key={product?.id} product={product} gap={10} />
+                  )).slice(5, 10)
+                }
               </Carousel>
             </div>
           </div>
         </section>
         {/* Categorías populares */}
-        <div className='bg-red-200 grid grid-rows-1 grid-cols-4'>
-          {/* create some div boxes but change the color to each one */}
+        {/* <div className='bg-red-200 grid grid-rows-1 grid-cols-4'>
+          
           <div className='bg-red-500 h-full w-full col-span-2 row-span-2'>1</div>
           <div className='bg-orange-200 h-20 w-full'>2</div>
           <div className='bg-yellow-200 h-20 w-full'>3</div>
@@ -258,14 +262,13 @@ export function Home() {
           <div className='bg-pink-200 h-20 w-full'>8</div>
 
 
-          {/* <div className='bg-red-500 h-20 w-20'>1</div>  */}
 
-        </div>
+        </div> */}
         <div className='flex'>
           {/* GRID WITH BRANDSLOGOWARRAY */}
           {/* I want that some elements take more space than others. Example: Element 1 take four cells  */}
 
-          <section className='container mx-auto py-20'>
+          {/* <section className='container mx-auto py-20'>
             <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Categorías Populares</h2>
             <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
               {
@@ -290,7 +293,7 @@ export function Home() {
                 )
               }
             </div>
-          </section>
+          </section> */}
         </div>
         {/* MARCAS */}
         <section className="brands" style={{}}>

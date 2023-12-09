@@ -4,7 +4,7 @@ import { RiCloseFill } from 'react-icons/ri'
 import { ProductContext } from '../context/ProductContext'
 import { Link } from 'react-router-dom'
 import { formatPrice } from '../utils'
-
+import { scrollToTop } from '../utils'
 export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   const [input, setInput] = useState('')
   const [searchData, setSearchData] = useState([])
@@ -19,6 +19,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
     setInput("")
     setSearchData([])
     setSelectedItem(-1)
+    scrollToTop()
   }
   const handleKeyDown = (e) => {
     // console.log(e.key, selectedItem)

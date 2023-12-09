@@ -1,5 +1,5 @@
 import { useContext, useState, useRef } from 'react';
-
+import { RiInstagramLine, RiFacebookCircleLine, RiWhatsappLine } from "react-icons/ri";
 import { IoMdArrowForward } from 'react-icons/io';
 import { RiCloseFill } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
@@ -88,8 +88,26 @@ export const BurgerSidebar = () => {
       </div>
       <div className='flex items-center justify-between py-6 border-b '>
         
-        <div className='uppercase text-sm font-semibold'>
-          Redes sociales
+        <div className='uppercase text-sm font-semibold  w-full'>
+        <div className='flex justify-center items-center gap-3 ml-auto min-w-[300px]  py-4'>
+            <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+              <a href="https://www.facebook.com/PlanetaR.calama" target="_blank" rel="noopener noreferrer">
+                <RiFacebookCircleLine className='text-white text-2xl' />
+              </a>
+            </div>
+            <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+              <a href="https://www.instagram.com/rinconcito.musical/" target="_blank" rel="noopener noreferrer">
+                <RiInstagramLine className='text-white text-2xl' />
+              </a>
+            </div>
+
+            <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>
+              <a href="https://wa.me/569978525843" target="_blank" rel="noopener noreferrer">
+                <RiWhatsappLine className='text-white text-2xl' />
+              </a>
+            </div>
+
+          </div>
         </div>
         
       </div>

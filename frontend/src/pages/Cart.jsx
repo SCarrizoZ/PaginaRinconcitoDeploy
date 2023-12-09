@@ -84,11 +84,11 @@ export const Cart = () => {
 
       <div className='flex justify-center gap-[1rem]  p-2 flex-col lg:flex-row'>
         {/* ITEMS */}
-        <div className={`max-w-[100%]  w-full p-2 flex flex-col gap-2 bg-pink-200 ${cart?.length === 0 ? "justify-center" : ""}`}>
+        <div className={`max-w-[100%]  w-full p-2 flex flex-col gap-2 ${cart?.length === 0 ? "justify-center" : ""}`}>
           {/* if no products show a message */}
           {
             cart.length !== 0 ? cart.map((item) => {
-              return <CartSummaryItem key={item?.id} item={item} newPrice={item?.attributes?.precio - (item?.attributes?.precio * code.discount) } />
+              return <CartSummaryItem key={item?.id} item={item} newPrice={item?.precio } />
             }
             ) : <div className='flex justify-center items-center gap-2 '>
               <RiShoppingCart2Line className='text-[3rem]' />
@@ -101,10 +101,10 @@ export const Cart = () => {
         {/* SUMM */}
 
         <div className='md:min-w-[500px]   '>
-          <div className='flex  flex-col  m-4 p-8 sticky top-[112px] border border-black rounded-lg md:top-[152px] text-center gap-2'>
+          <div className='flex  flex-col  m-4 p-8 sticky top-[112px] md:top-[152px] border border-black rounded-lg  text-center gap-2'>
             <h2 className='text-[2rem] border-b border-black'>Resumen de carrito</h2>
             {/* Small array products */}
-            <div className='flex flex-col bg-gray-100 gap-2 h-[400px] overflow-y-auto px-2 mt-2 border-b border-black'>
+            <div className='flex flex-col bg-gray-100 gap-2 h-[400px] overflow-y-auto px-2 mt-2 border-b border-black rounded'>
               {
                 cart.map((item) => {
                   return (
@@ -131,9 +131,9 @@ export const Cart = () => {
                 })
               }
             </div>
-            <div className=' border-b border-black flex items-center bg-pink-200 self-start w-full '>
+            <div className=' border-b border-black flex items-center self-start w-full '>
               {/* promo code enter */}
-              <div className=' p-4 flex flex-col gap-2 my-2 bg-green-200 w-full flex-wrap'>
+              <div className=' p-4 flex flex-col gap-2 my-2  w-full flex-wrap'>
                 <h2 className='text-xl self-start'>¿Tienes un código de descuento?</h2>
                 <div className='flex gap-2 flex-wrap'>
                   <input ref={codeInputRef} type='text' placeholder='Ingresa tu código' className='border border-black p-2 w-full' />
@@ -172,7 +172,7 @@ export const Cart = () => {
         </div>
       </div>
       {/* COM */}
-      <div className=' p-5 flex items-center gap-4 bg-blue-200 justify-center sm:justify-start container mx-auto flex-wrap'>
+      <div className=' p-5 flex items-center gap-4  justify-center sm:justify-start container mx-auto flex-wrap '>
         {/* Seguir comprando button */}
         <div className='w-full md:w-[unset]'>
           <Link to='/' className='transition-all duration-300 bg-white items-center hover:bg-gray-200 py-2 px-8 text-black font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0'>
@@ -189,8 +189,8 @@ export const Cart = () => {
           </button>
         </div>
       </div>
-      <section>
-        <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Te puede interesar</h2>
+      <section className=' py-10'>
+        <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Te podría interesar</h2>
         <ProductCarousel products={productsArray} />
       </section>
     </div>

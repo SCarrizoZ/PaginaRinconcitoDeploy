@@ -17,14 +17,14 @@ export const SocialShare = () => {
   return (
     <>
 
-      <div className=' flex container p-2 bg-pink-400  text-center'>
+      <div className=' flex container p-2  text-center'>
         
         {/* i want to share products by url . Only for whatsapp and ffacebook */}
-        <div className='p-1 bg-purple-300'>
-          <div className='bg-red-200 font-medium'>
+        <div className='p-1 '>
+          <div className='font-medium'>
             Compartir en redes sociales
           </div>
-          <div className='flex bg-blue-200 justify-center gap-2'>
+          <div className='flex  justify-center gap-2'>
             <FacebookShareButton className='order-2'  url={"https://www.rinconcitomusical.com/product-page/guitarra-el%C3%A9ctrica-ibanez-ps60-iceman-black"} quote={"Check out this product"}>
               <FacebookIcon size={36} className='rounded-lg hover:scale-105' />
             </FacebookShareButton>

@@ -4,6 +4,7 @@ import { IoMdRemove, IoMdAdd, IoMdClose } from 'react-icons/io';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
+import { scrollToTop } from '../utils';
 // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
 
 
@@ -24,14 +25,14 @@ export function CartItem({ item }) {
     <div className='flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4'>
         {/* Imagen */}
-        <Link to={`/product/${id}`}>
+        <Link onClick={scrollToTop} to={`/product/${id}`}>
           <img src={portada.data.attributes.url} alt={nombre} className='max-w-[80px]' />
         </Link>
 
         <div className='w-full flex flex-col'>
           <div className='flex justify-between mb-2'>
             {/** Propiedades del objeto */}
-            <Link to={`/product/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
+            <Link onClick={scrollToTop} to={`/product/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
               {nombre}
             </Link>
             <div className='text-xl cursor-pointer' onClick={() => { removeFromCart(id) }}>

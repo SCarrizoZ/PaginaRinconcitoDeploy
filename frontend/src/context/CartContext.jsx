@@ -24,7 +24,7 @@ export function CartProvider({ children }) {
 
   const addToCart = (product, id) => {
     const newItem = { ...product, amount: 1 }
-
+    console.log(id)
     // Revisa existencia del producto
     const cartItem = cart.find((item) => {
       return item.id === id;

@@ -101,7 +101,7 @@ export const ProductByCategory = () => {
 
   return (
 
-    <div className='flex justify-start  h-full bg-red-200  '>
+    <div className='flex justify-start  h-full   '>
       <div className="flex  w-full justify-center">
         <Filters brandList={brandList} subcategoriesList={subcategoriesList} setProductList={setProductList} nombre={nombre} productList={productList} />
 

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 
+
 import { RiAlignJustify } from "react-icons/ri"
 import { RiShoppingCart2Line } from "react-icons/ri"
 
@@ -61,7 +62,7 @@ export function Header() {
           
           <div className='flex items-center  gap-3 '>
             <div className='flex   mx-auto md:mx-0 justify-center '> {/* Ajustar según tus necesidades */}
-              <Link to={'/'}>
+              <Link onClick={scrollToTop} to={'/'}>
                 <div className=' flex justify-center items-center max-w-[120px] '>
                   <img src={logoImg} alt="" className='w-full min-w-[120px] my-auto' />
                 </div>
