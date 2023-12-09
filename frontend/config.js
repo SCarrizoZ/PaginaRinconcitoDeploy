@@ -1,2 +1,2 @@
-export const apiUrl = "http://44.206.228.82/api";
+export const apiUrl = "https://rinconcito-strapi.onrender.com/api";
 // export const apiUrl = "http://localhost:1337/api";
