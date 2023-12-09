@@ -161,7 +161,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                   setSelectValue('Default')
                   setMinPrice(0)
                 }}
-                className='w-full flex justify-center items-center p-2 bg-red-500 hover:bg-red-600 text-white font-bold rounded-lg'
+                className='transition-all duration-300 hover:bg-gray-200 bg-white py-2 px-8 text-black font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0'
               >
                 Limpiar filtros
               </button>

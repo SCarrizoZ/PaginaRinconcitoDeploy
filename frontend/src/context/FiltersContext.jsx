@@ -18,7 +18,9 @@ export const FiltersProvider = ({ children }) => {
   const [filteredProductList, setFilteredProductList] = useState([]);
   const [selectValue, setSelectValue] = useState('Default');
   const [products, setProducts] = useState([])
-  
+  useEffect(() => {
+    console.log(brands)
+  }, [brands])
   // reset filters
   const resetFilters = () => {
     setSelectedCategories([])

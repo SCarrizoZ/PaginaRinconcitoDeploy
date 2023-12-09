@@ -4,21 +4,40 @@ import { Product } from '../components/Product';
 import { Hero } from '../components/Hero';
 import marcas from '../img/marcas.png';
 import Carousel from 'react-multi-carousel';
+import { FiltersContext } from '../context/FiltersContext'
+import fcar from '../img/fcar.webp';
+import scar from '../img/scar.webp';
+import tcar from '../img/tcar.webp';
+import focar from '../img/focar.webp';
+import { CustomRightArrow } from '../components/Arrows/CustomRightArrow';
+import { CustomLeftArrow } from '../components/Arrows/CustomLeftArrow';
 // import { RightCustomButton } from '../components/Buttons/RightCustomButton';
-import { Button } from '@mui/material';
+// import { Button } from '@mui/material';
 import { RiArrowRightSLine } from 'react-icons/ri';
+import { Skeleton } from '@mui/material';
 // import { LeftCustomButton } from '../components/Buttons/LeftCustomButton';
 export function Home() {
   // Obtén los productos del contexto
+  const { brands } = useContext(FiltersContext)
+  const brandsWithLogo = brands?.data?.filter(brand => brand?.attributes?.logo?.data !== null)
+
+  console.log(brandsWithLogo)
   const { products } = useContext(ProductContext);
-  
+  const carImages = [
+    fcar,
+    focar,
+    tcar,
+  ]
   // Filtra solo los datos de productos (la propiedad "data" en la respuesta)
+  const brandsLogoArray = Array.isArray(brandsWithLogo) ? brandsWithLogo : [];
   const productsArray = Array.isArray(products?.data) ? products?.data : [];
+  console.log(brandsWithLogo)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 1025 },
-      items: 5
+      items: 5,
+      slidesToSlide: 1 // optional, default to 1.
     },
     desktop: {
       breakpoint: { max: 1024, min: 769 },
@@ -43,82 +62,41 @@ export function Home() {
   };
   return (
     <>
-      
+
       <div className='qweW'>
-        <div className='flex justify-center'>
+        <div className='  ' >
+          {/* CAROUSEL */}
+          <div className='  mx-auto  max-w-[1920px]  '>
 
-          
-
-            <Hero  />
-          
-        </div>
-        
-        <div className="">
-        
-          {/* DISEÑO DE PRODUCTOS */}
-          <section className="" style={{  }}>
-            <div className="container mx-auto py-20">
-              <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
-              <div className="">
-                {/* {productsArray?.slice(0, 5).map(product => (
-                  <Product key={product?.id} product={product} />
-                )).slice(0, 5)} */}
-                <Carousel
-                 responsive={responsive} 
-                 infinite 
-                 arrows ={true}
-                 draggable={false} 
-                 autoPlay 
-                 customRightArrow={ <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500' />
-                  </button>
-                  }
-                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
-                  </button>}
-                 >
-                  {productsArray?.map(product => (
-                    <Product key={product?.id} product={product} gap={10} />
-                  ))}
-                </Carousel>
-                
-                
-              </div>
-            </div>
-          </section>
-          {/* FIN DISEÑO DE PRODUCTOS */}
-          
-          
-        </div>
-        {/* CAROUSEL */}
-        <section>
-            <div className='bg-red-200 flex justify-center  container mx-auto'>
+            <div className=' flex   mx-auto   '>
               <Carousel
-              autoPlay
-                className='w-full  bg-red-200'
+                className=''
+                autoPlay
                 additionalTransfrom={0}
                 arrows
-                
-                
                 autoPlaySpeed={3000}
                 centerMode={false}
+                // swipeable only for mobile  
+
                 // customRightArrow={<RightCustomButton elem={this}/>}
-                customRightArrow={ <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                <RiArrowRightSLine className='text-2xl text-red-500' />
-                </button>
+                customRightArrow={
+                  <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                    <RiArrowRightSLine className='text-2xl text-red-500' />
+                  </button>
                 }
-              customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
-                </button>}
-                containerClass=" w-full h-auto"
-                dotListClass="flex gap-1 pb-1"
+                customLeftArrow={
+                  <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
+                    <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
+                  </button>}
+                itemClass='  '
+                containerClass=" w-full mx-auto "
+                dotListClass="flex gap-1 pb-4"
                 // customRightArrow={<CustomRightArrow />}      
                 // customLeftArrow={<button className='bg-red-500'>left</button>}
                 focusOnSelect={false}
                 // i want dots that fills with red color when active
-                
                 infinite
-                itemClass="p-4 "
+
                 keyBoardControl
                 minimumTouchDrag={80}
                 pauseOnHover
@@ -150,50 +128,96 @@ export function Home() {
                 }}
                 // rewind={false}
                 // rewindWithAnimation={false}
-                
+
                 shouldResetAutoplay
                 showDots
                 sliderClass=""
                 slidesToSlide={1}
-
+                removeArrowOnDeviceType={['tablet', 'mobile', 'smobile']}
               >
-                <img
-                  // select image from public/images folder
+                {
+                  carImages.map((image, index) => {
+                    return (
+                      <div key={index}
+                        className='bg-[#e5e7eb] justify-center flex items-center'
+                      >
+                        <img
+                          // select image from public/images folder
+                          className=
+                          "aspect-square object-cover object-center sm:aspect-[unset] sm:object-fill rounded-lg"
 
-                  src={"https://static.wixstatic.com/media/06c2ca_8f8c0c16492441c79d505227e8e6472e~mv2.png/v1/fill/w_1810,h_797,al_c,q_85,usm_0.66_1.00_0.01/06c2ca_8f8c0c16492441c79d505227e8e6472e~mv2.png"}
-                  style={{
-                    display: 'block',
-                    height: 'auto',
-                    margin: 'auto',
-                    width: '100%'
-                  }}
-                  className='aspect-w-3 aspect-h-4'
-                />
-                <img
-                  // select image from public/images folder
+                          src={image}
+                          srcSet={
+                            `
+                ${image} 320w,
+                ${image} 640w,
+                ${image} 768w,
+                ${image} 1280w,
+                ${image} 1920w,
+                `
 
-                  src={"https://static.wixstatic.com/media/06c2ca_e3f7b1877f33459eb68bfbffe07ac818~mv2.png/v1/fill/w_1810,h_797,al_c,q_85,usm_0.66_1.00_0.01/06c2ca_e3f7b1877f33459eb68bfbffe07ac818~mv2.png"}
-                  style={{
-                    display: 'block',
-                    height: 'auto',
-                    margin: 'auto',
-                    width: '100%'
-                  }}
-                />
-                <img
-                  // select image from public/images folder
+                          }
+                          style={{
+                            display: 'block',
+                            // aspectRatio: '16/9',
+                            // objectFit: 'cover',
+                            // height: '100vh',
 
-                  src={"https://static.wixstatic.com/media/06c2ca_abd0ae3785654739acd2f20354c1c67f~mv2.png/v1/fill/w_1810,h_797,al_c,q_85,usm_0.66_1.00_0.01/06c2ca_abd0ae3785654739acd2f20354c1c67f~mv2.png"}
-                  style={{
-                    display: 'block',
-                    height: 'auto',
-                    margin: 'auto',
-                    width: '100%'
-                  }}
-                />
+                            // width: '100vh',
+                          }}
+
+                        />
+                      </div>
+                    )
+                  })
+                }
+
+
 
               </Carousel>
             </div>
+          </div>
+          {/* <Hero /> */}
+        </div>
+        {/* as */}
+
+
+        <div className="">
+
+          {/* DISEÑO DE PRODUCTOS */}
+          <section className="" style={{}}>
+            <div className="container mx-auto py-20">
+              <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Productos Destacados</h2>
+              <div className="">
+                {/* {productsArray?.slice(0, 5).map(product => (
+                  <Product key={product?.id} product={product} />
+                )).slice(0, 5)} */}
+                <Carousel
+                  responsive={responsive}
+                  infinite
+                  arrows
+                  draggable={false}
+                  autoPlay
+
+                  customRightArrow={
+                    <CustomRightArrow />
+                  }
+                  customLeftArrow={
+                    <CustomLeftArrow />}
+                >
+                  {productsArray?.map(product => (
+                    <Product key={product?.id} product={product} gap={10} />
+                  ))}
+                </Carousel>
+              </div>
+            </div>
+          </section>
+          {/* FIN DISEÑO DE PRODUCTOS */}
+        </div>
+
+        {/* HERO */}
+        <section className='flex justify-center container mx-auto'>
+          <Hero />
         </section>
         {/* FIN CAROUSEL */}
         <section>
@@ -222,38 +246,144 @@ export function Home() {
           </div>
         </section>
         {/* Categorías populares */}
-        <section>
-          <div className='container mx-auto py-20'>
+        <div className='bg-red-200 grid grid-rows-1 grid-cols-4'>
+          {/* create some div boxes but change the color to each one */}
+          <div className='bg-red-500 h-full w-full col-span-2 row-span-2'>1</div>
+          <div className='bg-orange-200 h-20 w-full'>2</div>
+          <div className='bg-yellow-200 h-20 w-full'>3</div>
+          <div className='bg-green-200 h-20 w-full'>4</div>
+          <div className='bg-blue-200 h-20 w-full'>5</div>
+          <div className='bg-indigo-200 h-20 w-full'>6</div>
+          <div className='bg-purple-200 h-20 w-full'>7</div>
+          <div className='bg-pink-200 h-20 w-full'>8</div>
+
+
+          {/* <div className='bg-red-500 h-20 w-20'>1</div>  */}
+
+        </div>
+        <div className='flex'>
+          {/* GRID WITH BRANDSLOGOWARRAY */}
+          {/* I want that some elements take more space than others. Example: Element 1 take four cells  */}
+
+          <section className='container mx-auto py-20'>
             <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Categorías Populares</h2>
-            <div className=''>
+            <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
+              {
+                brandsLogoArray?.map(brand => {
+                  return (
+                    <div key={brand?.id} className='bg-[#e5e7eb] justify-center flex items-center'>
+                      <img
+
+                        className="rounded-lg"
+
+                        src={brand?.attributes?.logo?.data?.attributes?.url}
+
+                        style={{
+                          display: 'block',
+
+                        }}
+
+                      />
+                    </div>
+                  )
+                }
+                )
+              }
+            </div>
+          </section>
+        </div>
+        {/* MARCAS */}
+        <section className="brands" style={{}}>
+          <div className="container mx-auto py-20">
+            <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
+            <div className="">
+              {/* {productsArray?.slice(0, 5).map(product => (
+                  <Product key={product?.id} product={product} />
+                )).slice(0, 5)} */}
+
               <Carousel
-                responsive={responsive}
+                responsive={
+                  {
+                    superLargeDesktop: {
+                      // the naming can be any, depends on you.
+                      breakpoint: { max: 4000, min: 1025 },
+                      items: 5,
+                      slidesToSlide: 1 // optional, default to 1.
+                    },
+                    desktop: {
+                      breakpoint: { max: 1024, min: 769 },
+                      items: 5,
+                      slidesToSlide: 1 // optional, default to 1.
+                    },
+                    tablet: {
+                      breakpoint: { max: 768, min: 641 },
+                      items: 4,
+                      slidesToSlide: 1 // optional, default to 1.
+                    },
+                    mobile: {
+                      breakpoint: { max: 640, min: 401 },
+                      items: 2,
+                      slidesToSlide: 1 // optional, default to 1.
+                    },
+                    smobile: {
+                      breakpoint: { max: 400, min: 0 },
+                      items: 1,
+                      slidesToSlide: 1 // optional, default to 1.
+                    }
+                  }
+                }
+
                 infinite
-                arrows={true}
+                arrows={false}
                 draggable={false}
                 autoPlay
-                customRightArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500' />
-                </button>
-                }
-                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
-                </button>}
+                centerMode={false}
+
+                sliderClass='sm:gap-4'
+                customTransition='all 1s '
+                shouldResetAutoplay={false}
+                rewind={false}
+                rewindWithAnimation={true}
+                re
               >
-                {productsArray?.map(product => (
-                  <Product key={product?.id} product={product} gap={10} />
-                ))}
+
+                {
+                  brandsLogoArray?.map(brand => {
+                    return (
+                      <div key={brand?.id} className='bg-[#e5e7eb] justify-center flex items-center'>
+                        <img
+                          // select image from public/images folder
+                          className="rounded-lg"
+                          // " sm:aspect-[unset] sm:object-fill rounded-lg"
+
+                          src={brand?.attributes?.logo?.data?.attributes?.url}
+                          // srcSet={
+                          //   `
+
+                          //   ${brand?.attributes?.logo?.data?.attributes?.url} 1920w,
+                          //   `
+
+                          // }
+                          style={{
+                            display: 'block',
+                            // aspectRatio: '16/9',
+                            // objectFit: 'cover',
+                            // height: '100vh',
+
+                            // width: '100vh',
+                          }}
+
+                        />
+                      </div>
+                    )
+                  }
+                  )
+                }
               </Carousel>
             </div>
           </div>
         </section>
 
-        {/* MARCAS */}
-        <section style={{ backgroundColor: "#000000" }}>
-          <h2 className='titulo text-center pt-6' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
-          <img src={marcas} alt="marcas" />
-        </section>
-        {/* FIN MARCAS */}
       </div>
     </>
   );

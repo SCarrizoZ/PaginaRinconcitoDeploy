@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Heart = ({borderColor, bgColor}) => {
+export const Heart = ({borderColor, bgColor}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const iconStyle = {

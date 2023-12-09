@@ -1,16 +1,10 @@
 import rinconcito_hero from '../img/rinconcito_hero.png';
-
+import scar from '../img/scar.webp';
 
 export function Hero() {
   return (
     <div className="  ">
-      <div className="w-full overflow-hidden">
-        <div className="flex">
-          <div className="">
-            <img src={rinconcito_hero} alt="Imagen 1" className="" />
-          </div>
-        </div>
-      </div>
+            <img src={scar} alt="Imagen 1" className="w-full" />
     </div>
   );
 }

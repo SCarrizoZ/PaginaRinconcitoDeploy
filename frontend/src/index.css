@@ -22,3 +22,6 @@ html{
 .react-multi-carousel-dot--active button{
   background-color: red;
 }
+.brands .react-multi-carousel-track{
+  /* gap:4px; */
+}

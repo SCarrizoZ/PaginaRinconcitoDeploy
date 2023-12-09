@@ -3,17 +3,17 @@ import { useContext, useState, useRef } from 'react';
 import { IoMdArrowForward } from 'react-icons/io';
 import { RiCloseFill } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
-import { CartItem } from '../components/CartItem';
+import { CartItem } from '../CartItem';
 import { RiPriceTag3Line,RiArrowLeftLine  } from "react-icons/ri";
 
-import { SidebarContext } from '../context/SidebarContext';
-import { CartContext } from '../context/CartContext';
-import { formatPrice } from '../utils'
+import { SidebarContext } from '../../context/SidebarContext';
+import { CartContext } from '../../context/CartContext';
+import { formatPrice } from '../../utils'
 import { Link } from 'react-router-dom';
-import { FiltersContext } from '../context/FiltersContext';
+import { FiltersContext } from '../../context/FiltersContext';
 // import { CSSTransition } from 'react-transition-group';
 // import index.css file 
-import '../index.css';
+// import '../index.css';
 
 export const BurgerSidebar = () => {
   const { 

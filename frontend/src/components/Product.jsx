@@ -22,9 +22,9 @@ export function Product({ product, gap, min_width }) {
         <div className='w-full h-full flex justify-center'>
           {/* Imagenes */}
           <div className='w-[200px] mx-auto flex justify-center items-center'>
-            <Link to={`/product/${id}`}>
+            <Link onClick={scrollToTop} to={`/product/${id}`}>
               <div className='w-[200px] mx-auto flex justify-center items-center'>
-                <img src={portada.data.attributes.url} alt={nombre} className='max-h-[160px] group-hover:scale-110 duration-300' />
+                <img src={portada?.data?.attributes?.url} alt={nombre} className='max-h-[160px] group-hover:scale-110 duration-300' />
               </div>
             </Link>
           </div>
@@ -52,7 +52,7 @@ export function Product({ product, gap, min_width }) {
       </div>
       {/** Categoria, Título, y precio */}
       <div className='p-4'>
-        <div className='text-sm text-gray-500 capitalize text-ellipsis overflow-hidden ...'>{subcategoria.data.attributes.nombre}</div>
+        <div className='text-sm text-gray-500 capitalize text-ellipsis overflow-hidden ...'>{subcategoria?.data?.attributes?.nombre}</div>
         <Link to={`/product/${id}`}>
           <h2 className='font-semibold mb-1 break-all ...'>{nombre}</h2>
         </Link>

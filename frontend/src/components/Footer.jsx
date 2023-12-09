@@ -1,39 +1,44 @@
 import { RiInstagramLine, RiFacebookCircleLine, RiWhatsappLine } from "react-icons/ri";
 import { Link } from 'react-router-dom'
 import logoImg from '../img/logonuevofinal_edited.png'
+import { scrollToTop } from "../utils";
 export function Footer() {
   const titles = ['Tienda', 'Ayuda', 'Acerca de']
   // create an object with the links for each title. Each link must be an url
   const links = [
     // Tienda
     {
-      "title": "Tienda", "elements": [{ "title": "Inicio", "url": "/" },
-      { "title": "Categorías", "url": "/categories" },
-      { "title": "Carrito", "url": "/cart" },
-      { "title": "Productos", "url": "/products" }]
-    }
-
-    ,
-
-    // Ayuda
-    {
-      "title": "Ayuda", "elements": [
+      "title": "Ayuda", 
+      "elements": 
+      [
         { "title": "Contacto", "url": "/contact" },
-        { "title": "Quienes somos", "url": "/about" },
         { "title": "Envíos", "url": "/shipping" },
-        { "title": "Devoluciones", "url": "/returns" }]
-    }
-
-    // Acerca de
-    ,
+        { "title": "Devoluciones", "url": "/returns" }
+      ]
+    },
     {
-      "title": "Acerca de", "elements": [
-        { "title": "Quienes somos", "url": "https://www.instagram.com/rinconcito.musical/" },
+      "title": "Acerca de", 
+      "elements": 
+      [
+        { "title": "Quienes Somos", "url": "https://www.instagram.com/rinconcito.musical/" },
         { "title": "Facebook", "url": "https://www.facebook.com/PlanetaR.calama" },
         { "title": "Instagram", "url": "https://www.instagram.com/rinconcito.musical/" },
         { "title": "Twitter", "url": "https://twitter.com/" },
-        { "title": "Whatsapp", "url": "https://wa.me/56978525843" }]
-    }
+        { "title": "Whatsapp", "url": "https://wa.me/56978525843" }
+      ]
+    },
+    {
+      "title": "Cuenta", 
+      "elements": 
+      [
+        { "title": "Inicio", "url": "/" },
+        { "title": "Perfil", "url": "/" },
+        { "title": "Ver Carrito", "url": "/carrito" },
+        { "title": "My lista de deseos", "url": "/" }
+      ]
+    },
+    // Ayuda
+    // Acerca de
   ]
 
   return (
@@ -160,12 +165,12 @@ function FooterList({ title, list }) {
               // use Link component from react-router-dom to link to other pages that belongs to app
               // use a tag to link to external pages
               link.url.startsWith('http') ? (
-                <a key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                <a  key={index} href={link.url} target="_blank" rel="noopener noreferrer">
 
                   {link.title}
                 </a>
               ) : (
-                <Link key={index} to={link.url}>
+                <Link onClick={scrollToTop} key={index} to={link.url}>
                   {link.title}
                 </Link>
               )

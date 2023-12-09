@@ -2,13 +2,13 @@ import { useContext } from 'react';
 import { IoMdArrowForward } from 'react-icons/io';
 import { RiCloseFill } from 'react-icons/ri';
 import { FiTrash2 } from 'react-icons/fi';
-import { CartItem } from '../components/CartItem';
-import { SidebarContext } from '../context/SidebarContext';
-import { CartContext } from '../context/CartContext';
-import { formatPrice } from '../utils'
+import { CartItem } from '../CartItem';
+import { SidebarContext } from '../../context/SidebarContext';
+import { CartContext } from '../../context/CartContext';
+import { formatPrice } from '../../utils'
 import { Link } from 'react-router-dom';
 import { RiArrowRightLine } from "react-icons/ri";
-import { scrollToTop } from '../utils';
+import { scrollToTop } from '../../utils';
 export function Sidebar() {
   const { isOpen, setIsOpen, handleClose } = useContext(SidebarContext);
   const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);

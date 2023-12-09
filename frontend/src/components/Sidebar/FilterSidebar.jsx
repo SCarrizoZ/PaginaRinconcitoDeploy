@@ -8,17 +8,17 @@ import { FiTrash2 } from 'react-icons/fi';
 import { RiPriceTag3Line } from "react-icons/ri";
 import { RiArrowRightSLine,RiArrowLeftSLine  } from "react-icons/ri";
 
-import { SidebarContext } from '../context/SidebarContext';
-import { FiltersContext } from "../context/FiltersContext";
-import { CartContext } from '../context/CartContext';
+import { SidebarContext } from '../../context/SidebarContext';
+import { FiltersContext } from "../../context/FiltersContext";
+import { CartContext } from '../../context/CartContext';
 
-import { formatPrice } from '../utils'
+import { formatPrice } from '../../utils'
 
-import {FilterComponent} from '../components/FilterList';
+import {FilterComponent} from '../FilterList';
 
 
 
-import { CartItem } from '../components/CartItem';
+import { CartItem } from '../CartItem';
 export const FilterSidebar = () => {
   const {
     isFilterOpen,

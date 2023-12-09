@@ -10,10 +10,10 @@ import {Cart} from "./pages/Cart"
 import { PageNotFound } from "./pages/PageNotFound";
 // Components
 import { Header } from "./components/Header"
-import { Sidebar } from "./components/Sidebar"
+import { Sidebar } from "./components/Sidebar/Sidebar"
 import { Footer } from "./components/Footer"
-import { BurgerSidebar } from "./components/BurgerSidebar";
-import {FilterSidebar} from "./components/FilterSidebar"
+import { BurgerSidebar } from "./components/Sidebar/BurgerSidebar";
+import {FilterSidebar} from "./components/Sidebar/FilterSidebar"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
 
