@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SocialShare } from './SocialShare';
 import { Heart } from './Icons/Heart'
 import { formatPrice } from '../utils'
@@ -19,6 +19,10 @@ export const SingleProduct = (product) => {
     "https://static.wixstatic.com/media/06c2ca_53855f38e20d474fbc0eb271bb54e6e9~mv2.webp",
     singleProduct?.attributes?.portada?.data?.attributes?.url
   ]
+  useEffect(() => {
+    setMainImage(singleProduct?.attributes?.portada?.data?.attributes?.url)
+  }, [singleProduct])
+  
   console.log("IMGS", imgs)
   const responsive = {
     superLargeDesktop: {
@@ -104,7 +108,7 @@ export const SingleProduct = (product) => {
               </div>
             </div>
             {/* CAROUSEL */}
-            <div className='w-full  max-w-lg bg-red-200 md:hidden mx-auto'>
+            <div className='w-full  bg-red-200 md:hidden mx-auto'>
               <Carousel
                 responsive={responsive}
                 infinite
@@ -112,7 +116,7 @@ export const SingleProduct = (product) => {
                 draggable={false}
 
                 swipeable={false}
-                containerClass='sm:max-w-lg md:max-w-lg'
+                containerClass='max-w-lg  lg:max-w-md '
 
                 showDots
 
@@ -121,7 +125,7 @@ export const SingleProduct = (product) => {
                   imgs?.map((img, index) =>
                   (
                     <div key={index}>
-                      <img className='aspect-square object-cover sm:max-w-lg md:max-w-lg ' src={img} alt="" />
+                      <img className='aspect-square object-cover max-w-lg md:max-w-lg ' src={img} alt="" />
                     </div>
                   ))
                 }
@@ -129,7 +133,7 @@ export const SingleProduct = (product) => {
             </div>
             {/* MAIN SCREEN */}
             <div className=' flex-col gap-2 hidden md:flex mx-auto'>
-              <img className=' aspect-square object-cover sm:max-w-lg md:max-w-lg ' src={mainImage} alt={singleProduct?.attributes?.nombre} />
+              <img className=' aspect-square object-cover object-center w-[500px] sm:max-w-lg md:max-w-lg ' src={mainImage} alt={singleProduct?.attributes?.nombre} />
             </div>
 
             {/* <div className='bg-red-200 flex self-center lg:self-auto justify-center items-center    lg:mb-0 border  rounded-lg mx-auto md:ml-auto border-black border-opacity-[30%] '>

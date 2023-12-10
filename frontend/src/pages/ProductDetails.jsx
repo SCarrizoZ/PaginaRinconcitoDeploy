@@ -169,11 +169,14 @@ export const ProductDetails = () => {
       </div> */}
       {/* FIXED CART BUTTON */}
       <div className='fixed bottom-0 p-6 bg-white w-full z-[1002] flex justify-center md:hidden shadow-2xl min-w-[380px]'>
+        <div className="container">
 
-        <button className='transition-all hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0' onClick={() => {
-          addToCart({ ...product, precio }, product.id);
+          <button className='transition-all hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0' onClick={() => {
+            addToCart({ ...product, precio }, product.id);
 
-        }} >Agregar al carrito</button>
+          }} >Agregar al carrito</button>
+        </div>
+
 
       </div>
     </>

@@ -88,7 +88,9 @@ export const Cart = () => {
           {/* if no products show a message */}
           {
             cart.length !== 0 ? cart.map((item) => {
-              return <CartSummaryItem key={item?.id} item={item} newPrice={item?.precio } />
+              return <CartSummaryItem key={item?.id} item={item} newPrice={item?.precio } category={
+                item?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre
+              }/>
             }
             ) : <div className='flex justify-center items-center gap-2 '>
               <RiShoppingCart2Line className='text-[3rem]' />

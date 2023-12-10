@@ -7,9 +7,9 @@ import { formatPrice } from '../utils'
 // Función para formatear el precio con puntos cada 3 dígitos y agregar CLP
 
 
-export function CartSummaryItem({ item, newPrice }) {
+export function CartSummaryItem({ item, newPrice, category }) {
   // Deconstruye las propiedades del elemento del carrito de acuerdo a la nueva estructura de datos
-  console.log(newPrice)
+  console.log(category)
   const { id, attributes } = item;
   const { nombre, precio, portada } = attributes;
 
@@ -33,7 +33,7 @@ export function CartSummaryItem({ item, newPrice }) {
 
 
   return (
-    <div className='flex gap-x-4 py-2 lg:px-4  border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500'>
+    <div className='flex gap-x-4 py-2 lg:px-4  border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500 bg-white'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4 p-2'>
         {/* Imagen */}
         <Link className='self-start' to={`/product/${id}`}>
