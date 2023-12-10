@@ -12,7 +12,15 @@ export function CartSummaryItem({ item, newPrice }) {
   console.log(newPrice)
   const { id, attributes } = item;
   const { nombre, precio, portada } = attributes;
-  console.log(newPrice)
+
+  const categoryItem = attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre;
+  const subcategoryItem = attributes?.subcategoria?.data?.attributes?.nombre;
+  const brandItem = attributes?.marca?.data?.attributes?.nombre;
+  console.log(
+    "CATEGORY-ITEM: ", categoryItem,
+    "SUBCATEGORY-ITEM: ", subcategoryItem,
+    "BRAND-ITEM: ", brandItem
+  )
   const { removeFromCart, increaseQuantity, decreaseQuantity } = useContext(CartContext);
 
   // Formatea el precio con puntos y agrega CLP
@@ -25,7 +33,7 @@ export function CartSummaryItem({ item, newPrice }) {
 
 
   return (
-    <div className='flex gap-x-4 py-2 lg:px-4 border border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500'>
+    <div className='flex gap-x-4 py-2 lg:px-4  border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4 p-2'>
         {/* Imagen */}
         <Link className='self-start' to={`/product/${id}`}>
@@ -83,16 +91,32 @@ export function CartSummaryItem({ item, newPrice }) {
           <div className='flex gap-x-2 text-sm text-gray-500'>
             <p className='bg-[#16F705] bg-opacity-[50%] border-opacity-[10%]  flex items-center justify-center font-medium rounded-md order-1'>
               <span className='p-1'>
+                {
+                  categoryItem === undefined || categoryItem === null ?
+                    ""
+                    :
+                    <>
+                      {categoryItem}
+                    </>
+                }
 
-                {item?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre}
+             
               </span>
 
              
             </p>
             <p className=' bg-[#05F79C] bg-opacity-[50%] border-opacity-[10%] flex items-center justify-center font-medium rounded-md'>
               <span className='p-1'>
-                {item?.attributes?.subcategoria?.data?.attributes?.nombre}
+                {
+                 subcategoryItem === undefined || subcategoryItem === null ?
+                 ""
+                 :
+                 <>
+                   {subcategoryItem}
+                 
+                 </>
 
+                }
               </span>
             </p>
           </div>

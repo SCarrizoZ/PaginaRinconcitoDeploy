@@ -80,14 +80,9 @@ export function Home() {
 
                 // customRightArrow={<RightCustomButton elem={this}/>}
                 customRightArrow={
-                  <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                    <RiArrowRightSLine className='text-2xl text-red-500' />
-                  </button>
+                  <CustomRightArrow />
                 }
-                customLeftArrow={
-                  <button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                    <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
-                  </button>}
+                customLeftArrow={<CustomLeftArrow />}
                 itemClass='  '
                 containerClass=" w-full mx-auto "
                 dotListClass="flex gap-1 pb-4"
@@ -232,13 +227,11 @@ export function Home() {
                 arrows={true}
                 draggable={false}
                 autoPlay
-                customRightArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 right-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500' />
-                </button>
+                customRightArrow={<CustomRightArrow />
                 }
-                customLeftArrow={<button className='hover:bg-gray-100 cursor-pointer w-8 h-8 flex justify-center items-center  absolute top-1/2 left-4 max-w-4  bg-white rounded-lg shadow-xl py-10'>
-                  <RiArrowRightSLine className='text-2xl text-red-500 transform rotate-180' />
-                </button>}
+                customLeftArrow={
+                  <CustomLeftArrow />
+                } 
               >
                 {
                   productsArray?.map(product => (

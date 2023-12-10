@@ -25,3 +25,9 @@ html{
 .brands .react-multi-carousel-track{
   /* gap:4px; */
 }
+html{
+  @media screen and (min-width: 380px ) {
+    
+    
+  }
+}

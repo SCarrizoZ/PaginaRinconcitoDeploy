@@ -29,8 +29,8 @@ export const BurgerSidebar = () => {
   const {categories} = useContext(FiltersContext);
   return (
     <div
-      className={`${isBurgerOpen ? 'left-0' : '-left-full'
-        } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px]`}
+      className={`${isBurgerOpen ? 'left-0' : '-left-full '
+        } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px] `}
     >
       {/* HEAD */}
       <div className='flex items-center justify-between py-6 border-b '>
