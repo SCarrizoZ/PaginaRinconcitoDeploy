@@ -11,6 +11,7 @@ import tcar from '../img/tcar.webp';
 import focar from '../img/focar.webp';
 import { CustomRightArrow } from '../components/Arrows/CustomRightArrow';
 import { CustomLeftArrow } from '../components/Arrows/CustomLeftArrow';
+import { Breadcrumbs } from '../components/Breadcrumbs';
 // import { RightCustomButton } from '../components/Buttons/RightCustomButton';
 // import { Button } from '@mui/material';
 import { RiArrowRightSLine } from 'react-icons/ri';
@@ -21,7 +22,7 @@ export function Home() {
   const { brands } = useContext(FiltersContext)
   const brandsWithLogo = brands?.data?.filter(brand => brand?.attributes?.logo?.data !== null)
 
-  console.log(brandsWithLogo)
+  // console.log(brandsWithLogo)
   const { products } = useContext(ProductContext);
   const carImages = [
     fcar,
@@ -31,7 +32,7 @@ export function Home() {
   // Filtra solo los datos de productos (la propiedad "data" en la respuesta)
   const brandsLogoArray = Array.isArray(brandsWithLogo) ? brandsWithLogo : [];
   const productsArray = Array.isArray(products?.data) ? products?.data : [];
-  console.log(brandsWithLogo)
+  // console.log(brandsWithLogo)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -62,7 +63,7 @@ export function Home() {
   };
   return (
     <>
-
+      
       <div className='qweW'>
         <div className='  ' >
           {/* CAROUSEL */}
@@ -91,9 +92,9 @@ export function Home() {
                 focusOnSelect={false}
                 // i want dots that fills with red color when active
                 infinite
-
+                
                 keyBoardControl
-                minimumTouchDrag={80}
+                minimumTouchDrag={100}
                 pauseOnHover
                 renderArrowsWhenDisabled={false}
                 renderButtonGroupOutside={false}
@@ -193,7 +194,7 @@ export function Home() {
                   arrows
                   draggable={false}
                   autoPlay
-
+                  swipeable={true}
                   customRightArrow={
                     <CustomRightArrow />
                   }
@@ -214,7 +215,7 @@ export function Home() {
 
         {/* HERO */}
         <section className='flex justify-center container mx-auto'>
-          <Hero />
+          {/* <Hero /> */}
         </section>
         {/* FIN CAROUSEL */}
         <section>
@@ -381,6 +382,7 @@ export function Home() {
         </section>
 
       </div>
+      
     </>
   );
 }

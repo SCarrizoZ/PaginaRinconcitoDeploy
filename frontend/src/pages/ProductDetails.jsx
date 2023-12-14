@@ -24,14 +24,15 @@ import { SingleProduct } from '../components/SingleProduct';
 
 export const ProductDetails = () => {
   const { id } = useParams();
+  console.log(id);
   const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   const { categories } = useContext(FiltersContext);
 
 
 
-  console.log(products)
-  console.log(categories)
+  // console.log(products)
+  // console.log(categories)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -59,7 +60,7 @@ export const ProductDetails = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
-  console.log(categories);
+  // console.log(categories);
   // iterate over categories and log the name of each category
   // filter product by category
 
@@ -93,7 +94,7 @@ export const ProductDetails = () => {
 
 
   const productSubcategory = product?.attributes?.subcategoria?.data?.attributes.nombre;
-  console.log(productSubcategory);
+  // console.log(productSubcategory);
   const productCategory = product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre;
   // filter products by subcategory
   const similarProducts = productsArray.filter((item) => {
@@ -116,7 +117,7 @@ export const ProductDetails = () => {
   //   product.attributes.subcategoria.data.attributes.nombre;
   // });
 
-  console.log(relatedProducts);
+  // console.log(relatedProducts);
 
 
   return (
@@ -133,6 +134,7 @@ export const ProductDetails = () => {
               </div>
               <ProductCarousel products={similarProducts} />
             </div>
+            
             <div className='flex flex-col py-10 '>
               <div className='text-center  mb-10'>
                 <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Productos Relacionados</h2>
@@ -168,7 +170,7 @@ export const ProductDetails = () => {
         </div>
       </div> */}
       {/* FIXED CART BUTTON */}
-      <div className='fixed bottom-0 p-6 bg-white w-full z-[1002] flex justify-center md:hidden shadow-2xl min-w-[380px]'>
+      <div className='add-cart-mobile fixed bottom-0 p-6 bg-white w-full z-[1002] flex justify-center md:hidden shadow-2xl min-w-[380px] '>
         <div className="container">
 
           <button className='transition-all hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0' onClick={() => {
