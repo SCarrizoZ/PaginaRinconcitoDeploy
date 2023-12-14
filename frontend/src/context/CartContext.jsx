@@ -23,6 +23,7 @@ export function CartProvider({ children }) {
   }, [cart])
 
   const addToCart = (product, id) => {
+    console.log(product)
     const newItem = { ...product, amount: 1 }
     console.log(id)
     // Revisa existencia del producto
@@ -49,6 +50,7 @@ export function CartProvider({ children }) {
 
 
   }
+  
   console.log(cart)
   useEffect(() => {
     const total = cart.reduce((acc, curr) => {

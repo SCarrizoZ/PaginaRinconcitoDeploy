@@ -31,3 +31,82 @@ html{
     
   }
 }
+.carousel-image-container{
+  @media screen and (min-width: 380px ) and (max-width: 510px) {
+    width: 19.5rem;
+  }
+  @media screen and (min-width: 510px ) and (max-width: 640px) {
+    width: 24.5rem;
+    
+  }
+}
+/*  */
+.add-cart-mobile{
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+}
+/* CUSTOM ARROWS */
+.custom-arrow-rinconcito{
+  box-shadow: 0 1px 4px rgba(14,31,53,.12), 0 4px 8px rgba(14,31,53,.1), 0 6px 12px rgba(14,31,53,.08);
+}
+/* HERO */
+.hero-rinconcito{
+  backdrop-filter:sepia(90%);
+}
+
+.breadcrumbs {
+  max-width: 1200px;
+  padding: 10px;
+  /* margin: 20px auto; */
+}
+.breadcrumbs > *{
+  display: inline-block;
+  margin-right: 10px;
+}
+.breadcrumbs .crumb:after {
+  content: '>';
+  margin-left: 10px;
+}
+.breadcrumbs .crumb:last-child:after {
+  display: none;
+}
+.breadcrumbs .crumb a:hover {
+  /* color: #ddd; */
+  color: red;
+  transition: all 0.3s ease-in-out;
+}
+.breadcrumbs .crumb:last-child a {
+  /* color: #ddd; */
+  /* pointer-events: none; */
+  /* color: greenyellow; */
+  pointer-events: none;
+}
+
+
+
+/* HEADER LINK CATEGORY */
+.category-link:hover  div.mega-box-menu{
+  /* background-color: aqua; */
+  display: block;
+  transition: all 0.3s ease;
+
+  opacity: 1;
+  visibility: visible;
+}
+.category-link  div.mega-box-menu{
+  /* background-color: aqua; */
+  /* desactiavte visibility */
+  visibility:hidden;
+}
+.category-link:hover a{
+  /* border-bottom: red 4px solid; */
+  /* color: red; */
+}
+.brand-box{
+  transition : all 0.3s ease;
+}
+.brand-box:hover{
+  transform: scale(1.02) perspective(0px);
+  /* box-shadow bottom right */
+  box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+  /* box-shadow: 4px 4px 4px rgba(60, 60, 93, 0.33) */
+}

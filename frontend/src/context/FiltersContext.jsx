@@ -18,8 +18,9 @@ export const FiltersProvider = ({ children }) => {
   const [filteredProductList, setFilteredProductList] = useState([]);
   const [selectValue, setSelectValue] = useState('Default');
   const [products, setProducts] = useState([])
+  const [gridView , setGridView] = useState(false)
   useEffect(() => {
-    console.log(brands)
+    // console.log(brands)
   }, [brands])
   // reset filters
   const resetFilters = () => {
@@ -73,11 +74,11 @@ export const FiltersProvider = ({ children }) => {
   const applyFilter = () => {
  
     if (selectedCategories?.length === 0 && selectedBrands?.length === 0 && minPrice === 0 ) {
-      console.log("no hay nada seleccionado")
+      // console.log("no hay nada seleccionado")
       return products
     }
     else{
-      console.log("hay algo seleccionado")
+      // console.log("hay algo seleccionado")
       
       let filteredItems = products
       if(selectedCategories?.length !== 0){
@@ -85,13 +86,13 @@ export const FiltersProvider = ({ children }) => {
           return selectedCategories?.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)
         })
       }
-      console.log("POS-CAT: ",filteredItems)
+      // console.log("POS-CAT: ",filteredItems)
       if(selectedBrands?.length !== 0){
         filteredItems = filteredItems?.filter(product => {
           return selectedBrands?.includes(product?.attributes?.marca?.data?.attributes?.nombre)
         })
       }
-      console.log("POS-BR: ",filteredItems)
+      // console.log("POS-BR: ",filteredItems)
 
       if(minPrice !== 0){
         filteredItems = filteredItems?.filter(product => {
@@ -102,7 +103,7 @@ export const FiltersProvider = ({ children }) => {
     }
   };
   const applySort = (newList) => {
-    console.log(selectValue)
+    // console.log(selectValue)
     if(selectValue === 'ascending'){
       newList = newList.sort((a,b)=>(a?.attributes?.nombre.localeCompare(b?.attributes?.nombre)))
       
@@ -128,7 +129,7 @@ export const FiltersProvider = ({ children }) => {
     // metodo getCategories
     async function fetchCategories() {
       const data = await getCategories()
-      console.log(data)
+      // console.log(data)
       setCategories(data)
     }
     async function fetchBrands() {
@@ -171,8 +172,9 @@ export const FiltersProvider = ({ children }) => {
                                           rangeInputRef,
                                           resetRangeSlider,
                                           filterBrands,
-                                          setFilterBrands
-                                          
+                                          setFilterBrands,
+                                          gridView,
+                                          setGridView
                                            }}>{children}</FiltersContext.Provider>
 
 }

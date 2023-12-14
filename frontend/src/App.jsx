@@ -7,7 +7,9 @@ import { Home } from './pages/Home';
 import { ProductDetails } from "./pages/ProductDetails"
 import { ProductByCategory } from "./pages/ProductByCategory";
 import {Cart} from "./pages/Cart"
-import { PageNotFound } from "./pages/PageNotFound";
+import { ErrorPage } from "./pages/ErrorPage";
+import {Contact} from "./pages/Contact"
+import {About} from "./pages/About"
 // Components
 import { Header } from "./components/Header"
 import { Sidebar } from "./components/Sidebar/Sidebar"
@@ -16,6 +18,8 @@ import { BurgerSidebar } from "./components/Sidebar/BurgerSidebar";
 import {FilterSidebar} from "./components/Sidebar/FilterSidebar"
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
+import { Breadcrumbs } from "./components/Breadcrumbs";
+import { Catalog } from "./pages/Catalog";
 
 const THEME = createTheme({
   palette: {
@@ -45,7 +49,11 @@ export default function App() {
   const {nombre, id} = useParams();
   // console.log(comp)
   // add code for reset scroll to 0,0
-  console.log(id)
+  console.log(id, nombre)
+  useEffect(() => {
+    console.log(id, nombre)
+    
+  }, [id, nombre])
 
   return (
     <div className="bg-gray-200 min-h-[100vh]">
@@ -53,14 +61,19 @@ export default function App() {
         <BrowserRouter>
           <Header />
           {/* <div className="mb-[20%] "> */}
+          <Breadcrumbs />
           <Routes>
+
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<ProductDetails />} />
-            <Route path="/categoria/:nombre" element={<ProductByCategory />} />
+            {/* <Route path="/categoria/:nombre/product/:id" element={<ProductDetails />} /> */}
+            <Route path="/categoría/:nombre" element={<ProductByCategory />} />
+            <Route path="/catalog" element={<Catalog />} />
             <Route path="/carrito" element={<Cart />} />
-            <Route path="/acerca" element={<h1>4044</h1>} />
-            <Route path="/contacto" element={<h1>40644</h1>} />
-            <Route path="*" element={<PageNotFound/>} />
+            <Route path="/acerca" element={<About/>} />
+            <Route path="/contacto" element={<Contact/>} />
+            <Route path="/account" element={<h1>Mi cuenta</h1>} />
+            <Route path="*" element={<ErrorPage/>} />
           </Routes>
           {/* </div> */}
           <BurgerSidebar />
