@@ -47,7 +47,7 @@ export const FilterSidebar = () => {
     setMinPrice
     
     } = useContext(FiltersContext);
-  console.log(filterBrands)
+  // console.log(filterBrands)
 
   useEffect(() => {
     if (isOpen) {

@@ -15,15 +15,19 @@ export const SingleProduct = (product) => {
   const [mainImage, setMainImage] = useState(singleProduct?.attributes?.portada?.data?.attributes?.url)
   const imageRef = useRef(null)
   const imgs = [
+    singleProduct?.attributes?.portada?.data?.attributes?.url,
     "https://static.wixstatic.com/media/06c2ca_fd67b2cd651940b991c9000fc738f6d8~mv2.webp",
     "https://static.wixstatic.com/media/06c2ca_53855f38e20d474fbc0eb271bb54e6e9~mv2.webp",
-    singleProduct?.attributes?.portada?.data?.attributes?.url
   ]
   useEffect(() => {
     setMainImage(singleProduct?.attributes?.portada?.data?.attributes?.url)
+    if(imageRef.current){
+
+      imageRef.current.style.outline = "1px solid black"
+    }
   }, [singleProduct])
   
-  console.log("IMGS", imgs)
+  // console.log("IMGS", imgs)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -54,15 +58,17 @@ export const SingleProduct = (product) => {
   const changeColor = (e, img) => {
     // console.log(e.target.style.borderColor="red")
     e.target.style.outline = "2px solid red"
-    console.log(imageRef.current)
-    if(imageRef.current){
-      imageRef.current.style.outline = "2px solid black"
+    // console.log(imageRef.current)
+    if(imageRef.current ){
+      if(imageRef.current !== e.target){
+        imageRef.current.style.outline = "1px solid black"
+      }
       
     }
     imageRef.current = e.target
   }
   return (
-    <section className='pt-32 pb-12 lg:py-32 flex items-center  '>
+    <section className='pt-10 pb-12 lg:py-32 flex items-center  bg-red-400 mx-2'>
 
       <div className="flex flex-col  mx-auto p-4 bg-white rounded ">
         <div className='flex flex-col lg:flex-row  px-2 py-10 -lg w-full bg-orange-200  '>
@@ -74,15 +80,15 @@ export const SingleProduct = (product) => {
                     </div>
                   </div> */}
           {/* IMAGES */}
-          <div className=' flex gap-3 p-2 bg-blue-300'>
-            <div>
+          <div className=' flex gap-3 p-2 bg-blue-300 w-full '>
+            <div className='bg-orange-300 hidden md:flex p-2'>
               {/* OTHER RELATED IMAGES */}
-              <div>
-                <div className=' flex-col  hidden md:flex gap-1 '>
+              <div className='bg-green-300 p-2 '>
+                <div className=' flex-col   gap-2 flex '>
 
                   {
                     imgs.map((img, index) => (
-                      <img key={index} className=' cursor-pointer outline outline-1 hover:outline-red-500 hover:outline-2  max-w-[100px] lg:max-w-[100px] rounded-lg  border-black'
+                      <img key={index} className=' aspect-square object-center object-cover cursor-pointer outline outline-1    max-w-[100px] lg:max-w-[100px] rounded-lg  border-black'
                         src={img} alt="" onClick={
                           (e) => {
                             setMainImage(img)
@@ -91,9 +97,7 @@ export const SingleProduct = (product) => {
 
                         } srcSet={`
                       ${img} 1x,
-                      ${img} 2x,
-                      ${img} 3x,
-                      ${img} 4x,
+                      
 
 
 
@@ -107,33 +111,45 @@ export const SingleProduct = (product) => {
 
               </div>
             </div>
+            
             {/* CAROUSEL */}
-            <div className='w-full  bg-red-200 md:hidden mx-auto'>
-              <Carousel
-                responsive={responsive}
-                infinite
-                arrows
-                draggable={false}
+            <div className='  flex bg-green-300  mx-auto '>
 
-                swipeable={false}
-                containerClass='max-w-lg  lg:max-w-md '
+              <div className=' bg-red-200 md:hidden '>
+                <Carousel
+                  responsive={responsive}
+                  infinite
+                  arrows
+                  draggable={false}
+                  centerMode={false}
+                  swipeable={true}
+                  // containerClass=''
+                  // li class
+                  // itemClass='bg-green-200 p-2 w-[200px] '
+                  containerClass='carousel-image-container w-[19rem]  sm:w-[32.25rem]   '
+                  className='w-[]  bg-orange-400'
+                  showDots
 
-                showDots
-
-              >
-                {
-                  imgs?.map((img, index) =>
-                  (
-                    <div key={index}>
-                      <img className='aspect-square object-cover max-w-lg md:max-w-lg ' src={img} alt="" />
-                    </div>
-                  ))
-                }
-              </Carousel>
-            </div>
-            {/* MAIN SCREEN */}
-            <div className=' flex-col gap-2 hidden md:flex mx-auto'>
-              <img className=' aspect-square object-cover object-center w-[500px] sm:max-w-lg md:max-w-lg ' src={mainImage} alt={singleProduct?.attributes?.nombre} />
+                >
+                  {
+                    imgs?.map((img, index) =>
+                    (
+                     
+                        <img key={index} className='aspect-square object-cover object-center   ' src={img} alt=""
+                        srcSet={`
+                        ${img} 1x,
+                        `} />
+                      
+                    ))
+                  }
+                </Carousel>
+              </div>
+              {/* MAIN SCREEN */}
+              <div className=' flex-col gap-2 hidden md:flex mx-auto bg-purple-200'>
+                <img className=' aspect-square object-cover object-center w-[500px] sm:max-w-lg md:max-w-lg ' 
+                src={mainImage} 
+                alt={singleProduct?.attributes?.nombre} />
+              </div>
             </div>
 
             {/* <div className='bg-red-200 flex self-center lg:self-auto justify-center items-center    lg:mb-0 border  rounded-lg mx-auto md:ml-auto border-black border-opacity-[30%] '>
@@ -161,7 +177,10 @@ export const SingleProduct = (product) => {
 
             <div className='flex justify-end items-center lg:justify-end gap-3  p-1'>
               <button className="transition-all duration-300 hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0"
-                onClick={() => { addToCart({ ...singleProduct, precio }, singleProduct?.attributes?.id); }}>
+                onClick={() => { 
+                  console.log(singleProduct)
+                  console.log()
+                  addToCart({ ...singleProduct, precio }, singleProduct?.id); }}>
                 Agregar al carrito
               </button>
               {/* heart icon wishlist  only icon*/}

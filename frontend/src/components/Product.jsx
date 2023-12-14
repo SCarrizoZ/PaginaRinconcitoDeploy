@@ -53,7 +53,7 @@ export function Product({ product, gap, min_width }) {
       {/** Categoria, Título, y precio */}
       <div className='p-4'>
         <div className='text-sm text-gray-500 capitalize text-ellipsis overflow-hidden ...'>{subcategoria?.data?.attributes?.nombre}</div>
-        <Link to={`/product/${id}`}>
+        <Link onClick={scrollToTop} to={`/product/${id}`}>
           <h2 className='font-semibold mb-1 break-all ...'>{nombre}</h2>
         </Link>
         <div className='font-semibold'>{formatPrice(precio)}</div>
