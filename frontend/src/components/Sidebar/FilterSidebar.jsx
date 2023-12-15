@@ -76,7 +76,13 @@ export const FilterSidebar = () => {
             return <CartItem key={item.id} item={item}></CartItem>;
           })} */}
           {/* <DropdownMenu /> */}
-          <FilterComponent subset={subcategories} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }}/>
+          {
+            subcategories?.includes(undefined) || subcategories === undefined ?
+            ("")
+            :
+            (<FilterComponent subset={subcategories} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }}/>)
+          }
+          {/* <FilterComponent subset={subcategories} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }}/> */}
           {
             filterBrands === undefined ? 
             ("") 

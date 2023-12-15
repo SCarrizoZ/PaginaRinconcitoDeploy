@@ -23,9 +23,9 @@ export function CartProvider({ children }) {
   }, [cart])
 
   const addToCart = (product, id) => {
-    console.log(product)
+    // console.log(product)
     const newItem = { ...product, amount: 1 }
-    console.log(id)
+    // console.log(id)
     // Revisa existencia del producto
     const cartItem = cart.find((item) => {
       return item.id === id;
@@ -51,7 +51,7 @@ export function CartProvider({ children }) {
 
   }
   
-  console.log(cart)
+  // console.log(cart)
   useEffect(() => {
     const total = cart.reduce((acc, curr) => {
       return acc + curr.precio * curr.amount

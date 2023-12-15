@@ -44,10 +44,10 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   }
 
   useEffect(() => {
-    console.log(input)
+    // console.log(input)
     if (input !== "") {
       let handler = e => {
-        console.log(menuRef.current)
+        // console.log(menuRef.current)
         if (!menuRef.current.contains(e.target)) {
           handleClose();
         }
@@ -61,7 +61,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   } , [input])
   // }
   useEffect(() => {
-    console.log(input)
+    // console.log(input)
     if (input !== "") {
       // FETCH API
       // fetch(`https://api.tvmaze.com/search/shows?q=${search}`)

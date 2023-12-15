@@ -163,25 +163,31 @@ export const SingleProduct = (product) => {
 
           </div>
           {/* Texto */}
-          <div className='flex flex-col gap-3    p-4  lg:max-w-[400px]  '>
-            <h1 className='text-[26px] font-medium  max-w-[450px] '>{singleProduct?.attributes?.nombre}</h1>
-            {/* check stock */}
-            {
-              singleProduct?.attributes?.stock > 0 ?
-                <div className='text-green-500 font-bold uppercase'>En stock</div>
-                :
-                <div className='text-red-500 font-bold uppercase'>Sin stock</div>
-            }
-            <div className='text-xl text-[#F80606] font-semibold'>{`${formatPrice(precio)}`}</div>
-            <p className='mb-8 text-[1rem] font-normal'>{singleProduct?.attributes?.descripcion}</p>
+          <div className='flex flex-col gap-3    p-4  lg:max-w-[400px] bg-slate-300 justify-between '>
+            <div className='bg-green-300 flex flex-col'>
+
+              <h1 className='text-[26px] font-medium  max-w-[450px] '>{singleProduct?.attributes?.nombre}</h1>
+              {/* check stock */}
+              {
+                singleProduct?.attributes?.stock > 0 ?
+                  <div className='text-green-500 font-bold uppercase'>En stock{(singleProduct?.attributes?.stock)}</div>
+                  :
+                  <div className='text-red-500 font-bold uppercase'>Sin stock</div>
+              }
+              <div className='text-xl text-[#F80606] font-semibold'>{`${formatPrice(precio)}`}</div>
+              <p className='mb-8 text-[1rem] font-normal'>{singleProduct?.attributes?.descripcion}</p>
+            </div>
 
             <div className='flex justify-end items-center lg:justify-end gap-3  p-1'>
-              <button className="transition-all duration-300 hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0"
+              <button disabled={!(singleProduct?.attributes?.stock > 0)}  className={`transition-all duration-300   ${singleProduct?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white":"bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0`}
                 onClick={() => { 
-                  console.log(singleProduct)
+                  console.log(singleProduct?.attributes?.stock)
                   console.log()
                   addToCart({ ...singleProduct, precio }, singleProduct?.id); }}>
-                Agregar al carrito
+                    {
+                      singleProduct?.attributes?.stock > 0 ? "Agregar al carrito" : "Agotado"
+                    }
+                {/* Agregar al carrito */}
               </button>
               {/* heart icon wishlist  only icon*/}
               <div className='border border-black rounded-lg p-1 mx-auto sm:mx-0'>

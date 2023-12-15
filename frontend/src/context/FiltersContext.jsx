@@ -18,7 +18,7 @@ export const FiltersProvider = ({ children }) => {
   const [filteredProductList, setFilteredProductList] = useState([]);
   const [selectValue, setSelectValue] = useState('Default');
   const [products, setProducts] = useState([])
-  const [gridView , setGridView] = useState(false)
+  const [gridView , setGridView] = useState(true)
   useEffect(() => {
     // console.log(brands)
   }, [brands])
@@ -71,16 +71,16 @@ export const FiltersProvider = ({ children }) => {
   }
 
   // filters and sort
-  const applyFilter = () => {
- 
+  const applyFilter = (productSource = products) => {
+    // console.log(productSource)
     if (selectedCategories?.length === 0 && selectedBrands?.length === 0 && minPrice === 0 ) {
       // console.log("no hay nada seleccionado")
-      return products
+      return productSource
     }
     else{
       // console.log("hay algo seleccionado")
       
-      let filteredItems = products
+      let filteredItems = productSource
       if(selectedCategories?.length !== 0){
         filteredItems = filteredItems?.filter(product => {
           return selectedCategories?.includes(product?.attributes?.subcategoria?.data?.attributes?.nombre)

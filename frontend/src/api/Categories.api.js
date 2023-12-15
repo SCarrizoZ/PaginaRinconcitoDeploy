@@ -116,7 +116,7 @@ export const getCategories = async () => {
 
   try {
     const response = await fetch(`${apiUrl}/categorias?fields[0]=nombre&populate[subcategorias][fields][0]=nombre`);
-    console.log(response.data)
+    // console.log(response.data)
     if (response.ok) {
       const data = await response.json();
       return data;

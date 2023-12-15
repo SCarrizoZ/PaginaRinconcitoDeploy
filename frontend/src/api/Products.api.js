@@ -888,7 +888,7 @@ export const getProducts = async () => {
     const response = await fetch(`${apiUrl}/productos?populate[portada][fields][0]=url&populate[subcategoria][fields][0]=nombre&populate[subcategoria][populate]=categoria&populate[subcategoria][fields][1]=categoria&populate[marca][fields][0]=nombre`);
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
+      // console.log(data)
       return data;
     } else {
       console.error("Error al obtener los productos:", response.status, response.statusText);

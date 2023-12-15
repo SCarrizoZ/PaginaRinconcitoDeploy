@@ -71,7 +71,7 @@ html{
 }
 .breadcrumbs .crumb a:hover {
   /* color: #ddd; */
-  color: red;
+  opacity: 0.5;
   transition: all 0.3s ease-in-out;
 }
 .breadcrumbs .crumb:last-child a {
@@ -79,6 +79,7 @@ html{
   /* pointer-events: none; */
   /* color: greenyellow; */
   pointer-events: none;
+  font-weight: bold;
 }
 
 

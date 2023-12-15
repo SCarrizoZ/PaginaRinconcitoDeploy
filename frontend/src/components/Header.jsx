@@ -44,7 +44,7 @@ export function Header() {
   const imageRef = useRef(null);
   const [isCategoryActive, setIsCategoryActive] = useState(false);
 
-  console.log("categories", categories)
+  // console.log("categories", categories)
   useEffect(() => {
     window.addEventListener('scroll', () => {
       window.scrollY > 60 ? setIsActive(true) : setIsActive(false);
@@ -55,7 +55,7 @@ export function Header() {
   };
   const handleImage = (nombre) => {
     // setSelectedImage(vinilosCategoria)
-    console.log(imageRef.current)
+    // console.log(imageRef.current)
     // i want to change visibilisity of imageRef.current to hidden and then change the image and then change the visibility to visible
 
     imageRef.current.style.opacity = '0'
@@ -213,25 +213,20 @@ export function Header() {
                               </Link>
                               <div className=''>
                                 <ul className=' p-1 flex flex-col gap-2'>
-                                  {/* random elements */}
-                                  {/* <li>elemento 1</li>
-                                  <li>elemento 2</li>
-                                  <li>elemento 3</li>
-                                  <li>elemento 4</li>
-                                  <li>elemento 5</li> */}
+
                                   {
-                                    attributes?.subcategorias?.data?.map((subcategoria) => {
+                                    attributes?.subcategorias?.data?.map((subcategoria, index) => {
                                       const  nombre  = subcategoria?.attributes?.nombre;
                                       return (
-                                        <>
                                         
-                                          <li onClick={handleMegaMenu} className='text-black text-sm hover:underline' key={subcategoria?.id}>
+                                        
+                                          <li onClick={handleMegaMenu} className='text-black text-sm hover:underline' key={index}>
                                             <Link onClick={scrollToTop} to={`/categoría/${attributes?.nombre}`} className="block text-white ">
                                             {(nombre)}
                                             </Link>
                                           </li>
                                           
-                                        </>
+                                        
                                       )
                                     }).slice(0,5)
                                   }

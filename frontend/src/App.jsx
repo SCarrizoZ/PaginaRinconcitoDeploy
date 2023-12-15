@@ -20,6 +20,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useParams } from "react-router-dom";
 import { Breadcrumbs } from "./components/Breadcrumbs";
 import { Catalog } from "./pages/Catalog";
+import { CatalogSidebar } from "./components/Sidebar/CatalogSidebar";
+import { Category } from "./pages/Category";
+import { ProductBySubcategory } from "./pages/ProductBySubcategory";
 
 const THEME = createTheme({
   palette: {
@@ -49,9 +52,9 @@ export default function App() {
   const {nombre, id} = useParams();
   // console.log(comp)
   // add code for reset scroll to 0,0
-  console.log(id, nombre)
+  // console.log(id, nombre)
   useEffect(() => {
-    console.log(id, nombre)
+    // console.log(id, nombre)
     
   }, [id, nombre])
 
@@ -68,6 +71,9 @@ export default function App() {
             <Route path="/product/:id" element={<ProductDetails />} />
             {/* <Route path="/categoria/:nombre/product/:id" element={<ProductDetails />} /> */}
             <Route path="/categoría/:nombre" element={<ProductByCategory />} />
+            <Route path="/categoría/:nombre/:subcategoria" element={<ProductBySubcategory />} />
+            {/* <Route path="/categoría/:nombre/:subcategoria" element={<ProductByCategory />} /> */}
+            <Route path="/categoría" element={<Category/>} />
             <Route path="/catalog" element={<Catalog />} />
             <Route path="/carrito" element={<Cart />} />
             <Route path="/acerca" element={<About/>} />
@@ -79,6 +85,7 @@ export default function App() {
           <BurgerSidebar />
           <Sidebar />
           <FilterSidebar />
+          <CatalogSidebar />
           <Footer />
         </BrowserRouter>
       </ThemeProvider>

@@ -24,6 +24,12 @@ export function SidebarProvider({ children }) {
       setIsFilterOpen(false)
     }
   }
+  const [isCatalogOpen, setIsCatalogOpen] = useState(false);
+  const handleCatalogClose = () => {
+    {
+      setIsCatalogOpen(false)
+    }
+  }
   return (
 
     <SidebarContext.Provider value={{ 
@@ -35,6 +41,10 @@ export function SidebarProvider({ children }) {
       handleBurgerClose,
       isFilterOpen,
       setIsFilterOpen,
-      handleFilterClose }}>{children}</SidebarContext.Provider>
+      handleFilterClose,
+      isCatalogOpen,
+      setIsCatalogOpen,
+      handleCatalogClose 
+    }}>{children}</SidebarContext.Provider>
   )
 }
