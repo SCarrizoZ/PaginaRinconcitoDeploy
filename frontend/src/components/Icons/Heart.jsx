@@ -1,17 +1,13 @@
-import { useState } from 'react';
-
 export const Heart = ({ borderColor, bgColor }) => {
-  const [isOpen, setIsOpen] = useState(false);
 
   const iconStyle = {
     cursor: 'pointer',
-    fill: isOpen ? bgColor : 'none',
+    fill: bgColor,
     transition: 'fill 0.3s',
   };
 
   return (
     <svg
-      onClick={() => setIsOpen(!isOpen)}
       xmlns="http://www.w3.org/2000/svg"
       className="icon icon-tabler icon-tabler-heart"
       width="2rem"

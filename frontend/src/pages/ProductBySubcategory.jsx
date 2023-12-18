@@ -1,23 +1,23 @@
 import { useParams } from "react-router-dom"
 
-import { useContext, useEffect, useState, useId,useRef } from "react"
+import { useContext, useEffect, useState, useId, useRef } from "react"
 import { ProductContext } from "../context/ProductContext"
 import { FiltersContext } from "../context/FiltersContext"
 import { getUniqueBrands } from '../utils'
-import {FilterComponent} from '../components/FilterList'
+import { FilterComponent } from '../components/FilterList'
 import { ProductList } from "../components/ProductList"
-import {formatPrice} from '../utils'
+import { formatPrice } from '../utils'
 // ICONS
 import { RiGridLine, RiListUnordered } from 'react-icons/ri'
 import { SidebarContext } from "../context/SidebarContext"
 export const ProductBySubcategory = () => {
   const [brandList, setBrandList] = useState([]);
   const [openFilter, setOpenFilter] = useState(true);
-  const [productsBySub, setProductsBySub] = useState([]) 
+  const [productsBySub, setProductsBySub] = useState([])
   const [maxPrice, setMaxPrice] = useState(0)
   const { nombre, subcategoria } = useParams();
   const minPriceFilterId = useId()
-  
+
   const { products } = useContext(ProductContext)
   const {
     addBrand,
@@ -36,15 +36,15 @@ export const ProductBySubcategory = () => {
     resetFilters,
     setFilterBrands,
     setSubcategories,
-
+    setSelectedCategories,
+    setSelectedBrands,
+    setSelectValue
 
   } = useContext(FiltersContext)
-  const {isFilterOpen,setIsFilterOpen} = useContext(SidebarContext)
+  const { isFilterOpen, setIsFilterOpen } = useContext(SidebarContext)
   // get products that belong to subcategory
   useEffect(() => {
-    console.log(maxPrice)
     const productList = products?.data?.filter((product) => product?.attributes?.subcategoria?.data?.attributes?.nombre === subcategoria)
-    console.log(productList)
     const brandsList = getUniqueBrands(productList?.map((product) => {
       return product?.attributes?.marca?.data?.attributes?.nombre
     }))
@@ -53,45 +53,19 @@ export const ProductBySubcategory = () => {
     setFilterBrands(brandsList)
     setSubcategories(undefined)
   }, [subcategoria])
-    // get brands from products
-
-
-  // console.log(nombre, subcategoria)
-  // console.log(productList)
-  // console.log(brandsList)
-  // useEffect(() => {
-  //   console.log(filteredProductList)
-  // }, [filteredProductList])
+  // get brands from products
 
   useEffect(() => {
-    console.log(productsBySub)
   }, [productsBySub])
   useEffect(() => {
     resetFilters();
   }, [subcategoria]);
-  // useEFFECTS
-  // useEffect(() => {
 
-  //   console.log("hola2")
-  //   let filteredList = applyFilter();
-
-  //   setFilteredProductList(filteredList);
-
-  // }, [ selectedBrands,productsBySub]);
   useEffect(() => {
-    // console.log(selectedCategories);
-
-    // applySort(filteredList,selectValue);
-    // console.log(filteredList)
-    // console.log(productsBySub)
-    console.log(selectedBrands)
     let filteredList = applyFilter(productsBySub);
     setFilteredProductList(filteredList);
-    // console.log(filteredList)
-    // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
-  }, [ selectedBrands,productsBySub, minPrice]);
+  }, [selectedBrands, productsBySub, minPrice]);
   useEffect(() => {
-    console.log(filteredProductList)
     const maxPrice = filteredProductList?.reduce((max, product) => {
       if (product.attributes.precio > max) {
         return product.attributes.precio
@@ -105,13 +79,8 @@ export const ProductBySubcategory = () => {
     setMinPrice(newMinPrice)
   }
 
-  // useEffect(() => {
-  //   setProductsBySub(productList)
-  //   setBrandList(brandsList)
-  //   console.log(brandsList)
-  // }, [productList])
   return (
-    <div className="flex flex-col gap-1   justify-center  px-2 py-10 container">
+    <div className="flex flex-col gap-1   justify-center  px-2 py-10 container mx-auto">
 
       <div className="flex w-full  ">
         {/* FILTERS */}
@@ -129,16 +98,11 @@ export const ProductBySubcategory = () => {
             </header>
             <div className=''>
               <div className="cont  p-2">
-                {/* Filter lists */}
-                { }
-                {/* <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} /> */}
                 {brandList.includes("Unknown Brand") || brandList.includes(undefined) ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
-                {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
 
 
                 <div className="price border-b-2 py-3">
                   <button className="flex justify-between w-full" onClick={() => { setOpenFilter(!openFilter) }}>
-
                     <div className="filter-name">Precio</div>
                     <div className="icon"> {openFilter ? "-" : "+"}</div>
                   </button>
@@ -188,7 +152,7 @@ export const ProductBySubcategory = () => {
               <span className="font-bold">({filteredProductList?.length} productos)</span>
             </div>
             {/* FILTERS */}
-            <div className="flex justify-start items-center  p-4 bg-pink-300 flex-col gap-4 sm:flex-row ">
+            <div className="flex justify-start items-center  p-4 flex-col gap-4 sm:flex-row ">
               <div className="flex gap-2">
 
                 <div className="flex gap-2 order-1">

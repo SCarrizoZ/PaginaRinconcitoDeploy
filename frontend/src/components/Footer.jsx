@@ -8,34 +8,32 @@ export function Footer() {
   const links = [
     // Tienda
     {
-      "title": "Ayuda", 
-      "elements": 
-      [
-        { "title": "Contacto", "url": "/contacto" },
-        { "title": "Catálogo", "url": "/catalog" },
-        { "title": "Categorías", "url": "/categoría" }
-      ]
+      "title": "Ayuda",
+      "elements":
+        [
+          { "title": "Contacto", "url": "/contacto" },
+          { "title": "Catálogo", "url": "/catalogo" },
+          { "title": "Categorías", "url": "/categoria" }
+        ]
     },
     {
-      "title": "Acerca de", 
-      "elements": 
-      [
-        { "title": "Quienes Somos", "url": "/acerca" },
-        { "title": "Facebook", "url": "https://www.facebook.com/PlanetaR.calama" },
-        { "title": "Instagram", "url": "https://www.instagram.com/rinconcito.musical/" },
-        { "title": "Twitter", "url": "https://twitter.com/" },
-        { "title": "Whatsapp", "url": "https://wa.me/56978525843" }
-      ]
+      "title": "Acerca de",
+      "elements":
+        [
+          { "title": "Quienes Somos", "url": "/acerca" },
+          { "title": "Facebook", "url": "https://www.facebook.com/PlanetaR.calama" },
+          { "title": "Instagram", "url": "https://www.instagram.com/rinconcito.musical/" },
+          { "title": "Twitter", "url": "https://twitter.com/" },
+          { "title": "Whatsapp", "url": "https://wa.me/56978525843" }
+        ]
     },
     {
-      "title": "Cuenta", 
-      "elements": 
-      [
-        { "title": "Inicio", "url": "/" },
-        { "title": "Perfil", "url": "/" },
-        { "title": "Ver Carrito", "url": "/carrito" },
-        { "title": "Mi lista de deseos", "url": "/" }
-      ]
+      "title": "Cuenta",
+      "elements":
+        [
+          { "title": "Inicio", "url": "/" },
+          { "title": "Ver Carrito", "url": "/carrito" },
+        ]
     },
     // Ayuda
     // Acerca de
@@ -165,7 +163,7 @@ function FooterList({ title, list }) {
               // use Link component from react-router-dom to link to other pages that belongs to app
               // use a tag to link to external pages
               link.url.startsWith('http') ? (
-                <a className="hover:underline"  key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                <a className="hover:underline" key={index} href={link.url} target="_blank" rel="noopener noreferrer">
 
                   {link.title}
                 </a>

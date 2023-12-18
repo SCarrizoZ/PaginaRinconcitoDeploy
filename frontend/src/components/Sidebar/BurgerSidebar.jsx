@@ -1,33 +1,28 @@
-import { useContext, useState, useRef } from 'react';
+import { useContext } from 'react';
 import { RiInstagramLine, RiFacebookCircleLine, RiWhatsappLine } from "react-icons/ri";
 import { IoMdArrowForward } from 'react-icons/io';
-import { RiCloseFill } from 'react-icons/ri';
-import { FiTrash2 } from 'react-icons/fi';
-import { CartItem } from '../CartItem';
-import { RiPriceTag3Line, RiArrowLeftLine } from "react-icons/ri";
-
+import { RiArrowLeftLine } from "react-icons/ri";
 import { SidebarContext } from '../../context/SidebarContext';
-import { CartContext } from '../../context/CartContext';
-import { formatPrice } from '../../utils'
 import { Link } from 'react-router-dom';
 import { FiltersContext } from '../../context/FiltersContext';
+import Heart from '../Icons/Heart';
+
+import { ToastContext } from '../../context/ToastProvider';
 
 import TransitionsModal from '../LoginModal'
-// import { CSSTransition } from 'react-transition-group';
-// import index.css file 
-// import '../index.css';
+import { useWishlist } from '../../context/WislistContext';
+import { getToken, getUser } from '../../utils';
 
 export const BurgerSidebar = () => {
   const {
-    isOpen,
-    setIsOpen,
-    handleClose,
     isBurgerOpen,
-    setIsBurgerOpen,
     handleBurgerClose
   } = useContext(SidebarContext);
-  const { cart, removeFromCart, clearAllItems, total } = useContext(CartContext);
-  const subtotal = total.toFixed(0);
+
+  const { wishlist } = useWishlist()
+  const showToast = useContext(ToastContext);
+  const isLoggedIn = getUser() && getToken();
+
   const { categories } = useContext(FiltersContext);
   return (
     <div
@@ -38,8 +33,6 @@ export const BurgerSidebar = () => {
       <div className='flex items-center justify-between py-6 border-b '>
 
         <div className='uppercase text-sm font-semibold'>
-          {/* tag icon */}
-          {/* <RiPriceTag3Line className='inline-block mr-2' /> */}
           Categorías
         </div>
         {/**Icono */}
@@ -47,22 +40,15 @@ export const BurgerSidebar = () => {
           onClick={handleBurgerClose}
           className='cursor-pointer w-8 h-8 flex justify-center items-center'
         >
-          {/* Arrow icon pls. Opposite direction pls */}
           < RiArrowLeftLine className='text-2xl' />
-
-          {/* <RiCloseFill className='text-2xl' /> */}
         </div>
       </div>
       {/* BODY */}
       <div className='flex flex-col h-[380px] lg:h-[450px] overflow-y-auto overflow-x-hidden border-b items-center '>
-        {/* {cart.map((item) => {
-          return <CartItem key={item.id} item={item}></CartItem>;
-        })} */}
-        {/* <DropdownMenu /> */}
         {
           categories?.data?.map((category) => {
             return (
-              <Link key={category.id} to={`/categoría/${category?.attributes?.nombre}`} className='hover:bg-gray-200 w-full flex items-center justify-between py-4 border-b' onClick={handleBurgerClose}>
+              <Link key={category.id} to={`/categoria/${category?.attributes?.nombre}`} className='hover:bg-gray-200 w-full flex items-center justify-between py-4 border-b' onClick={handleBurgerClose}>
                 <div className='w-8 h-8  justify-center items-center order-1 hidden sm:block'>
                   <IoMdArrowForward className='text-xl' />
                 </div>
@@ -84,16 +70,29 @@ export const BurgerSidebar = () => {
         </div>
 
       </div>
-      <div className='border-b py-4 px-2'>
-        {/* login modal */}
+      <div className='border-b py-4 px-2 flex gap-3 items-center'>
         <TransitionsModal onClick={handleBurgerClose} />
-        {/* <CSSTransition><div>asd</div></CSSTransition> */}
+        <div className=''>
+          {isLoggedIn && wishlist?.data?.[0]?.id
+            ?
+            (
+              <div>
+                <Link to={`/lista-deseo/${wishlist?.data?.[0]?.id}`}>
+                  <Heart borderColor="red" bgColor={"red"} />
+                </Link>
+              </div>
+            )
+            :
+            (
+              <div onClick={() => { showToast("Inicia sesión para acceder a tu lista de deseos", "info") }}>
+                <Heart borderColor="red" bgColor={"red"} />
+              </div>
+            )
+          }
+        </div>
       </div>
-      {/* <div className='flex items-center justify-between py-6 border-b bg-yellow-200 '>
+      {/* Link to Wishlist by ID */}
 
-
-
-      </div> */}
       {/* REDES */}
       <div className='border-b '>
         <div className='uppercase text-sm font-semibold  w-full '>

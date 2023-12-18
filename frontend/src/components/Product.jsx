@@ -52,7 +52,7 @@ export function Product({ product, gap, min_width }) {
         <div className='w-full h-full flex justify-center'>
           {/* Imagenes */}
           <div className='w-[200px] mx-auto flex justify-center items-center'>
-            <Link onClick={scrollToTop} to={`/product/${id}`}>
+            <Link onClick={scrollToTop} to={`/producto/${id}`}>
               <div className='w-[200px] mx-auto flex justify-center items-center'>
                 <img src={portada?.data?.attributes?.url} alt={nombre} className='max-h-[160px] group-hover:scale-110 duration-300' />
               </div>
@@ -68,7 +68,7 @@ export function Product({ product, gap, min_width }) {
                 <BsPlus className="text-3xl" />
               </div>
             </button>
-            <Link onClick={scrollToTop} to={`/product/${id}`} className='w-12 h-12 bg-white flex justify-center items-center drop-shadow-xl'>
+            <Link onClick={scrollToTop} to={`/producto/${id}`} className='w-12 h-12 bg-white flex justify-center items-center drop-shadow-xl'>
               <BsEyeFill />
             </Link>
             <button onClick={() => {
@@ -84,7 +84,7 @@ export function Product({ product, gap, min_width }) {
       {/** Categoria, Título, y precio */}
       <div className='p-4'>
         <div className='text-sm text-gray-500 capitalize text-ellipsis overflow-hidden ...'>{subcategoria?.data?.attributes?.nombre}</div>
-        <Link onClick={scrollToTop} to={`/product/${id}`}>
+        <Link onClick={scrollToTop} to={`/producto/${id}`}>
           <h2 className='font-semibold mb-1 break-all ...'>{nombre}</h2>
         </Link>
         <div className={`font-semibold ${stock > 0 ? "" : "text-gray-400 flex justify-center "}`}>

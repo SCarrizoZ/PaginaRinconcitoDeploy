@@ -138,7 +138,7 @@ export const SingleProduct = (product) => {
                   centerMode={false}
                   swipeable={true}
                   containerClass='carousel-image-container w-[19rem]  sm:w-[32.25rem]   '
-                  className='w-[]  bg-orange-400'
+                  className=''
                   showDots
 
                 >

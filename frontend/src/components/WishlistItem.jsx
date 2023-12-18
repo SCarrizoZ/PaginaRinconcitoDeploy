@@ -36,14 +36,14 @@ export function WishlistItem({ item, category, showDeleteButton }) {
     <div className='flex gap-x-4 py-2 lg:px-4  border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500 bg-white'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4 p-2'>
         {/* Imagen */}
-        <Link className='self-start' to={`/product/${id}`}>
+        <Link className='self-start' to={`/producto/${id}`}>
           <img src={portada?.data?.attributes?.url} alt={nombre} className='max-w-[120px]' />
         </Link>
 
         <div className='w-full flex flex-col self-start gap-2'>
           <div className='flex justify-between mb-2'>
             {/** Propiedades del objeto */}
-            <Link to={`/product/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
+            <Link to={`/producto/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
               {nombre}
             </Link>
 
@@ -60,9 +60,16 @@ export function WishlistItem({ item, category, showDeleteButton }) {
           {/** Cantidad */}
           <div className=' flex gap-x-2 h-[36px] text-sm justify-between'>
             {/** Incrementar-Decrementar valor */}
-            <button className="transition-all duration-300 hover:bg-[#F80606] bg-[#D40404] py-2 px-8 text-white font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0 max-w-xs"
-              onClick={() => { addToCart({ ...item, precio }, id); }}>
-              Agregar al carrito
+            <button disabled={!(item?.attributes?.stock > 0)} className={`transition-all duration-300   ${item?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0 max-w-xs`}
+              onClick={() => {
+                console.log(item?.attributes?.stock)
+                console.log()
+                addToCart({ ...item, precio }, item?.id);
+              }}>
+              {
+                item?.attributes?.stock > 0 ? "Agregar al carrito" : "Agotado"
+              }
+              {/* Agregar al carrito */}
             </button>
             <div className='flex flex-col justify-around items-center  text-[1rem] font-extrabold gap-1'>
               {

@@ -22,7 +22,6 @@ export const getWishlist = async () => {
         }
       );
 
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error("Error en la solicitud:", error.message);
@@ -32,6 +31,35 @@ export const getWishlist = async () => {
     return null;
   }
 };
+
+export const createWishlist = async ({ token, user }) => {
+
+  if (user && token) {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/lista-deseos`,
+        {
+          data: {
+            users_permissions_user: user.id,
+            productos: [],
+            nombre: `Lista de deseos de ${user.username}`,
+          }
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error en la solicitud:", error.message);
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
 
 // add item to wishlist
 export const addItem = async ({ productId, wishlistId }) => {

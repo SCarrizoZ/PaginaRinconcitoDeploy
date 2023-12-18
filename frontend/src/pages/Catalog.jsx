@@ -15,7 +15,7 @@ import tecladosPianosCategoria from '../img/categorias_header_images/teclados_pi
 import percusionCategoria from '../img/categorias_header_images/percusion_categoria.webp'
 import { SidebarContext } from "../context/SidebarContext"
 export const Catalog = () => {
-  const { categories = [], brands=[] } = useContext(FiltersContext)
+  const { categories = [], brands = [] } = useContext(FiltersContext)
   const { setIsCatalogOpen } = useContext(SidebarContext)
   const { products } = useContext(ProductContext)
   const productList = Array.isArray(products?.data) ? products?.data : [];
@@ -82,8 +82,8 @@ export const Catalog = () => {
 
             <div className="flex  container p-1">
 
-            
-              <CatalogList categoriesArray={categoriesArray} brands={brandsArray} sidebarMode={false}/>
+
+              <CatalogList categoriesArray={categoriesArray} brands={brandsArray} sidebarMode={false} />
 
               <div className=" md:w-[79%] container mx-auto   p-2">
 
@@ -97,8 +97,6 @@ export const Catalog = () => {
                       infinite
                       arrows={true}
                       draggable={false}
-                      // autoPlay
-                      // itemClass="w-[150px]"
                       customRightArrow={<CustomRightArrow />
                       }
                       customLeftArrow={
@@ -119,7 +117,6 @@ export const Catalog = () => {
                   <div className='text-center  '>
                     <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Categorías populares</h2>
                   </div>
-                  {/* grid category images : guitarras categoria image must be take 3 rows and one column, vinilos categoria 2 rows and 2 columns and the rest percusion ctegoria*/}
                   <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 lg:grid-cols-3  w-full h-[500px]  gap-4">
                     <div className="flex justify-center relative items-center  md:row-span-3 row-span-2 hover:scale-[105%] transition-transform duration-300 ">
                       <img src={guitarrasCategoria} alt="guitarras" className="h-full w-full aspect-[9/16] object-cover " />

@@ -26,9 +26,6 @@ export function CartSummaryItem({ item, newPrice, category }) {
   // Formatea el precio con puntos y agrega CLP
   const formattedPrice = formatPrice(precio);
 
-  // Calcula el total por objeto como un número entero
-  const totalPorObjeto = precio * item.amount;
-  // truncate description if too long
   // const description = item.description.length > 100 ? item.description.substring(0, 100) + '...' : item.description;
 
 
@@ -36,14 +33,14 @@ export function CartSummaryItem({ item, newPrice, category }) {
     <div className='flex gap-x-4 py-2 lg:px-4  border-[1px] border-opacity-[50%] rounded-lg border-black  w-full font-light text-gray-500 bg-white'>
       <div className='w-full min-h-[150px] flex items-center gap-x-4 p-2'>
         {/* Imagen */}
-        <Link className='self-start' to={`/product/${id}`}>
+        <Link className='self-start' to={`/producto/${id}`}>
           <img src={portada?.data?.attributes?.url} alt={nombre} className='max-w-[120px]' />
         </Link>
 
         <div className='w-full flex flex-col self-start gap-2'>
           <div className='flex justify-between mb-2'>
             {/** Propiedades del objeto */}
-            <Link to={`/product/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
+            <Link to={`/producto/${id}`} className='text-sm uppercase font-medium max-w-[240px] text-primary hover-underline'>
               {nombre}
             </Link>
             <div className='text-xl cursor-pointer' onClick={() => { removeFromCart(id) }}>
@@ -52,40 +49,25 @@ export function CartSummaryItem({ item, newPrice, category }) {
             </div>
           </div>
           {/*Product description */}
-          
+
           {/** Cantidad */}
           <div className=' flex gap-x-2 h-[36px] text-sm justify-between'>
             {/** Incrementar-Decrementar valor */}
             <div className=' flex  max-w-[100px]   items-center h-full border text-primary font-medium '>
               <div onClick={() => { decreaseQuantity(id) }} className=' flex-1 h-full flex justify-center items-center cursor-pointer border-r'><IoMdRemove /></div>
-              <div className='h-full flex justify-center items-center px-2'>{item.amount}</div>
+              <div className='h-full flex justify-center items-center px-2'>{item?.amount}</div>
               <div onClick={() => increaseQuantity(id)} className='flex-1 h-full flex justify-center items-center cursor-pointer border-l'><IoMdAdd /></div>
             </div>
             <div className='flex flex-col justify-around items-center  text-[1rem] font-extrabold gap-1'>
               {
                 formattedPrice
               }
-              
-              {/* {
-                newPrice!== 0 || newPrice ===NaN ? 
-                (
-                <>
-                  <div className='text-[#F80606] '> {formatPrice(precio)}</div> 
-                  <div className='line-through'> {formattedPrice}</div>
-                
-                </>
-                )
-                :
-                 <>
-                 {formattedPrice}
-                 </>
-              } */}
-            
+
             </div>
             {/* <div className='flex-1 flex justify-end items-center text-primary font-medium'>{`${formatPrice(totalPorObjeto)}`}</div> */}
           </div>
           <div>
-            <p className='text-sm text-gray-500'>{`${(item?.attributes?.descripcion).substring(0, 150)}`}...</p>
+            <p className='text-sm text-gray-500'>{`${(item?.attributes?.descripcion)?.substring(0, 150)}`}...</p>
           </div>
           {/* categoriy and subcategory */}
           <div className='flex gap-x-2 text-sm text-gray-500'>
@@ -100,21 +82,21 @@ export function CartSummaryItem({ item, newPrice, category }) {
                     </>
                 }
 
-             
+
               </span>
 
-             
+
             </p>
             <p className=' bg-[#05F79C] bg-opacity-[50%] border-opacity-[10%] flex items-center justify-center font-medium rounded-md'>
               <span className='p-1'>
                 {
-                 subcategoryItem === undefined || subcategoryItem === null ?
-                 ""
-                 :
-                 <>
-                   {subcategoryItem}
-                 
-                 </>
+                  subcategoryItem === undefined || subcategoryItem === null ?
+                    ""
+                    :
+                    <>
+                      {subcategoryItem}
+
+                    </>
 
                 }
               </span>
@@ -124,11 +106,11 @@ export function CartSummaryItem({ item, newPrice, category }) {
             {/* Product brand */}
             {
               // If the product has a brand, show it
-              item?.attributes?.marca?.data?.attributes?.nombre && 
+              item?.attributes?.marca?.data?.attributes?.nombre &&
               <p className='text-sm text-gray-500'>{item?.attributes?.marca?.data?.attributes?.nombre}</p>
 
             }
-           
+
           </span>
         </div>
       </div>

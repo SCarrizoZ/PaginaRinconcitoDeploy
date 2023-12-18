@@ -136,7 +136,7 @@ export function Header() {
               ?
               (
                 <div>
-                  <Link to={`/Wishlist/${wishlist?.data?.[0]?.id}`}>
+                  <Link to={`/lista-deseo/${wishlist?.data?.[0]?.id}`}>
                     <Heart borderColor="red" bgColor={"red"} />
                   </Link>
                 </div>
@@ -185,7 +185,7 @@ export function Header() {
                           <Link onClick={(e) => {
                             handleMegaMenu(e)
                             scrollToTop()
-                          }} key={id} to={`/categoría/${nombre}`} className=" text-black  ">
+                          }} key={id} to={`/categoria/${nombre}`} className=" text-black  ">
                             <span onClick={() => { handleMegaMenu }} className=' font-semibold hover:underline text-red-500 text-[1rem] '>
                               {nombre}
 
@@ -198,7 +198,7 @@ export function Header() {
                                   const nombre = subcategoria?.attributes?.nombre;
                                   return (
                                     <li onClick={handleMegaMenu} className='text-black text-sm hover:underline' key={index}>
-                                      <Link onClick={scrollToTop} to={`/categoría/${attributes?.nombre}`} className="block text-white ">
+                                      <Link onClick={scrollToTop} to={`/categoria/${attributes?.nombre}`} className="block text-white ">
                                         {(nombre)}
                                       </Link>
                                     </li>
@@ -213,7 +213,7 @@ export function Header() {
                   </div>
                   <div className='relative flex flex-col items-center max-w-[205px] p-2'>
 
-                    <Link onClick={() => { scrollToTop(); handleMegaMenu() }} to={`/categoría/${selectedImage[1]}`} className="block text-black bg-red-300">
+                    <Link onClick={() => { scrollToTop(); handleMegaMenu() }} to={`/categoria/${selectedImage[1]}`} className="block text-black bg-red-300">
                       <img ref={imageRef} src={selectedImage[0]} alt="" className='h-[100%] aspect-[9/16] object-cover transition-all duration-1000' />
                     </Link>
                   </div>
@@ -222,7 +222,7 @@ export function Header() {
             </div>
           </li>
           <li className='hover:outline-blue-200 hover:outline-2'>
-            <a className="text-white hover:text-red-500 hover:outline-b-2 hover:outline-b-red-500  " href="/catalog">Catálogo</a>
+            <Link className="text-white hover:text-red-500 hover:outline-b-2 hover:outline-b-red-500  " to="/catalogo">Catálogo</Link>
           </li>
           <li>
             <Link to={"/acerca"} className="text-white  hover:text-red-500 hover:outline-b-2 hover:outline-b-red-500" href="#">Acerca de nosotros</Link>

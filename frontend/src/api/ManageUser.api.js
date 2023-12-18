@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiUrl } from '../../config';
-
+import { createWishlist } from './Wishlist.api';
 
 export const registerUser = ({ username, email, password }) => {
   return new Promise((resolve, reject) => {
@@ -11,8 +11,7 @@ export const registerUser = ({ username, email, password }) => {
         password: password,
       })
       .then(response => {
-        localStorage.setItem("token", response.data.jwt);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+        createWishlist({ token: response.data.jwt, user: response.data.user })
         resolve(response.data.user);
       })
       .catch(error => {
