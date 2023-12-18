@@ -8,7 +8,7 @@ export const Category = () => {
   const categoriesArray = categories?.data || []
   console.log(categories)
   return (
-    <section className='bg-purple-200'>
+    <section className=''>
       <div className='container mx-auto flex flex-wrap justify-center'>
           {
             categoriesArray?.length === 0 || categoriesArray === undefined ? (
@@ -33,7 +33,7 @@ export const Category = () => {
                 {
                   categoriesArray?.map((category, index) => (
                     <div className='bg-white p-4 m-4 rounded-md lg:w-[28%] md:w-[45%] w-[100%]'>
-                      <div className='bg-pink-200'>
+                      <div className=''>
                         <Link to={`/categoría/${category?.attributes?.nombre}`} key={index}>
                           <h2 className='text-red-500 font-bold'>{category?.attributes?.nombre}</h2>
                         </Link>
@@ -42,7 +42,7 @@ export const Category = () => {
                       <div>
                         {
                           category?.attributes?.subcategorias?.data?.map((subcategory, index) => (
-                            <div className='bg-yellow-200'>
+                            <div className='pl-1'>
                               <Link to={`/categoría/${category?.attributes?.nombre}/${subcategory?.attributes?.nombre}`} key={index}>
                                 <h2 className='text-black text-[1rem]'>{subcategory?.attributes?.nombre}</h2>
                               </Link>

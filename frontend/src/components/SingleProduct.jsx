@@ -11,14 +11,16 @@ export const SingleProduct = (product) => {
   const precio = product?.precio
   const singleProduct = product?.product
   const { addToCart } = useContext(CartContext);
-  const [selectedImage, setSelectedImage] = useState(false)
+  // const [selectedImage, setSelectedImage] = useState(false)
   const [mainImage, setMainImage] = useState(singleProduct?.attributes?.portada?.data?.attributes?.url)
   const imageRef = useRef(null)
+  const secondaryImages = singleProduct?.attributes?.imagenes_secundarias?.data?.map((img) => img?.attributes?.url) || []
+
   const imgs = [
     singleProduct?.attributes?.portada?.data?.attributes?.url,
-    "https://static.wixstatic.com/media/06c2ca_fd67b2cd651940b991c9000fc738f6d8~mv2.webp",
-    "https://static.wixstatic.com/media/06c2ca_53855f38e20d474fbc0eb271bb54e6e9~mv2.webp",
+    ...secondaryImages
   ]
+
   useEffect(() => {
     setMainImage(singleProduct?.attributes?.portada?.data?.attributes?.url)
     if(imageRef.current){
@@ -26,7 +28,7 @@ export const SingleProduct = (product) => {
       imageRef.current.style.outline = "1px solid black"
     }
   }, [singleProduct])
-  
+  console.log(secondaryImages)
   // console.log("IMGS", imgs)
   const responsive = {
     superLargeDesktop: {
@@ -68,10 +70,10 @@ export const SingleProduct = (product) => {
     imageRef.current = e.target
   }
   return (
-    <section className='pt-10 pb-12 lg:py-32 flex items-center  bg-red-400 mx-2'>
+    <section className='pt-10 pb-12 lg:py-20 flex items-center   mx-2'>
 
       <div className="flex flex-col  mx-auto p-4 bg-white rounded ">
-        <div className='flex flex-col lg:flex-row  px-2 py-10 -lg w-full bg-orange-200  '>
+        <div className='flex flex-col lg:flex-row  px-2 py-10 -lg w-full   '>
           {/* Imagen */}
           {/* <div className='flex flex-col '>
                     <div className=' flex-col border hidden lg:block '>
@@ -80,10 +82,10 @@ export const SingleProduct = (product) => {
                     </div>
                   </div> */}
           {/* IMAGES */}
-          <div className=' flex gap-3 p-2 bg-blue-300 w-full '>
-            <div className='bg-orange-300 hidden md:flex p-2'>
+          <div className=' flex gap-3 p-2  w-full '>
+            <div className=' hidden md:flex p-2'>
               {/* OTHER RELATED IMAGES */}
-              <div className='bg-green-300 p-2 '>
+              <div className=' p-2  '>
                 <div className=' flex-col   gap-2 flex '>
 
                   {
@@ -113,9 +115,9 @@ export const SingleProduct = (product) => {
             </div>
             
             {/* CAROUSEL */}
-            <div className='  flex bg-green-300  mx-auto '>
+            <div className='  flex   mx-auto '>
 
-              <div className=' bg-red-200 md:hidden '>
+              <div className='  md:hidden border border-black rounded-lg'>
                 <Carousel
                   responsive={responsive}
                   infinite
@@ -135,7 +137,7 @@ export const SingleProduct = (product) => {
                     imgs?.map((img, index) =>
                     (
                      
-                        <img key={index} className='aspect-square object-cover object-center   ' src={img} alt=""
+                        <img key={index} className='aspect-square object-cover object-center rounded-lg  ' src={img} alt=""
                         srcSet={`
                         ${img} 1x,
                         `} />
@@ -145,8 +147,8 @@ export const SingleProduct = (product) => {
                 </Carousel>
               </div>
               {/* MAIN SCREEN */}
-              <div className=' flex-col gap-2 hidden md:flex mx-auto bg-purple-200'>
-                <img className=' aspect-square object-cover object-center w-[500px] sm:max-w-lg md:max-w-lg ' 
+              <div className=' flex-col gap-2 hidden md:flex mx-auto border border-black rounded-lg'>
+                <img className=' aspect-square object-cover object-center w-[600px] sm:max-w-lg md:max-w-lg rounded-lg border-black  ' 
                 src={mainImage} 
                 alt={singleProduct?.attributes?.nombre} />
               </div>
@@ -163,14 +165,14 @@ export const SingleProduct = (product) => {
 
           </div>
           {/* Texto */}
-          <div className='flex flex-col gap-3    p-4  lg:max-w-[400px] bg-slate-300 justify-between '>
-            <div className='bg-green-300 flex flex-col'>
+          <div className='flex flex-col gap-3    p-4  lg:max-w-[400px]  justify-between '>
+            <div className=' flex flex-col'>
 
               <h1 className='text-[26px] font-medium  max-w-[450px] '>{singleProduct?.attributes?.nombre}</h1>
               {/* check stock */}
               {
                 singleProduct?.attributes?.stock > 0 ?
-                  <div className='text-green-500 font-bold uppercase'>En stock{(singleProduct?.attributes?.stock)}</div>
+                  <div className='text-green-500 font-bold uppercase'>En stock ({(singleProduct?.attributes?.stock)})</div>
                   :
                   <div className='text-red-500 font-bold uppercase'>Sin stock</div>
               }

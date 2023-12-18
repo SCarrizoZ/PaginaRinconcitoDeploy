@@ -54,14 +54,14 @@ export const Catalog = () => {
   };
   console.log(brands)
   return (
-    <section className="bg-red-200">
+    <section className="">
       <div className="flex justify-center">
         <div className="container">
-          <div className=" mx-auto bg-green-200 p-2 container flex flex-col ">
+          <div className=" mx-auto  p-2 container flex flex-col ">
 
-            <div className="bg-pink-300 flex">
+            <div className=" flex">
 
-              <div className="flex justify-center items-center bg-yellow-200 md:hidden w-full m-1">
+              <div className="flex justify-center items-center  md:hidden w-full m-1">
                 <button onClick={setIsCatalogOpen} className="transition-all duration-300 bg-white items-center hover:bg-gray-200 py-2 px-8 text-black font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0 p-2   gap-1" type="button" aria-label="menu">
                   <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
                     <path fillRule="evenodd" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" clipRule="evenodd" />
@@ -73,19 +73,19 @@ export const Catalog = () => {
               </div>
 
             </div>
-            <div className="bg-blue-300 p-2">
+            <div className=" p-2">
               <h1 className="titulo text-red-500 text-5xl">
                 Catálogo
               </h1>
             </div>
 
 
-            <div className="flex bg-purple-300 container p-1">
+            <div className="flex  container p-1">
 
             
               <CatalogList categoriesArray={categoriesArray} brands={brandsArray} sidebarMode={false}/>
 
-              <div className="bg-yellow-200 md:w-[79%] container mx-auto   p-2">
+              <div className=" md:w-[79%] container mx-auto   p-2">
 
                 <div className='flex flex-col py-10 '>
                   <div className='text-center  '>
@@ -115,13 +115,13 @@ export const Catalog = () => {
                     </Carousel>
                   </div>
                 </div>
-                <div className="bg-orange-300 flex justify-center flex-col p-2">
+                <div className=" flex justify-center flex-col p-2">
                   <div className='text-center  '>
                     <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Categorías populares</h2>
                   </div>
                   {/* grid category images : guitarras categoria image must be take 3 rows and one column, vinilos categoria 2 rows and 2 columns and the rest percusion ctegoria*/}
-                  <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 lg:grid-cols-3  w-full h-[500px] bg-pink-300 gap-4">
-                    <div className="flex justify-center relative items-center bg-blue-200 md:row-span-3 row-span-2 hover:scale-[105%] transition-transform duration-300 ">
+                  <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 lg:grid-cols-3  w-full h-[500px]  gap-4">
+                    <div className="flex justify-center relative items-center  md:row-span-3 row-span-2 hover:scale-[105%] transition-transform duration-300 ">
                       <img src={guitarrasCategoria} alt="guitarras" className="h-full w-full aspect-[9/16] object-cover " />
                       <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex ">
 

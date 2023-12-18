@@ -28,21 +28,21 @@ export function Sidebar() {
   return (
     <div
       className={`${isOpen ? 'right-0' : '-right-full'
-        } w-full  fixed top-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px] bg-yellow-200 `}
+        } w-full  fixed top-0 h-full shadow-2xl md:w-[40vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px] bg-white `}
     >
-      <div className='flex items-center justify-between py-6 border-b  bg-green-200'>
-        <div className='uppercase text-sm font-semibold order-1 bg-blue-200'>
+      <div className='flex items-center justify-between py-6 border-b  '>
+        <div className='uppercase text-sm font-semibold order-1 '>
           Carrito de compras ({cart.length})
         </div>
         {/**Icono */}
         <div
           onClick={handleClose}
-          className='cursor-pointer w-8 h-8 flex justify-center items-center bg-pink-200'
+          className='cursor-pointer w-8 h-8 flex justify-center items-center '
         >
           <RiArrowRightLine className='text-2xl' />
         </div>
       </div>
-      <div className='flex flex-col h-[300px] md:h-[400px] lg:h-[300px] xl:h-[550px] overflow-y-auto overflow-x-hidden border-b bg-orange-200'>
+      <div className='flex flex-col h-[300px] md:h-[400px] lg:h-[300px] xl:h-[550px] overflow-y-auto overflow-x-hidden border-b '>
         {cart.map((item) => {
           return <CartItem key={item.id} item={item}></CartItem>;
         })}

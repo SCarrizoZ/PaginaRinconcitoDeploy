@@ -35,7 +35,7 @@ export const BurgerSidebar = () => {
         } w-full bg-white fixed top-0 h-full shadow-2xl md:w-[35vw] xl:max-w-[30vw] transition-all duration-300 z-[1002] px-4 lg:px-[35px] flex flex-col `}
     >
       {/* HEAD */}
-      <div className='flex items-center justify-between py-6 border-b bg-red-300'>
+      <div className='flex items-center justify-between py-6 border-b '>
 
         <div className='uppercase text-sm font-semibold'>
           {/* tag icon */}
@@ -54,7 +54,7 @@ export const BurgerSidebar = () => {
         </div>
       </div>
       {/* BODY */}
-      <div className='flex flex-col h-[380px] lg:h-[450px] overflow-y-auto overflow-x-hidden border-b items-center bg-green-200'>
+      <div className='flex flex-col h-[380px] lg:h-[450px] overflow-y-auto overflow-x-hidden border-b items-center '>
         {/* {cart.map((item) => {
           return <CartItem key={item.id} item={item}></CartItem>;
         })} */}
@@ -77,26 +77,26 @@ export const BurgerSidebar = () => {
       </div>
 
       {/* FOOT */}
-      <div className='flex items-center justify-between py-6 border-b bg-blue-400'>
+      <div className='flex items-center justify-between py-6 border-b '>
 
         <div className='uppercase text-sm font-semibold'>
           Configuración
         </div>
 
       </div>
-      <div className='border-b bg-orange-400 py-4 px-2'>
+      <div className='border-b py-4 px-2'>
         {/* login modal */}
         <TransitionsModal onClick={handleBurgerClose} />
         {/* <CSSTransition><div>asd</div></CSSTransition> */}
       </div>
-      <div className='flex items-center justify-between py-6 border-b bg-yellow-200 '>
+      {/* <div className='flex items-center justify-between py-6 border-b bg-yellow-200 '>
 
 
 
-      </div>
+      </div> */}
       {/* REDES */}
-      <div className='border-b bg-purple-300'>
-        <div className='uppercase text-sm font-semibold  w-full bg-pink-300'>
+      <div className='border-b '>
+        <div className='uppercase text-sm font-semibold  w-full '>
           {/* REDES ICON */}
           <div className='flex justify-center items-center gap-3 ml-auto  py-4'>
             <div className='w-8 h-8 bg-[#F36060] rounded-full flex justify-center items-center'>

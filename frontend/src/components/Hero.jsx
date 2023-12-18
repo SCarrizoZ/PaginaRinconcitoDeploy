@@ -24,10 +24,13 @@ export function Hero({blurred}) {
         {/* CONTACT TEXT */}
         <div 
         className='  absolute bottom-0 right-0 w-full h-full bg-transparent text-white flex justify-center items-center text-center'>
-          <span className='titulo text-[#F80606]  text-[3rem] md:text-[4rem]  rounded p-1 md:p-4 font-semibold'>
-            Contáctanos
-            {/* Contando con más de 20 años de experiencia en el rubro, Rinconcito Musical se ha posicionado como una de las mejores tiendas de instrumentos musicales en la ciudad de Calama. */}
-          </span>
+          <h1>
+
+            <span className='titulo text-[#F80606]  text-[3rem] md:text-[4rem]  rounded p-1 md:p-4 font-semibold'>
+              Contáctanos
+              {/* Contando con más de 20 años de experiencia en el rubro, Rinconcito Musical se ha posicionado como una de las mejores tiendas de instrumentos musicales en la ciudad de Calama. */}
+            </span>
+          </h1>
         </div>
     </div>
   );

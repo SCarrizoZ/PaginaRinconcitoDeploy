@@ -193,7 +193,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                 <span className="font-bold">({filteredProductList?.length} productos)</span>
               </div>
               {/* FILTERS */}
-              <div className="flex justify-start items-center  p-4 bg-pink-300 flex-col gap-4 sm:flex-row ">
+              <div className="flex justify-start items-center  p-4 flex-col gap-4 sm:flex-row ">
                 <div className="flex gap-2">
 
                   <div className="flex gap-2 order-1">

@@ -148,10 +148,10 @@ export const Breadcrumbs = () => {
   // console.log(getSecondToLast(fcrumbs))
 
   return (
-    <section className={`container mx-auto  ${location.pathname === "/" ? "hidden" : ""}`}>
-      <div className={`bg-blue-200 mx-[0.5rem] ${location.pathname === "/" ? "hidden" : ""} hidden sm:block`}>
+    <section className={`container mx-auto  ${location.pathname === "/" ? "hidden" : ""} mb-2`}>
+      <div className={` mx-[0.5rem] ${location.pathname === "/" ? "hidden" : ""} hidden sm:block`}>
 
-        <div className='flex gap-1 breadcrumbs text-[0.875rem] text-red-600 bg-pink-200'>
+        <div className='flex gap-1 breadcrumbs text-[0.875rem] text-red-600 '>
 
 
 
@@ -175,7 +175,7 @@ export const Breadcrumbs = () => {
 
         </div>
       </div>
-      <div className={`bg-blue-200 sm:hidden  mx-[0.5rem] flex items-center`}>
+      <div className={` sm:hidden  mx-[0.5rem] flex items-center`}>
         {/* arrow icon */}
         <svg className="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <polyline points="15 18 9 12 15 6"></polyline>

@@ -65,7 +65,13 @@ export function Product({ product, gap, min_width }) {
         <Link onClick={scrollToTop} to={`/product/${id}`}>
           <h2 className='font-semibold mb-1 break-all ...'>{nombre}</h2>
         </Link>
-        <div className='font-semibold'>{formatPrice(precio)}</div>
+        <div className={`font-semibold ${stock>0?"":"text-gray-400 flex justify-center "}`}>
+          {/* if stock is greater than 0 show the price */}
+          {/* {formatPrice(precio)} */}
+          {
+            stock > 0 ? formatPrice(precio) : "Agotado"
+          }
+        </div>
       </div>
     </div>
   );

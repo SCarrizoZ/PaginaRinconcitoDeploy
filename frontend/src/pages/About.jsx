@@ -12,7 +12,7 @@ export const About = () => {
 
       <section className="bg-gray-100 py-12 ">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-semibold mb-6">Quiénes Somos</h2>
+          <h1 className="text-5xl  mb-6 titulo text-red-500 ">Quiénes Somos</h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="mb-4">
               <h3 className="text-xl font-semibold mb-3">Nuestra Historia</h3>
@@ -45,7 +45,7 @@ export const About = () => {
             <div className='w-full md:w-1/2'>
               <img src={entrada} alt='entrada' className="" />
             </div>
-            <div className='w-full md:w-1/2'>
+            <div className='w-full md:w-1/2 p-4'>
               <h3 className="text-xl font-semibold mb-3">Nuestra Visión</h3>
               <p>
                 La visión de Rinconcito Musical es convertirse en el referente principal para los amantes de la música, ofreciendo una experiencia única en la adquisición de productos musicales y en la promoción de la cultura retro. Buscamos expandirnos digitalmente, siendo reconocidos por nuestra amplia gama de productos, servicio al cliente excepcional y compromiso con la preservación y difusión de la música en todas sus formas.
@@ -60,7 +60,7 @@ export const About = () => {
         <div className="container mx-auto">
 
           <div className='flex flex-col md:flex-row'>
-            <div className='w-full md:w-1/2'>
+            <div className='w-full md:w-1/2 p-4'>
               <h3 className="text-xl font-semibold mb-3">Nuestros Valores</h3>
               <p>
                 Enumeramos nuestros valores fundamentales en Rinconcito Musical para mantener la calidad, la autenticidad y el compromiso con nuestros clientes. La pasión por la música, la excelencia en el servicio y el respeto por la cultura retro son los pilares de nuestra empresa. Buscamos fomentar un ambiente inclusivo y apasionado por la música en todas sus formas.
@@ -79,7 +79,7 @@ export const About = () => {
             <div className='w-full md:w-1/2'>
               <img src={seccion_guitarras} alt='seccion_guitarras' />
             </div>
-            <div className='w-full md:w-1/2'>
+            <div className='w-full md:w-1/2 p-4'>
               <h3 className="text-xl font-semibold mb-3">Nuestros Clientes</h3>
               <p>
                 El cliente ideal de Rinconcito Musical es un amante de la música apasionado y versátil. Valora la autenticidad de los productos musicales y busca una amplia gama de instrumentos, discos de vinilo y accesorios para satisfacer sus necesidades musicales específicas.
@@ -92,7 +92,7 @@ export const About = () => {
       <section className="bg-gray-100 p-4">
         <div className="container mx-auto">
           <div className='flex flex-col md:flex-row'>
-            <div className='w-full md:w-1/2'>
+            <div className='w-full md:w-1/2 p-4'>
               <h3 className="text-xl font-semibold mb-3">Nuestros Productos</h3>
               <p>
                 En Rinconcito Musical ofrecemos una amplia gama de productos musicales que incluyen instrumentos de alta calidad, vinilos de edición limitada, accesorios únicos y mucho más. Nos especializamos en proporcionar a nuestros clientes una selección cuidadosamente curada de productos auténticos y de colección.
@@ -111,7 +111,7 @@ export const About = () => {
       <section className="bg-red-200">
         {/* quote. dont add an image  */}
         <div className="container mx-auto">
-          <div className="bg-blue-200 px-[1rem] pt-[3rem] pb-[5rem] ">
+          <div className=" px-[1rem] pt-[3rem] pb-[5rem] ">
 
             {/* complete with the quote icons */}
             <div className="flex justify-center items-center  py-[3rem] ">

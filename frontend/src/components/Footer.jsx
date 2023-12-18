@@ -12,8 +12,8 @@ export function Footer() {
       "elements": 
       [
         { "title": "Contacto", "url": "/contacto" },
-        { "title": "Envíos", "url": "/shipping" },
-        { "title": "Devoluciones", "url": "/returns" }
+        { "title": "Catálogo", "url": "/catalog" },
+        { "title": "Categorías", "url": "/categoría" }
       ]
     },
     {
@@ -34,7 +34,7 @@ export function Footer() {
         { "title": "Inicio", "url": "/" },
         { "title": "Perfil", "url": "/" },
         { "title": "Ver Carrito", "url": "/carrito" },
-        { "title": "My lista de deseos", "url": "/" }
+        { "title": "Mi lista de deseos", "url": "/" }
       ]
     },
     // Ayuda
