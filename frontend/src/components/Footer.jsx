@@ -11,16 +11,16 @@ export function Footer() {
       "title": "Ayuda", 
       "elements": 
       [
-        { "title": "Contacto", "url": "/contact" },
-        { "title": "Envíos", "url": "/shipping" },
-        { "title": "Devoluciones", "url": "/returns" }
+        { "title": "Contacto", "url": "/contacto" },
+        { "title": "Catálogo", "url": "/catalog" },
+        { "title": "Categorías", "url": "/categoría" }
       ]
     },
     {
       "title": "Acerca de", 
       "elements": 
       [
-        { "title": "Quienes Somos", "url": "https://www.instagram.com/rinconcito.musical/" },
+        { "title": "Quienes Somos", "url": "/acerca" },
         { "title": "Facebook", "url": "https://www.facebook.com/PlanetaR.calama" },
         { "title": "Instagram", "url": "https://www.instagram.com/rinconcito.musical/" },
         { "title": "Twitter", "url": "https://twitter.com/" },
@@ -34,7 +34,7 @@ export function Footer() {
         { "title": "Inicio", "url": "/" },
         { "title": "Perfil", "url": "/" },
         { "title": "Ver Carrito", "url": "/carrito" },
-        { "title": "My lista de deseos", "url": "/" }
+        { "title": "Mi lista de deseos", "url": "/" }
       ]
     },
     // Ayuda
@@ -165,12 +165,12 @@ function FooterList({ title, list }) {
               // use Link component from react-router-dom to link to other pages that belongs to app
               // use a tag to link to external pages
               link.url.startsWith('http') ? (
-                <a  key={index} href={link.url} target="_blank" rel="noopener noreferrer">
+                <a className="hover:underline"  key={index} href={link.url} target="_blank" rel="noopener noreferrer">
 
                   {link.title}
                 </a>
               ) : (
-                <Link onClick={scrollToTop} key={index} to={link.url}>
+                <Link className="hover:underline" onClick={scrollToTop} key={index} to={link.url}>
                   {link.title}
                 </Link>
               )

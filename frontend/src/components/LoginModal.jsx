@@ -31,7 +31,8 @@ const style = {
 
 const regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g
 
-export default function TransitionsModal() {
+
+export default function TransitionsModal({ onClick = () => { } }) {
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(!!getUser());
@@ -43,6 +44,7 @@ export default function TransitionsModal() {
     confirmPassword: '',
     acceptTerms: false,
   });
+  const handleBurgerClose = onClick
 
   const [loginFormData, setloginFormData] = useState({
     login_email: '',
@@ -93,7 +95,7 @@ export default function TransitionsModal() {
   };
 
   useEffect(() => {
-    setIsLoggedIn(!!getUser()); // Update isLoggedIn based on local storage
+    setIsLoggedIn(!!getUser());
   }, []);
 
   const handleLogin = async (e) => {
@@ -140,7 +142,7 @@ export default function TransitionsModal() {
       return;
     }
 
-    //validate email with regex
+    //Validar email con regex
 
     if (!regexEmail.test(formData.email)) {
       showToast('Email invalido', 'error');
@@ -178,7 +180,11 @@ export default function TransitionsModal() {
       {isLoggedIn ? (
         <UserMenu user={user} handleLogout={handleLogout} />
       ) : (
-        <Button variant="contained" color='primary' style={{ borderRadius: 10, textTransform: 'capitalize', fontWeight: 'bold' }} startIcon={<BiUserCircle />} onClick={handleOpen}>
+        <Button variant="contained" color='primary' style={{ borderRadius: 10, textTransform: 'capitalize', fontWeight: 'bold' }} startIcon={<BiUserCircle />}
+          onClick={() => {
+            handleBurgerClose()
+            handleOpen()
+          }}>
           Iniciar Sesión
         </Button>
       )}

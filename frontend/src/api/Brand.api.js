@@ -88,10 +88,10 @@ export const getBrands = async () => {
   // return ejemploMarcas
   try {
     const response = await fetch(`${apiUrl}/marcas?fields[0]=nombre&populate[logo][fields][0]=url`);
-    console.log(response.data)
+    // console.log(response.data)
     if (response.ok) {
       const data = await response.json();
-      console.log(data)
+      // console.log(data)
       return data;
     } else {
       console.error("Error al obtener las marcas:", response.status, response.statusText);

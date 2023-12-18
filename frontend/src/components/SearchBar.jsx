@@ -11,7 +11,7 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   const { products } = useContext(ProductContext)
   const [selectedItem, setSelectedItem] = useState(-1)
 
-  let menuRef = useRef();
+  let menuRef = useRef(null);
   const handleChange = (value) => {
     setInput(value)
   }
@@ -44,9 +44,10 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   }
 
   useEffect(() => {
+    // console.log(input)
     if (input !== "") {
       let handler = e => {
-
+        // console.log(menuRef.current)
         if (!menuRef.current.contains(e.target)) {
           handleClose();
         }
@@ -57,9 +58,10 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
     }
 
 
-  })
+  } , [input])
   // }
   useEffect(() => {
+    // console.log(input)
     if (input !== "") {
       // FETCH API
       // fetch(`https://api.tvmaze.com/search/shows?q=${search}`)
@@ -73,8 +75,8 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
       // FILTER LOCAL DATA
 
       const newFilterData = products?.data?.filter(product => {
-        const productName = product?.attributes?.nombre.toLowerCase()
-        return productName.includes(input.toLowerCase())
+        const productName = product?.attributes?.nombre?.toLowerCase()
+        return productName?.includes(input?.toLowerCase())
 
       })
 

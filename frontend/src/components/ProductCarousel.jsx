@@ -5,10 +5,10 @@ import { CustomLeftArrow } from './Arrows/CustomLeftArrow'
 import { CustomRightArrow } from './Arrows/CustomRightArrow'
 
 export const ProductCarousel = (productsArray) => {
-  console.log(productsArray)
-  const {products} = productsArray
+  // console.log(productsArray)
+  const { products } = productsArray
   const productList = Array.isArray(products) ? products : [];
-  console.log(products)
+  // console.log(products)
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -38,26 +38,26 @@ export const ProductCarousel = (productsArray) => {
   };
   return (
     <div>
-                <Carousel
-                  responsive={responsive}
-                  infinite
-                  arrows
-                  draggable={false}
-                  autoPlay
-                  swipeable={false}
-                
-                  customRightArrow={<CustomRightArrow />}
-                  
-                  customLeftArrow = {
-                    <CustomLeftArrow />
-                  } 
-                >
-                  {
-                    productList?.map((product, index) => (
-                      <Product key={index} product={product} gap={10} min_width={false} />
-                    ))
-                  }
-                </Carousel>
-              </div>
+      <Carousel
+        responsive={responsive}
+        infinite
+        arrows
+        draggable={false}
+        autoPlay
+        swipeable={false}
+
+        customRightArrow={<CustomRightArrow />}
+
+        customLeftArrow={
+          <CustomLeftArrow />
+        }
+      >
+        {
+          productList?.map((product, index) => (
+            <Product key={index} product={product} gap={10} min_width={false} />
+          ))
+        }
+      </Carousel>
+    </div>
   )
 }

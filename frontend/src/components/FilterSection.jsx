@@ -6,6 +6,10 @@ import { formatPrice } from "../utils";
 import { Select, MenuItem } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import { SidebarContext } from "../context/SidebarContext";
+import {GridView} from './GridView'
+import { ProductList } from "./ProductList";
+import { RiListUnordered } from "react-icons/ri";
+import { RiGridLine } from "react-icons/ri";
 
 export const Filters = ({ productList, subcategoriesList, brandList, nombre, setProductList }) => {
 
@@ -37,21 +41,23 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
     addCategory,
     removeCategory,
     filterBrands,
-    setFilterBrands
+    setFilterBrands,
+    gridView,
+    setGridView
   } = useContext(FiltersContext)
   const { isFilterOpen, setIsFilterOpen } = useContext(SidebarContext)
   const minPriceFilterId = useId()
   const [openFilter, setOpenFilter] = useState(true); // this will be used to filter the products based on brands
-
+  
   // const [filteredProductList, 
-  console.log(products)
+  // console.log(products)
 
   // NO MODIFICAR
   useEffect(() => {
     setSubcategories(subcategoriesList)
     setFilterBrands(brandList)
   }, [subcategoriesList, brandList]);
-  console.log(brandList)
+  // console.log(brandList)
   useEffect(() => {
     resetFilters();
   }, [nombre]);
@@ -61,16 +67,16 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
 
     let filteredList = applyFilter();
     // applySort(filteredList,selectValue);
-    console.log(filteredList)
+    // console.log(filteredList)
     setFilteredProductList(filteredList);
     // console.log(filteredList)
     // console.log(selectedCategories.length === 0 && selectedBrands.length === 0 ? "aqui1" : "aqui2");
   }, [selectedCategories, selectedBrands, minPrice, products]);
 
   useEffect(() => {
-    console.log(selectValue)
-    console.log(filteredProductList)
-    console.log(products)
+    // console.log(selectValue)
+    // console.log(filteredProductList)
+    // console.log(products)
     if(filteredProductList === undefined){
       return;
     }
@@ -101,6 +107,13 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
     const newMinPrice = event.target.value
     setMinPrice(newMinPrice)
   }
+
+  // if(gridView){
+  //   return (<GridView products={filteredProductList}/>)
+  // }else{
+  //   return (<div></div>)
+  // }
+  
   return (
     <>
       <div className="flex flex-col gap-1   justify-center  px-2 py-10 container">
@@ -122,6 +135,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
               <div className=''>
                 <div className="cont  p-2">
                   {/* Filter lists */}
+                  {}
                   <FilterComponent subset={subcategoriesList} filterName={"Categorías"} content={{ "name": "Categorías", "addElement": addCategory, "removeElement": removeCategory, "selectedElements": selectedCategories }} />
                   {brandList.includes("Unknown Brand") || brandList.includes(undefined) ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
                   {/* <FilterComponent subset={brandsList} filterName={"Brands"} content={{"name":"brands","addElement":addBrand,"removeElement":removeBrand, "selectedElements":selectedBrands}}/> */}
@@ -179,32 +193,47 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                 <span className="font-bold">({filteredProductList?.length} productos)</span>
               </div>
               {/* FILTERS */}
-              <div className="flex justify-start items-center  p-4">
+              <div className="flex justify-start items-center  p-4 flex-col gap-4 sm:flex-row ">
+                <div className="flex gap-2">
 
+                  <div className="flex gap-2 order-1">
+                    {/* grid button and listview button */}
+                    <button className={`flex justify-center items-center p-2 bg-pink-400 rounded-lg gap-2 hover:bg-pink-500 transition-all duration-300 ${gridView ? "bg-pink-500":""}`} onClick={()=>{setGridView(true)}}>
+                      {/* filter icon */}
+                    <RiGridLine className="text-white text-2xl transition-all duration-200"/> 
+                      {/* i want to see two icons and when any it will be clicked change their color */}
 
-                {/* filtros mobile button with filter icon*/}
-                <div onClick={() => { setIsFilterOpen(!isFilterOpen) }} className="flex justify-center items-center">
-                  <button className="flex justify-center items-center p-2 bg-pink-400 rounded-lg gap-2 md:hidden">
-                    {/* filter icon */}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-6 w-6 text-white"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"
-                      />
-                    </svg>
-                    <div className="icon">Filtros</div>
-                  </button>
+                    </button>
+                    <button className={`flex justify-center items-center p-2 bg-pink-400 rounded-lg gap-2 hover:bg-pink-500 transition-all duration-300 ${!gridView ? "bg-pink-500":""}`} onClick={()=>{setGridView(false)}}>
+                      {/* filter icon */}
+                      <RiListUnordered className="text-white text-2xl transition-all duration-200"/> 
+                      {/* i want to see two icons and when any it will be clicked change their color */}
+                    </button>
+                  </div>
+                  {/* filtros mobile button with filter icon*/}
+                  <div onClick={() => { setIsFilterOpen(!isFilterOpen) }} className="flex justify-center items-center  md:hidden ">
+                    <button className="flex justify-center items-center p-2 bg-pink-400 rounded-lg gap-2 ">
+                      {/* filter icon */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-6 w-6 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2" d="M4 6h16M4 12h16M4 18h7"
+                        />
+                      </svg>
+                      <div className="icon">Filtros</div>
+                    </button>
+                  </div>
                 </div>
 
                 {/* DROPDOWN */}
-                <div className="ml-auto">
+                <div className="sm:ml-auto   ">
                   <div className="sorting__widget text-end">
                     <select className="w-50" value={selectValue} onChange={
                       (e) => {
@@ -226,7 +255,7 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                           setSelectValue('low-price')
                         }
                         else {
-                          console.log("aaaaa")
+                          // console.log("aaaaa")
                           setSelectValue('Default')
                         }
                       }
@@ -252,7 +281,6 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
             </div >
 
             <div className={` ${filteredProductList?.length === 0 ? "h-[500px] p-2":""}  flex justify-center items-center` }>
-
               {
                 filteredProductList?.length ===0 ?
                   (<div className="text-center font-bold text-2xl  ">
@@ -260,12 +288,15 @@ export const Filters = ({ productList, subcategoriesList, brandList, nombre, set
                   </div>)
                   :
                   (
-                    <div className={`p-2   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px]  max-w-sm  sm:max-w-none px-2 mx-auto`}>
+                    <ProductList products={filteredProductList} />
+                    // <GridView products={filteredProductList}/>  
+                    
+                    // <div className={`p-2   grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-[15px]  max-w-sm  sm:max-w-none px-2 mx-auto`}>
 
-                      {filteredProductList?.map(product => (
-                        <Product key={product.id} product={product} />
-                      ))}
-                    </div>
+                    //   {filteredProductList?.map(product => (
+                    //     <Product key={product.id} product={product} />
+                    //   ))}
+                    // </div>
                   )
               }
 

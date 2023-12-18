@@ -65,7 +65,7 @@ export const ProductByCategory = () => {
   // 
   // get brands based on filteredproductsbycategory
   const getBrands = (filteredProductsByCategory) => {
-    console.log(filteredProductsByCategory);
+    // console.log(filteredProductsByCategory);
 
     const brandsList = getUniqueBrands(
       filteredProductsByCategory?.map((product) => {
@@ -79,7 +79,7 @@ export const ProductByCategory = () => {
 
 
   useEffect(() => {
-    console.log("cambio:", nombre)
+    // console.log("cambio:", nombre)
     const getElements = () => {
       getProductsByCategory(nombre);
       getSubcategories(nombre);
@@ -95,7 +95,7 @@ export const ProductByCategory = () => {
 
 
 
-  console.log(actualCategory?.attributes.nombre)
+  // console.log(actualCategory?.attributes.nombre)
 
 
 
