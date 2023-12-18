@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { ProductContext } from '../context/ProductContext';
+import { WishlistContext, useWishlist } from '../context/WislistContext';
 import { Product } from '../components/Product';
 import { Hero } from '../components/Hero';
 import marcas from '../img/marcas.png';
@@ -19,6 +20,8 @@ import { Skeleton } from '@mui/material';
 export function Home() {
   // Obtén los productos del contexto
   const { brands } = useContext(FiltersContext)
+  const { wishlist } = useWishlist()
+  console.log("Wishlist: ", wishlist)
   const brandsWithLogo = brands?.data?.filter(brand => brand?.attributes?.logo?.data !== null)
 
   console.log(brandsWithLogo)
@@ -231,7 +234,7 @@ export function Home() {
                 }
                 customLeftArrow={
                   <CustomLeftArrow />
-                } 
+                }
               >
                 {
                   productsArray?.map(product => (

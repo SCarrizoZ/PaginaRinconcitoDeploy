@@ -17,19 +17,27 @@ import { SearchBar } from './SearchBar'
 import TransitionsModal from './LoginModal';
 import { scrollToTop } from '../utils';
 
+import { useWishlist } from '../context/WislistContext';
+
+import { getUser, getToken } from '../utils';
+import { ToastContext } from '../context/ToastProvider';
+
 export function Header() {
   const { itemAmount, setItemAmount } = useContext(CartContext);
   const { isOpen,
-          setIsOpen,
-          isBurgerOpen,
-          setIsBurgerOpen
-           } = useContext(SidebarContext);
+    setIsOpen,
+    isBurgerOpen,
+    setIsBurgerOpen
+  } = useContext(SidebarContext);
   const { categories } = useContext(FiltersContext)
 
   const [isActive, setIsActive] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
   const [isSelect, setIsSelect] = useState(false)
   const [results, setResults] = useState([])
+  const isLoggedIn = getUser() && getToken();
+  const { wishlist } = useWishlist()
+  const showToast = useContext(ToastContext);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -46,20 +54,20 @@ export function Header() {
   };
   const headerHeight = useRef(null);
   // Obten la altura del header cada vez que cambie.
-  
 
+  console.log("Header Wishlist", wishlist)
 
   return (
-    <header onResize={()=>{console.log("resized")}} style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-[1001] transition-all sticky top-0 min-w-[360px] flex flex-col md:px-20 `}>
+    <header onResize={() => { console.log("resized") }} style={{ background: "#373333" }} className={` ${isActive ? ' shadow-lg bg-white ' : ' bg-none '}  w-full  z-[1001] transition-all sticky top-0 min-w-[360px] flex flex-col md:px-20 `}>
       {/* TOP AREA RED */}
       <div className=' relative flex items-center justify-around md:px-10    '>
-        <div onClick={() => setIsBurgerOpen(!isBurgerOpen)} 
-        className=' cursor-pointer flex gap-x-4  absolute inset-y-0 left-0  md:hidden pl-8  items-center  sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
+        <div onClick={() => setIsBurgerOpen(!isBurgerOpen)}
+          className=' cursor-pointer flex gap-x-4  absolute inset-y-0 left-0  md:hidden pl-8  items-center  sm:static sm:inset-auto sm:mr-6 sm:pr-0'>
           <RiAlignJustify className='text-[2rem] ' color='red' />
         </div>
-        
+
         <div className='container       gap-3 p-1'>
-          
+
           <div className='flex items-center  gap-3 '>
             <div className='flex   mx-auto md:mx-0 justify-center '> {/* Ajustar según tus necesidades */}
               <Link onClick={scrollToTop} to={'/'}>
@@ -88,8 +96,25 @@ export function Header() {
             </div>
           </div>
 
+          {/* Link to Wishlist by ID */}
           <div className='hidden md:block'>
-            <Heart borderColor="red" bgColor={"red"} />
+            {isLoggedIn && wishlist?.data?.[0]?.id
+              ?
+              (
+                <div>
+                  <Link to={`/Wishlist/${wishlist?.data?.[0]?.id}`}>
+                    <Heart borderColor="red" bgColor={"red"} />
+                  </Link>
+                </div>
+              )
+              :
+              (
+                <div onClick={() => { showToast("Inicia sesión para acceder a tu lista de deseos", "info") }}>
+                  <Heart borderColor="red" bgColor={"red"} />
+                </div>
+              )
+            }
+
           </div>
 
           <div className={'relative hidden md:block '} >

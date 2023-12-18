@@ -1,22 +1,53 @@
-import { useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { BsPlus, BsEyeFill } from "react-icons/bs";
 import { CartContext } from '../context/CartContext';
 import { formatPrice } from '../utils'
-import Heart from './Icons/Heart'
+import HeartAddWishlist from './Icons/HeartAddWishlist'
+import { useWishlist } from '../context/WislistContext';
+
 export function Product({ product, gap, min_width }) {
   const { addToCart } = useContext(CartContext);
 
   // Deconstruye las propiedades del producto de la respuesta de the API
   const { id, attributes } = product;
   const { nombre, descripcion, precio, portada, subcategoria } = attributes;
+
+  const { wishlist, addToWishlist } = useWishlist(); // Get the wishlist from the context
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const isLoggedIn = !!localStorage.getItem('user');
+
   // console.log(product)
   const scrollToTop = () => {
     window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   };
 
+
+  useEffect(() => {
+    // Check if the product is in the wishlist when the component mounts
+    if (!isLoggedIn) {
+      setIsInWishlist(false);
+      return;
+    }
+    const checkWishlist = async () => {
+      try {
+        const wishlistData = wishlist?.data?.[0]?.attributes?.productos?.data;
+
+        if (wishlistData) {
+          const isProductInWishlist = wishlistData.some((item) => item?.id === product?.id);
+          setIsInWishlist(isProductInWishlist);
+        }
+      } catch (error) {
+        console.error('Error checking wishlist:', error);
+      }
+    };
+
+    checkWishlist();
+  }, [wishlist, product, isLoggedIn]);
+
+
   return (
-    <div className={`rounded-lg border border-[#e4e4e4] bg-white ${gap ? "mx-2":""} ${min_width?"w-[200px]":""} h-full` }>
+    <div className={`rounded-lg border border-[#e4e4e4] bg-white ${gap ? "mx-2" : ""} ${min_width ? "w-[200px]" : ""} h-full`}>
       {/** Container de la portada TOP */}
       <div className='border-b h-[300px] mb-4 relative overflow-hidden group transition'>
         <div className='w-full h-full flex justify-center'>
@@ -41,10 +72,10 @@ export function Product({ product, gap, min_width }) {
               <BsEyeFill />
             </Link>
             <button onClick={() => {
-              addToCart(({ ...product, precio }), id);
+              addToWishlist(id)
             }}>
               <div className='flex justify-center items-center text-white w-12 h-12 bg-white'>
-              <Heart borderColor="red" bgColor={"red"} />
+                <HeartAddWishlist borderColor="red" bgColor={"red"} isInWishlist={isInWishlist} key={isInWishlist.toString()} />
               </div>
             </button>
           </div>

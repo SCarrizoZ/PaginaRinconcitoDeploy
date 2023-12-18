@@ -1,7 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export const Heart = ({ borderColor, bgColor }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export const HeartAddWishlist = ({ borderColor, bgColor, isInWishlist }) => {
+  const [isOpen, setIsOpen] = useState(isInWishlist);
+
+  useEffect(() => {
+    setIsOpen(isInWishlist);
+  }, [isInWishlist]);
 
   const iconStyle = {
     cursor: 'pointer',
@@ -11,7 +15,6 @@ export const Heart = ({ borderColor, bgColor }) => {
 
   return (
     <svg
-      onClick={() => setIsOpen(!isOpen)}
       xmlns="http://www.w3.org/2000/svg"
       className="icon icon-tabler icon-tabler-heart"
       width="2rem"
@@ -30,4 +33,4 @@ export const Heart = ({ borderColor, bgColor }) => {
   );
 };
 
-export default Heart;
+export default HeartAddWishlist;

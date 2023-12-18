@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
 import { SocialShare } from './SocialShare';
-import { Heart } from './Icons/Heart'
+import { HeartAddWishlist } from './Icons/HeartAddWishlist'
 import { formatPrice } from '../utils'
 import { useContext } from 'react';
 import { CartContext } from '../context/CartContext';
 import Carousel from 'react-multi-carousel';
 import { CustomRightArrow } from './Arrows/CustomRightArrow';
 import { CustomLeftArrow } from './Arrows/CustomLeftArrow';
+import { useWishlist } from '../context/WislistContext';
 export const SingleProduct = (product) => {
   const precio = product?.precio
   const singleProduct = product?.product
@@ -19,10 +20,37 @@ export const SingleProduct = (product) => {
     "https://static.wixstatic.com/media/06c2ca_53855f38e20d474fbc0eb271bb54e6e9~mv2.webp",
     singleProduct?.attributes?.portada?.data?.attributes?.url
   ]
+
+  const { wishlist, addToWishlist } = useWishlist(); // Get the wishlist from the context
+  const [isInWishlist, setIsInWishlist] = useState(false);
+  const isLoggedIn = !!localStorage.getItem('user');
+
   useEffect(() => {
     setMainImage(singleProduct?.attributes?.portada?.data?.attributes?.url)
   }, [singleProduct])
-  
+
+  useEffect(() => {
+    // Check if the product is in the wishlist when the component mounts
+    if (!isLoggedIn) {
+      setIsInWishlist(false);
+      return;
+    }
+    const checkWishlist = async () => {
+      try {
+        const wishlistData = wishlist?.data?.[0]?.attributes?.productos?.data;
+
+        if (wishlistData) {
+          const isProductInWishlist = wishlistData.some((item) => item?.id === singleProduct?.id);
+          setIsInWishlist(isProductInWishlist);
+        }
+      } catch (error) {
+        console.error('Error checking wishlist:', error);
+      }
+    };
+
+    checkWishlist();
+  }, [wishlist, product, isLoggedIn]);
+
   console.log("IMGS", imgs)
   const responsive = {
     superLargeDesktop: {
@@ -55,9 +83,9 @@ export const SingleProduct = (product) => {
     // console.log(e.target.style.borderColor="red")
     e.target.style.outline = "2px solid red"
     console.log(imageRef.current)
-    if(imageRef.current){
+    if (imageRef.current) {
       imageRef.current.style.outline = "2px solid black"
-      
+
     }
     imageRef.current = e.target
   }
@@ -86,7 +114,7 @@ export const SingleProduct = (product) => {
                         src={img} alt="" onClick={
                           (e) => {
                             setMainImage(img)
-                            changeColor(e,img)
+                            changeColor(e, img)
                           }
 
                         } srcSet={`
@@ -165,9 +193,13 @@ export const SingleProduct = (product) => {
                 Agregar al carrito
               </button>
               {/* heart icon wishlist  only icon*/}
-              <div className='border border-black rounded-lg p-1 mx-auto sm:mx-0'>
-                <Heart borderColor={"black"} bgColor={"#FB6F6F"} />
-              </div>
+              <button onClick={() => {
+                addToWishlist(singleProduct?.id)
+              }}>
+                <div className='border border-black rounded-lg p-1 mx-auto sm:mx-0'>
+                  <HeartAddWishlist borderColor={"black"} bgColor={"#FB6F6F"} isInWishlist={isInWishlist} key={isInWishlist.toString()} />
+                </div>
+              </button>
 
 
             </div>
