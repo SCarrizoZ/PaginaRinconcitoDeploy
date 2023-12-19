@@ -2,7 +2,8 @@ import { useState, useContext } from 'react'
 import { Skeleton } from "@mui/material"
 import { Link } from 'react-router-dom';
 import { SidebarContext } from '../context/SidebarContext';
-export const CatalogList = ({ categoriesArray = [], brands, sidebarMode }) => {
+export const CatalogList = ({ categoriesArray = [], brands = [], sidebarMode }) => {
+
   const [openFilter, setOpenFilter] = useState(true);
   const [openBrandList, setOpenBrandList] = useState(true);
   const { setIsCatalogOpen } = useContext(SidebarContext)
@@ -10,7 +11,7 @@ export const CatalogList = ({ categoriesArray = [], brands, sidebarMode }) => {
 
   return (
     <>
-      <div className={`md:flex md:flex-col ${sidebarMode ? "w-full" : "hidden w-[19%]"} p-2   gap-3 `}>
+      <div className={`md:flex md:flex-col ${sidebarMode ? "w-full" : "hidden w-[19%]"}   gap-3 `}>
         <div>
 
           <div className="bg-red-300 flex items-center justify-between p-2 w-full">
@@ -32,7 +33,7 @@ export const CatalogList = ({ categoriesArray = [], brands, sidebarMode }) => {
                     <Skeleton variant="rectangular" width={210} height={24} />
                   </div>
                 )) : categoriesArray?.map((category) => (
-                  <div className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 cursor-pointer" key={category?.attributes?.nombre}>
+                  <div className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-gray-200" key={category?.attributes?.nombre}>
                     {/* can i delete catalog from url? */}
                     <Link onClick={() => { setIsCatalogOpen(false) }} to={`../categoria/${category?.attributes?.nombre}`} >
                       {category?.attributes?.nombre}
@@ -54,7 +55,7 @@ export const CatalogList = ({ categoriesArray = [], brands, sidebarMode }) => {
               </svg>
             </div>
           </div>
-          <div className={`list-cont  ${openBrandList ? "max-h-[500px] " : " max-h-0"}   transition-all duration-500 overflow-auto  `}>
+          <div className={`list-cont  ${openBrandList ? "max-h-[500px] " : " max-h-0"}   transition-all duration-500 overflow-y-scroll  `}>
 
             <ul className="bg-red-50">
               {/* skeleton */}
@@ -64,9 +65,13 @@ export const CatalogList = ({ categoriesArray = [], brands, sidebarMode }) => {
 
                     <Skeleton variant="rectangular" width={210} height={24} />
                   </div>
-                )) : brands?.map((brand) => (
-                  <div className="capitalize px-[0.25rem] py-[0.5rem] " key={brand?.attributes?.nombre}>
-                    {brand?.attributes?.nombre}
+                )) : brands?.map((brand, index) => (
+                  <div key={index} className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-gray-200" >
+                    <Link to={`/catalogo/${brand?.attributes?.nombre}`}>
+                    
+                      {brand?.attributes?.nombre}
+                    </Link>
+                    
                   </div>
                 ))
               }

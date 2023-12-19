@@ -46,7 +46,9 @@ export function CartItem({ item }) {
             <div className=' flex flex-1 max-w-[100px]   items-center h-full border text-primary font-medium '>
               <div onClick={() => { decreaseQuantity(id) }} className=' flex-1 h-full flex justify-center items-center cursor-pointer border-r'><IoMdRemove /></div>
               <div className='h-full flex justify-center items-center px-2'>{item?.amount}</div>
-              <div onClick={() => increaseQuantity(id)} className='flex-1 h-full flex justify-center items-center cursor-pointer border-l'><IoMdAdd /></div>
+              <div onClick={() => {
+                increaseQuantity(id)}
+                } className='flex-1 h-full flex justify-center items-center cursor-pointer border-l'><IoMdAdd /></div>
             </div>
             <div className='flex flex-1 justify-around items-center'>{formattedPrice}</div>
             <div className='flex-1 flex justify-end items-center text-primary font-medium'>{`${formatPrice(totalPorObjeto)}`}</div>

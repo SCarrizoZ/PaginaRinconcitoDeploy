@@ -149,7 +149,8 @@ export function Header() {
               )
             }
           </div>
-          <div className={'relative hidden md:block '} >
+          <div className={'relative hidden md:block text-red-500 '} >
+           
             <TransitionsModal />
           </div>
         </div>

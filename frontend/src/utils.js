@@ -29,7 +29,7 @@ export const getToken = () => {
 
 // create a function that finds product by id
 export const findProduct = (products, id) => {
-  // console.log(products?.data)
+
   const product = products?.data?.find((item) => item.id === id);
   return product;
 };
@@ -71,18 +71,18 @@ export const getSingular = (word) => {
         wordArray[index] = deleteSpecialCharacters(word.slice(0, word.length - 1))
 
       }
-      console.log(wordArray)
+
       // if contain es at the end delete
       if (word[word.length - 2] === "e" && word[word.length - 1] === "s") {
         // wordArray[index] = word.slice(0, word.length - 2)
         wordArray[index] = deleteSpecialCharacters(word.slice(0, word.length - 2))
-        console.log(wordArray)
+
       }
 
-      console.log(word)
+
     })
     // join the array
-    console.log(wordArray.join(" "))
+
     return wordArray.join(" ")
     
   }
@@ -91,13 +91,13 @@ export const getSingular = (word) => {
       // wordArray[index] = word.slice(0, word.length - 1)
       // delete that character
       word = deleteSpecialCharacters(word.slice(0, word.length - 1))
-      console.log(word)
+
     }
     // if contain es at the end delete
     if (word[word.length - 2] === "e" && word[word.length - 1] === "s") {
       // wordArray[index] = word.slice(0, word.length - 2)
       word = deleteSpecialCharacters(word.slice(0, word.length - 2))
-      console.log(word)
+
     }
     return word
   }

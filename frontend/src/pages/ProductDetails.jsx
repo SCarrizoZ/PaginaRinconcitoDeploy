@@ -24,7 +24,7 @@ import { Helmet } from 'react-helmet';
 
 export const ProductDetails = () => {
   const { id } = useParams();
-  console.log(id);
+
   const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
   const { categories } = useContext(FiltersContext);
@@ -118,8 +118,17 @@ export const ProductDetails = () => {
   // });
 
   // console.log(relatedProducts);
-
-
+  // //
+  // useEffect(() => {
+  //   const metaTag = 
+  //     document.createElement('meta');
+  //     metaTag.setAttribute("property", "og:image");
+  //     metaTag.content = portada?.data?.attributes?.url;
+  //     document.getElementsByTagName("head")[0].appendChild(metaTag);
+  //     return () => {
+  //       document.getElementsByTagName("head")[0].removeChild(metaTag);
+  //     }
+  // } , [portada?.data?.attributes?.url]);
   return (
     <>
       <div className='flex justify-center'>
@@ -175,8 +184,8 @@ export const ProductDetails = () => {
 
           <button disabled={!(product?.attributes?.stock > 0)} className={`transition-all duration-300   ${product?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0`}
             onClick={() => {
-              console.log(product?.attributes?.stock)
-              console.log()
+              // console.log(product?.attributes?.stock)
+              // console.log()
               addToCart({ ...product, precio }, product?.id);
             }}>
             {
@@ -186,30 +195,6 @@ export const ProductDetails = () => {
           </button>
         </div>
 
-      <Helmet>
-        <title>{nombre}</title>
-        {/* <meta name="description" content={descripcion} />
-        <meta name="keywords" content={nombre} />
-        <meta name="author" content="Rinconcito de la Guitarra" /> */}
-        {/* <meta name="robots" content="index, follow" /> */}
-        {/* <meta name="googlebot" content="index, follow" /> */}
-        {/* <meta property="og:title" content={nombre} /> */}
-        {/* <meta property="og:description" content={descripcion} /> */}
-        <meta property="og:image" content={portada?.data?.attributes?.url} />
-        {/* <meta property="og:url" content={`https://rinconcitodelaguitarra.com/product/${id}`} /> */}
-        {/* <meta property="og:site_name" content="Rinconcito de la Guitarra" /> */}
-        {/* <meta property="og:locale" content="es_ES" />
-        <meta property="og:type" content="website" />
-        <meta property="og:updated_time" content="1440432930" />
-        <meta property="fb:app_id" content="966242223397117" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@rinconcitodelaguitarra" />
-        <meta name="twitter:creator" content="@rinconcitodelaguitarra" />
-        <meta name="twitter:title" content={nombre} />
-        <meta name="twitter:description" content={descripcion} /> */}
-        <meta name="twitter:image" content={portada?.data?.attributes?.url} />
-        <meta name="twitter:image:alt" content={nombre} />
-      </Helmet>
       </div>
     </>
 

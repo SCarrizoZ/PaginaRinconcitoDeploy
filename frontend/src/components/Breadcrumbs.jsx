@@ -30,8 +30,7 @@ export const Breadcrumbs = () => {
       subcategory,
       ...crumbs
     ]
-    console.log(crumbs.slice(0, 3))
-    console.log(getSingular(category))
+
     crumbs = crumbs.slice(0, 3)
     crumbs.push(getSingular(category))
   }

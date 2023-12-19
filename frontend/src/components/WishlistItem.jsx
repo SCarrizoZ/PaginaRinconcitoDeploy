@@ -58,19 +58,9 @@ export function WishlistItem({ item, category, showDeleteButton }) {
           {/*Product description */}
 
           {/** Cantidad */}
-          <div className=' flex gap-x-2 h-[36px] text-sm justify-between'>
+          <div className=' flex gap-x-2 h-[36px] text-sm justify-between bg-red-200'>
             {/** Incrementar-Decrementar valor */}
-            <button disabled={!(item?.attributes?.stock > 0)} className={`transition-all duration-300   ${item?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0 max-w-xs`}
-              onClick={() => {
-                console.log(item?.attributes?.stock)
-                console.log()
-                addToCart({ ...item, precio }, item?.id);
-              }}>
-              {
-                item?.attributes?.stock > 0 ? "Agregar al carrito" : "Agotado"
-              }
-              {/* Agregar al carrito */}
-            </button>
+
             <div className='flex flex-col justify-around items-center  text-[1rem] font-extrabold gap-1'>
               {
                 formattedPrice
@@ -98,7 +88,7 @@ export function WishlistItem({ item, category, showDeleteButton }) {
             <p className='text-sm text-gray-500'>{`${(item?.attributes?.descripcion).substring(0, 150)}`}...</p>
           </div>
           {/* categoriy and subcategory */}
-          <div className='flex gap-x-2 text-sm text-gray-500'>
+          <div className='flex gap-x-2 text-sm text-gray-500 bg-blue-300'>
             <p className='bg-[#16F705] bg-opacity-[50%] border-opacity-[10%]  flex items-center justify-center font-medium rounded-md order-1'>
               <span className='p-1'>
                 {
@@ -129,6 +119,19 @@ export function WishlistItem({ item, category, showDeleteButton }) {
                 }
               </span>
             </p>
+          </div>
+          <div className=' flex justify-end'>
+            <button disabled={!(item?.attributes?.stock > 0)} className={`transition-all duration-300   ${item?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0 max-w-xs`}
+              onClick={() => {
+                console.log(item?.attributes?.stock)
+                console.log()
+                addToCart({ ...item, precio }, item?.id);
+              }}>
+              {
+                item?.attributes?.stock > 0 ? "Agregar al carrito" : "Agotado"
+              }
+              {/* Agregar al carrito */}
+            </button>
           </div>
           <span>
             {/* Product brand */}

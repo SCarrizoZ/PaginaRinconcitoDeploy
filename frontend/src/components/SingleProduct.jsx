@@ -13,6 +13,7 @@ export const SingleProduct = (product) => {
   const [mainImage, setMainImage] = useState(singleProduct?.attributes?.portada?.data?.attributes?.url)
   const imageRef = useRef(null)
   const secondaryImages = singleProduct?.attributes?.imagenes_secundarias?.data?.map((img) => img?.attributes?.url) || []
+  const productCategory = singleProduct?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre
 
   const imgs = [
     singleProduct?.attributes?.portada?.data?.attributes?.url,
@@ -95,9 +96,9 @@ export const SingleProduct = (product) => {
         <div className='flex flex-col lg:flex-row  px-2 py-10 -lg w-full   '>
           {/* IMAGES */}
           <div className=' flex gap-3 p-2  w-full '>
-            <div className=' hidden md:flex p-2'>
+            <div className=' hidden md:flex '>
               {/* OTHER RELATED IMAGES */}
-              <div className=' p-2  '>
+              <div className='   '>
                 <div className=' flex-col   gap-2 flex '>
 
                   {
@@ -157,7 +158,7 @@ export const SingleProduct = (product) => {
               </div>
               {/* MAIN SCREEN */}
               <div className=' flex-col gap-2 hidden md:flex mx-auto border border-black rounded-lg'>
-                <img className=' aspect-square object-cover object-center w-[600px] sm:max-w-lg md:max-w-lg rounded-lg border-black  '
+                <img className={`${productCategory === "Teclados y Pianos" ? "aspect-video":"aspect-square"}   w-[460px] h-full object-cover object-center max-w-lg sm:max-w-lg md:max-w-lg rounded-lg border-black`  }
                   src={mainImage}
                   alt={singleProduct?.attributes?.nombre} />
               </div>
@@ -168,11 +169,11 @@ export const SingleProduct = (product) => {
           <div className='flex flex-col gap-3    p-4  lg:max-w-[400px]  justify-between '>
             <div className=' flex flex-col'>
 
-              <h1 className='text-[26px] font-medium  max-w-[450px] '>{singleProduct?.attributes?.nombre}</h1>
+              <h1 className='text-[26px] font-medium  max-w-[450px] ' >{singleProduct?.attributes?.nombre}</h1>
               {/* check stock */}
               {
                 singleProduct?.attributes?.stock > 0 ?
-                  <div className='text-green-500 font-bold uppercase'>En stock ({(singleProduct?.attributes?.stock)})</div>
+                  <div className='text-green-500 font-bold uppercase notranslate'>En stock ({(singleProduct?.attributes?.stock)})</div>
                   :
                   <div className='text-red-500 font-bold uppercase'>Sin stock</div>
               }
@@ -183,8 +184,7 @@ export const SingleProduct = (product) => {
             <div className='flex justify-end items-center lg:justify-end gap-3  p-1'>
               <button disabled={!(singleProduct?.attributes?.stock > 0)} className={`transition-all duration-300   ${singleProduct?.attributes?.stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0`}
                 onClick={() => {
-                  console.log(singleProduct?.attributes?.stock)
-                  console.log()
+     
                   addToCart({ ...singleProduct, precio }, singleProduct?.id);
                 }}>
                 {

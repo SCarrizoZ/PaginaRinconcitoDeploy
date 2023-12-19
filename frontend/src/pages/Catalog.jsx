@@ -14,16 +14,32 @@ import guitarrasCategoria from '../img/categorias_header_images/guitarras_catego
 import tecladosPianosCategoria from '../img/categorias_header_images/teclados_pianos_categoria.webp'
 import percusionCategoria from '../img/categorias_header_images/percusion_categoria.webp'
 import { SidebarContext } from "../context/SidebarContext"
+import { ProductList } from "../components/ProductList"
+import { Link } from "react-router-dom"
 export const Catalog = () => {
   const { categories = [], brands = [] } = useContext(FiltersContext)
   const { setIsCatalogOpen } = useContext(SidebarContext)
   const { products } = useContext(ProductContext)
   const productList = Array.isArray(products?.data) ? products?.data : [];
-  console.log(products)
+
+
+
+
   const brandsWithLogo = brands?.data?.filter(brand => brand?.attributes?.logo?.data !== null) || []
   const categoriesArray = categories?.data?.filter(category => category?.attributes?.imagen?.data !== null) || []
   const brandsArray = brands?.data?.filter(brand => brand?.attributes?.logo?.data !== null) || []
+  // Array of array of products by category
+  const productsByCategory =
+    categoriesArray?.map(category => {
+      let products = productList?.filter(product =>
+        product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === category?.attributes?.nombre)
+      products = products?.slice(0, 4)
+      console.log(products)
+      return products
+    }
+    ) || []
 
+  console.log(productsByCategory)
   const [openFilter, setOpenFilter] = useState(true);
   const responsive = {
     superLargeDesktop: {
@@ -52,7 +68,7 @@ export const Catalog = () => {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
-  console.log(brands)
+  console.log(categoriesArray)
   return (
     <section className="">
       <div className="flex justify-center">
@@ -83,7 +99,7 @@ export const Catalog = () => {
             <div className="flex  container p-1">
 
 
-              <CatalogList categoriesArray={categoriesArray} brands={brandsArray} sidebarMode={false} />
+              <CatalogList categoriesArray={categoriesArray} brands={brands?.data} sidebarMode={false} />
 
               <div className=" md:w-[79%] container mx-auto   p-2">
 
@@ -97,6 +113,7 @@ export const Catalog = () => {
                       infinite
                       arrows={true}
                       draggable={false}
+                      itemClass="px-2"
                       customRightArrow={<CustomRightArrow />
                       }
                       customLeftArrow={
@@ -106,7 +123,20 @@ export const Catalog = () => {
                       {
                         brandsWithLogo?.map((brand, index) => (
                           <div key={index} className='flex justify-center max-w-sm  cursor-pointer  shadow-[0 10px 10px rgba(255,0,0,.7)] shadow-red-500 '>
-                            <img className='brand-box  ' src={brand?.attributes?.logo?.data?.attributes?.url} alt={brand?.attributes?.nombre} />
+                            <Link to={
+                              {
+                                pathname: "../catalogo/" + brand?.attributes?.nombre,
+                                state: {
+                                  brand: brand?.attributes?.nombre
+                                }
+                              }
+                            }
+                            >
+
+                              <img className='brand-box rounded-lg  ' src={brand?.attributes?.logo?.data?.attributes?.url} alt={brand?.attributes?.nombre} />
+
+                            </Link>
+
                           </div>
                         ))
                       }
@@ -117,35 +147,135 @@ export const Catalog = () => {
                   <div className='text-center  '>
                     <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Categorías populares</h2>
                   </div>
-                  <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 lg:grid-cols-3  w-full h-[500px]  gap-4">
-                    <div className="flex justify-center relative items-center  md:row-span-3 row-span-2 hover:scale-[105%] transition-transform duration-300 ">
-                      <img src={guitarrasCategoria} alt="guitarras" className="h-full w-full aspect-[9/16] object-cover " />
-                      <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex ">
+                  <div className="grid grid-cols-2 grid-rows-3 md:grid-cols-2 lg:grid-cols-3  w-full h-[500px]  gap-4  p-1">
 
-                        <span className="text-red-500 titulo text-3xl ">Guitarras</span>
+
+                    <div className="flex justify-center relative items-center  md:row-span-3 row-span-2 hover:scale-[105%] transition-transform duration-300 cursor-pointer ">
+
+                      <div className=" w-full h-full">
+                        <Link to={
+                          {
+                            pathname: "../categoria/Guitarras",
+                            state: {
+                              category: "guitarras"
+                            }
+                          }
+                        }>
+
+                          <img src={guitarrasCategoria} alt="guitarras" className="h-full w-full aspect-[9/16] object-cover  rounded-lg " />
+
+                          <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex rounded-br-lg rounded-bl-lg ">
+
+                            <span className="text-red-500 titulo text-3xl ">Guitarras</span>
+                          </div>
+                        </Link>
+                      </div>
+
+
+                    </div>
+
+
+                    <div className="flex justify-center cursor-pointer  relative items-center md:row-start-2 md:col-start-2 md:col-span-2 md:row-span-2 row-start-1 col-start-2 row-span-2 hover:scale-[105%] transition-transform duration-300">
+                      <div className="w-full h-full">
+                        <Link to={
+                          {
+                            pathname: "../categoria/Teclados y Pianos",
+                            state: {
+                              category: "teclados y pianos"
+                            }
+                          }
+                        }>
+
+                          <img src={tecladosPianosCategoria} alt="teclados y pianos" className="w-full h-full md:aspect-video aspect-[9/16] object-cover rounded-lg" />
+                          <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex rounded-br-lg rounded-bl-lg ">
+
+                            <span className="text-red-500 titulo text-3xl ">Pianos y teclados</span>
+                          </div>
+                        </Link>
                       </div>
                     </div>
-                    <div className="flex justify-center  relative items-center bg-blue-200 md:row-start-2 md:col-start-2 md:col-span-2 md:row-span-2 row-start-1 col-start-2 row-span-2 hover:scale-[105%] transition-transform duration-300">
-                      <img src={tecladosPianosCategoria} alt="teclados y pianos" className="w-full h-full md:aspect-video aspect-[9/16] object-cover" />
-                      <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex ">
 
-                        <span className="text-red-500 titulo text-3xl ">Pianos y teclados</span>
-                      </div>
-                    </div>
-                    <div className="flex justify-center relative items-center bg-blue-200 col-span-2 hover:scale-[105%] transition-transform duration-300" >
-                      <img src={percusionCategoria} alt="percusion" className="w-full h-full aspect-square object-cover" />
-                      <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex ">
 
-                        <span className="text-red-500 titulo text-3xl ">Percusión</span>
+
+                    <div className="flex cursor-pointer justify-center relative items-center col-span-2 hover:scale-[105%] transition-transform duration-300" >
+                      <div className="w-full h-full">
+                        <Link to={  
+                          {
+                            pathname: "../categoria/Percusión",
+                            state: {
+                              category: "percusión"
+                            }
+                          }
+                        }>
+                        <img src={percusionCategoria} alt="percusion" className="w-full h-full aspect-square object-cover rounded-lg" />
+                        <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex rounded-br-lg rounded-bl-lg ">
+
+                          <span className="text-red-500 titulo text-3xl ">Percusión</span>
+                        </div>
+                        </Link>
                       </div>
+
                     </div>
+
                   </div>
 
 
                 </div>
                 <div>
-                  <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Productos Populares</h2>
+                  <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Nuestros Productos</h2>
                   {/* skeleton gridView */}
+                  {/* show Product by h2 category */}
+                  {
+                    categoriesArray?.map((category, index) =>
+
+
+                    (
+                      <div key={index} className="flex justify-center flex-col p-2 gap-4 ">
+                        <h2 className='mb-6 text-3xl border-l-4 border-red-500 px-2  ' >{category?.attributes?.nombre}</h2>
+                        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+
+                          {
+
+
+                            // let products = [];
+                            // return products;
+                            productList?.length === 0 || productList === undefined ?
+
+                              (
+
+                                (Array(8).fill(0).map((item, index) =>
+                                (
+                                  <Skeleton key={index} variant="rectangular" width={210} height={118} />
+                                )))
+                              )
+                              :
+
+                              (
+                                // console.log("hay productos")
+
+                                productList?.map((product) => (
+                                  product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === category?.attributes?.nombre ?
+                                    (
+                                      <Product key={product?.id} product={product} />
+                                    ) : (
+                                      <></>
+                                    )
+                                )
+
+                                )
+
+                              )
+
+
+                          }
+                        </div>
+                      </div>
+                    )
+
+                    )
+
+                  }
+                  {/* 
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {
                       productList?.length === 0 || productList === undefined ? Array(8).fill(0).map((item, index) => (
@@ -154,7 +284,7 @@ export const Catalog = () => {
                         <Product key={product?.id} product={product} />
                       ))
                     }
-                  </div>
+                  </div> */}
                   {/* <GridView products={productList} /> */}
 
                 </div>
