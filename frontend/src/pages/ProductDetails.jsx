@@ -121,13 +121,9 @@ export const ProductDetails = () => {
 
   useEffect(() => {
     const metaTag = 
-      document.createElement('meta');
-      metaTag.setAttribute("property", "og:image");
-      metaTag.content = portada?.data?.attributes?.url;
-      document.getElementsByTagName("head")[0].appendChild(metaTag);
-      return () => {
-        document.getElementsByTagName("head")[0].removeChild(metaTag);
-      }
+    document.querySelector('meta[property="og:image"]');
+    metaTag.setAttribute('content', portada?.data?.attributes?.url);
+    
   } , [portada?.data?.attributes?.url]);
   return (
     <>
