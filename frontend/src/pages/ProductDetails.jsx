@@ -17,7 +17,7 @@ import { ProductCarousel } from '../components/ProductCarousel';
 import Heart from '../components/Icons/Heart';
 import { SingleProduct } from '../components/SingleProduct';
 // reset window scroll position to top on page load
-
+import { Helmet } from 'react-helmet';
 
 
 
