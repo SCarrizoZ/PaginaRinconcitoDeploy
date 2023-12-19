@@ -58,7 +58,7 @@ export function WishlistItem({ item, category, showDeleteButton }) {
           {/*Product description */}
 
           {/** Cantidad */}
-          <div className=' flex gap-x-2 h-[36px] text-sm justify-between bg-red-200'>
+          <div className=' flex gap-x-2 h-[36px] text-sm justify-between '>
             {/** Incrementar-Decrementar valor */}
 
             <div className='flex flex-col justify-around items-center  text-[1rem] font-extrabold gap-1'>
@@ -88,7 +88,7 @@ export function WishlistItem({ item, category, showDeleteButton }) {
             <p className='text-sm text-gray-500'>{`${(item?.attributes?.descripcion).substring(0, 150)}`}...</p>
           </div>
           {/* categoriy and subcategory */}
-          <div className='flex gap-x-2 text-sm text-gray-500 bg-blue-300'>
+          <div className='flex gap-x-2 text-sm text-gray-500 '>
             <p className='bg-[#16F705] bg-opacity-[50%] border-opacity-[10%]  flex items-center justify-center font-medium rounded-md order-1'>
               <span className='p-1'>
                 {
