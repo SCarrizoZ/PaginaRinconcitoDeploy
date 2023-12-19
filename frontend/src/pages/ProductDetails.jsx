@@ -119,12 +119,7 @@ export const ProductDetails = () => {
 
   // console.log(relatedProducts);
 
-  useEffect(() => {
-    const metaTag = 
-    document.querySelector('meta[property="og:image"]');
-    metaTag.setAttribute('content', portada?.data?.attributes?.url);
-    
-  } , [portada?.data?.attributes?.url]);
+
   return (
     <>
       <div className='flex justify-center'>
@@ -193,6 +188,34 @@ export const ProductDetails = () => {
 
 
       </div>
+      <Helmet>
+  
+        <title>{nombre}</title>
+        <meta name="description" content={descripcion} />
+        <meta name="keywords" content={nombre} />
+        <meta name="author" content="Rinconcito de la Guitarra" />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
+        <meta property="og:title" content={nombre} />
+        <meta property="og:description" content={descripcion} />
+        <meta property="og:image" content={portada?.data?.attributes?.url} />
+        <meta property='og:url' content={`https://rinconcito-pruebas.onrender.com/product/${id}`} />
+        <meta property="og:site_name" content="Rinconcito de la Guitarra" />
+        <meta property="og:locale" content="es_ES" />
+        <meta property="og:type" content="website" />
+        <meta property="og:updated_time" content="1440432930" />
+        <meta property="fb:app_id" content="966242223397117" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@rinconcitodelaguitarra" />
+        <meta name="twitter:creator" content="@rinconcitodelaguitarra" />
+        <meta name="twitter:title" content={nombre} />
+        <meta name="twitter:description" content={descripcion} />
+        <meta name="twitter:image" content={portada?.data?.attributes?.url} />
+        <meta name="twitter:image:alt" content={nombre} />
+
+        
+
+      </Helmet>
     </>
 
   );
