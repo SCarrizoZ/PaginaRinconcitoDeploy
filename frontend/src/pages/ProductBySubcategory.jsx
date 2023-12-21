@@ -98,7 +98,7 @@ export const ProductBySubcategory = () => {
             </header>
             <div className=''>
               <div className="cont  p-2">
-                {brandList.includes("Unknown Brand") || brandList.includes(undefined) ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
+                {brandList?.includes("Unknown Brand") || brandList?.includes(undefined) ? "" : <FilterComponent subset={brandList} filterName={"Marcas"} content={{ "name": "Marcas", "addElement": addBrand, "removeElement": removeBrand, "selectedElements": selectedBrands }} />}
 
 
                 <div className="price border-b-2 py-3">
