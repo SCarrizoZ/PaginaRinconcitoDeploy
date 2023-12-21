@@ -128,24 +128,24 @@ export const ProductDetails = () => {
   //     }
   // } , [portada?.data?.attributes?.url]);
   function obtenerObjetosPorLinea(texto) {
-    const lineas = texto.split('\n'); // Dividir el texto en líneas
+    const lineas = texto?.split('\n'); // Dividir el texto en líneas
 
     const objetosPorLinea = lineas.map((linea) => {
-      const palabras = linea.trim().split(' ');
+      const palabras = linea?.trim()?.split(' ');
 
-      const especificacionIndex = palabras.findIndex((palabra) => palabra.startsWith('-'));
+      const especificacionIndex = palabras.findIndex((palabra) => palabra?.startsWith('-'));
 
       if (especificacionIndex !== -1) {
-        let especificacion = palabras[especificacionIndex].slice(1);
+        let especificacion = palabras[especificacionIndex]?.slice(1);
         let contenido = '';
 
-        const dosPuntosIndex = palabras.findIndex((palabra, index) => index > especificacionIndex && palabra.includes(':'));
+        const dosPuntosIndex = palabras?.findIndex((palabra, index) => index > especificacionIndex && palabra?.includes(':'));
 
         if (dosPuntosIndex !== -1) {
-          especificacion = palabras.slice(especificacionIndex, dosPuntosIndex + 1).join(' ').replace('-', '');
-          contenido = palabras.slice(dosPuntosIndex + 1).join(' ').replace('-', '');
+          especificacion = palabras?.slice(especificacionIndex, dosPuntosIndex + 1).join(' ').replace('-', '');
+          contenido = palabras?.slice(dosPuntosIndex + 1).join(' ').replace('-', '');
         } else {
-          contenido = palabras.slice(especificacionIndex + 1).join(' ').replace('-', '');
+          contenido = palabras?.slice(especificacionIndex + 1).join(' ').replace('-', '');
         }
 
         return {
@@ -155,7 +155,7 @@ export const ProductDetails = () => {
       }
 
       return null;
-    }).filter(Boolean);
+    })?.filter(Boolean);
 
     return objetosPorLinea;
   }
