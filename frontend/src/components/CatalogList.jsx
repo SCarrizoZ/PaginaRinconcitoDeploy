@@ -33,7 +33,7 @@ export const CatalogList = ({ categoriesArray = [], brands = [], sidebarMode }) 
                     <Skeleton variant="rectangular" width={210} height={24} />
                   </div>
                 )) : categoriesArray?.map((category) => (
-                  <div className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-gray-200" key={category?.attributes?.nombre}>
+                  <div className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-pink-100" key={category?.attributes?.nombre}>
                     {/* can i delete catalog from url? */}
                     <Link onClick={() => { setIsCatalogOpen(false) }} to={`../categoria/${category?.attributes?.nombre}`} >
                       {category?.attributes?.nombre}
@@ -66,7 +66,7 @@ export const CatalogList = ({ categoriesArray = [], brands = [], sidebarMode }) 
                     <Skeleton variant="rectangular" width={210} height={24} />
                   </div>
                 )) : brands?.map((brand, index) => (
-                  <div key={index} className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-gray-200" >
+                  <div key={index} className="capitalize px-[0.25rem] py-[0.5rem] hover:text-red-500 hover:bg-pink-100" >
                     <Link to={`/catalogo/${brand?.attributes?.nombre}`}>
                     
                       {brand?.attributes?.nombre}

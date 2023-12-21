@@ -25,6 +25,7 @@ import { CatalogSidebar } from "./components/Sidebar/CatalogSidebar";
 import { Category } from "./pages/Category";
 import { ProductBySubcategory } from "./pages/ProductBySubcategory";
 import { ProductByBrand } from "./pages/ProductByBrand";
+import { SearchResults } from "./pages/SearchResults";
 
 const THEME = createTheme({
   palette: {
@@ -73,6 +74,9 @@ export default function App() {
 
             <Route path="/catalogo" element={<Catalog />} />
             <Route path="/catalogo/:nombre" element={<ProductByBrand/>} />
+
+            <Route path="/resultados" element={<SearchResults/>} />
+
             <Route path="/carrito" element={<Cart />} />
             <Route path="/acerca" element={<About />} />
             <Route path="/contacto" element={<Contact />} />

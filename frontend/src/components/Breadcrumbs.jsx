@@ -54,10 +54,10 @@ export const Breadcrumbs = () => {
       )
   } else {
     fcrumbs = crumbs.filter((crumb) => crumb !== "")
-      .map((crumb) => {
+      .map((crumb,index) => {
         currentLink += `/${crumb}`
         return (
-          <div className='crumb' key={crumb}>
+          <div className='crumb' key={index}>
             <Link className='capitalize' to={currentLink}>{decodeURIComponent(crumb)}</Link>
           </div>
         )
@@ -94,19 +94,22 @@ export const Breadcrumbs = () => {
           }
         </div>
       </div>
-      <div className={` sm:hidden  mx-[0.5rem] flex items-center`}>
+      <div className={` sm:hidden  mx-[0.5rem] flex items-center text-red-600 `}>
         {/* arrow icon */}
-        <svg className="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="15 18 9 12 15 6"></polyline>
-        </svg>
-        {
-          getSecondToLast(fcrumbs) || (<div className='crumb' key={"home"}>
-            <Link to="/">
-              Inicio
-            </Link>
-          </div>)
+        <span className='hover:opacity-[0.5] flex items-center'>
+          <svg className="w-4 h-4 inline-block" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
 
-        }
+          {
+            getSecondToLast(fcrumbs) || (<div className='crumb hover:opacity-[0.5] transition-all duration-300' key={"home"}>
+              <Link to="/">
+                Inicio
+              </Link>
+            </div>)
+
+          }
+        </span>
       </div>
 
     </section>

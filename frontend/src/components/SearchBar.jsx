@@ -23,13 +23,24 @@ export const SearchBar = ({ setResults, setIsSelect, isSelect }) => {
   }
   const handleKeyDown = (e) => {
     if (selectedItem < searchData?.length) {
+      console.log(selectedItem)
       if (e.key === "ArrowUp" && selectedItem > 0) {
         setSelectedItem(prev => prev - 1)
       } else if (e.key === "ArrowDown" && selectedItem < searchData?.length - 1) {
         setSelectedItem(prev => prev + 1)
       } else if (e.key === "Enter" && selectedItem > -1) {
+        // when enter is pressed the page reloads. I dont wnat that. How to fix?
+        
         window.location.href = `/producto/${searchData[selectedItem].id}`
       }
+      // else if  there is text or not and the user presses enter 
+      else if (e.key === "Enter" && selectedItem === -1) {
+        // i wanto to make a query . use ?q= to make a query
+        e.preventDefault()
+        window.location.href = `/resultados?q=${encodeURIComponent(input)}`;
+        // window.location.href = `/search/${input}`
+      }
+      
     } else {
       setSelectedItem(-1)
     }

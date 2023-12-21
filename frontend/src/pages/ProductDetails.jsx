@@ -82,7 +82,7 @@ export const ProductDetails = () => {
   }
 
   const { attributes } = product;
-  const { nombre, precio, descripcion, portada } = attributes;
+  const { nombre, precio, descripcion, portada,especificaciones } = attributes;
 
   // filter products by category
   // const relatedProducts = productsArray.filter((item) => {
@@ -129,13 +129,91 @@ export const ProductDetails = () => {
   //       document.getElementsByTagName("head")[0].removeChild(metaTag);
   //     }
   // } , [portada?.data?.attributes?.url]);
+  function obtenerObjetosPorLinea(texto) {
+    const lineas = texto.split('\n'); // Dividir el texto en líneas
+  
+    const objetosPorLinea = lineas.map((linea) => {
+      const palabras = linea.trim().split(' ');
+  
+      const especificacionIndex = palabras.findIndex((palabra) => palabra.startsWith('-'));
+  
+      if (especificacionIndex !== -1) {
+        let especificacion = palabras[especificacionIndex].slice(1);
+        let contenido = '';
+  
+        const dosPuntosIndex = palabras.findIndex((palabra, index) => index > especificacionIndex && palabra.includes(':'));
+  
+        if (dosPuntosIndex !== -1) {
+          especificacion = palabras.slice(especificacionIndex, dosPuntosIndex + 1).join(' ').replace('-', '');
+          contenido = palabras.slice(dosPuntosIndex + 1).join(' ').replace('-', '');
+        } else {
+          contenido = palabras.slice(especificacionIndex + 1).join(' ').replace('-', '');
+        }
+  
+        return {
+          especificacion,
+          contenido,
+        };
+      }
+  
+      return null;
+    }).filter(Boolean);
+  
+    return objetosPorLinea;
+  }
+  
+  const objetos = obtenerObjetosPorLinea(especificaciones);
+  console.log(objetos)
+  console.log(product)
   return (
     <>
       <div className='flex justify-center'>
         <div className='container '>
           <SingleProduct product={product} precio={precio} />
+          <div className='bg-slate-200'>
+            {/* Genera una tabla para una lista de especificaciones */}
+            <div className=' mx-2 p-2'>
+              <div className='flex flex-col justify-center'>
+                <div className='text-center text-2xl  mb-10 '>
+                  <h2 className='titulo mb-6 text-left ' style={{
+                    fontSize: 39
+                  }}> <span className='text-red-500 border-b-4 border-red-500'>
+                    {
+                      product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === "Vinilos y CD's" ? "Lista de canciones" : "Especificaciones"
+                    }
+                  </span>
+                  </h2>
+
+                </div>
+                {/* specifications list */}
+                <div className='flex flex-col md:flex-row justify-center w-full '>
+                  <div className='flex flex-col w-full'>
+                    <div className='flex flex-col '>
+                      {
+                        objetos?.map((item, index) => (
+                          <div key={index} className='flex flex-row justify-between  p-1 border-b-2 border-black border-opacity-5'>
+                            <div className=' w-[29%]'>
+                              <p className='font-medium text-xl'>{item.especificacion}</p>
+                            </div>
+                            {/* <p> random text */}
+                            <div className=' w-[69%] text-right sm:text-left'>
+                              <p >{item.contenido}  </p>
+                            </div>
+                          </div>
+                        ))
+                      }
+                     
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
           <div className=' mb-10  '>
-            {/* Create a product card: must be contain an imagen at the top. Use <Card> component */}
+     
             <div className='flex flex-col py-10'>
 
               <div className='text-center text-2xl  mb-10'>
@@ -151,6 +229,7 @@ export const ProductDetails = () => {
               <ProductCarousel products={relatedProducts} />
             </div>
           </div>
+
           {/* <div>
             <Carousel responsive={responsive} infinite arrows draggable={false} >
               {
@@ -198,7 +277,7 @@ export const ProductDetails = () => {
 
       </div>
       <Helmet>
-  
+
         <title>{nombre}</title>
         <meta name="description" content={descripcion} />
         <meta name="keywords" content={nombre} />
@@ -222,7 +301,7 @@ export const ProductDetails = () => {
         <meta name="twitter:image" content={portada?.data?.attributes?.url} />
         <meta name="twitter:image:alt" content={nombre} />
 
-        
+
 
       </Helmet>
     </>

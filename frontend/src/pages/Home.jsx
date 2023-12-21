@@ -64,9 +64,54 @@ export function Home() {
       slidesToSlide: 1 // optional, default to 1.
     }
   };
+  const getFeaturedProducts = () => {
+    // get products ordered by "veces_comprado" and "descuento"
+    let productosOrdenados = [...productsArray]
+    productosOrdenados = productsArray.sort((a, b) => {
+      const aVendidos = parseInt(a?.attributes?.veces_vendido)
+      const bVendidos = parseInt(b?.attributes?.veces_vendido)
+      const aDescuento = parseInt(a?.attributes?.descuento)
+      const bDescuento = parseInt(b?.attributes?.descuento)
+      // console.log(aVendidos, bVendidos)
+      // console.log(aDescuento, bDescuento)
+      if(aVendidos !== bVendidos){
+        return bVendidos - aVendidos
+      }else{
+        return aDescuento - bDescuento
+      }
+
+      
+      // if (a?.attributes?.veces_comprado !== b?.attributes?.veces_comprado) {
+      //   // Ordenar por veces_comprado de mayor a menor
+      //   return parseInt(b?.attributes?.veces_comprado) - parseInt(a?.attributes?.veces_comprado);
+      // } else {
+      //   // Si veces_comprado es igual, ordenar por descuento_react de menor a mayor
+      //   return parseInt(a?.attributes?.descuento) - parseInt(b?.attributes?.descuento);
+      // }
+    }
+    )
+
+    return productosOrdenados.slice(0, 5)
+
+  }
+  const getNewProducts = () => {
+    //get products by "createdAt attribute -> this is the format "2023-12-18T02:02:33.596Z"
+    let productosOrdenados = [...productsArray]
+    productosOrdenados =productosOrdenados.sort((a, b) => {
+      const aDate = new Date(a?.attributes?.publishedAt)
+      const bDate = new Date(b?.attributes?.publishedAt)
+      return bDate - aDate
+    }
+    )
+
+    return productosOrdenados.slice(0, 5)
+
+  }
+  console.log(getNewProducts())
+  console.log(getFeaturedProducts())
   return (
     <>
-      
+
       <div className='qweW'>
         <div className='  ' >
           {/* CAROUSEL */}
@@ -95,7 +140,7 @@ export function Home() {
                 focusOnSelect={false}
                 // i want dots that fills with red color when active
                 infinite
-                
+
                 keyBoardControl
                 minimumTouchDrag={100}
                 pauseOnHover
@@ -205,10 +250,22 @@ export function Home() {
                     <CustomLeftArrow />}
                 >
                   {
-                    productsArray?.map(product => (
-                      <Product key={product?.id} product={product} gap={10} />
-                    )).slice(0, 5)
+                    getFeaturedProducts().map(product => {
+                      return (
+                        <Product key={product?.id} product={product} gap={10} />
+                      )
+                    }
+                    )
+
+                    // productsArray?.map(product => {
+                    //   // console.log(product)
+                    //   return (
+                    //     <Product key={product?.id} product={product} gap={10} />
+                    //   )
+                    // }
+                    // ).slice(0, 5)
                   }
+
                 </Carousel>
               </div>
             </div>
@@ -238,9 +295,15 @@ export function Home() {
                 }
               >
                 {
-                  productsArray?.map(product => (
-                    <Product key={product?.id} product={product} gap={10} />
-                  )).slice(5, 10)
+                  getNewProducts().map(product => {
+                    return (
+                      <Product key={product?.id} product={product} gap={10} />
+                    )
+                  }
+                  )
+                  // productsArray?.map(product => (
+                  //   <Product key={product?.id} product={product} gap={10} />
+                  // )).slice(5, 10)
                 }
               </Carousel>
             </div>
@@ -385,7 +448,7 @@ export function Home() {
         </section>
 
       </div>
-      
+
     </>
   );
 }

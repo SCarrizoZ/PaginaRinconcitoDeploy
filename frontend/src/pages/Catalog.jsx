@@ -231,7 +231,7 @@ export const Catalog = () => {
 
                     (
                       <div key={index} className="flex justify-center flex-col p-2 gap-4 ">
-                        <h2 className='mb-6 text-3xl border-l-4 border-red-500 px-2  ' >{category?.attributes?.nombre}</h2>
+                        <h2  className='mb-6 text-3xl border-l-4 border-red-500 px-2  ' >{category?.attributes?.nombre}</h2>
                         <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
                           {
@@ -253,10 +253,10 @@ export const Catalog = () => {
                               (
                                 // console.log("hay productos")
 
-                                productList?.map((product) => (
+                                productList?.map((product,index) => (
                                   product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === category?.attributes?.nombre ?
                                     (
-                                      <Product key={product?.id} product={product} />
+                                      <Product key={index} product={product} />
                                     ) : (
                                       <></>
                                     )

@@ -199,7 +199,7 @@ export function Header() {
                                   const nombre = subcategoria?.attributes?.nombre;
                                   return (
                                     <li onClick={handleMegaMenu} className='text-black text-sm hover:underline' key={index}>
-                                      <Link onClick={scrollToTop} to={`/categoria/${attributes?.nombre}`} className="block text-white ">
+                                      <Link onClick={scrollToTop} to={`/categoria/${attributes?.nombre}/${nombre}`} className="block text-white ">
                                         {(nombre)}
                                       </Link>
                                     </li>
