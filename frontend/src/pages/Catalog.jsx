@@ -50,22 +50,22 @@ export const Catalog = () => {
     desktop: {
       breakpoint: { max: 1024, min: 769 },
       items: 4,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 1
     },
     tablet: {
       breakpoint: { max: 768, min: 641 },
       items: 3,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 1
     },
     mobile: {
       breakpoint: { max: 640, min: 401 },
       items: 2,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 1
     },
     smobile: {
       breakpoint: { max: 400, min: 0 },
       items: 1,
-      slidesToSlide: 1 // optional, default to 1.
+      slidesToSlide: 1
     }
   };
   console.log(categoriesArray)
@@ -103,7 +103,7 @@ export const Catalog = () => {
 
               <div className=" md:w-[79%] container mx-auto   p-2">
 
-                <div className='flex flex-col py-10 '>
+                {/* <div className='flex flex-col py-10 '>
                   <div className='text-center  '>
                     <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Las mejores marcas</h2>
                   </div>
@@ -142,7 +142,7 @@ export const Catalog = () => {
                       }
                     </Carousel>
                   </div>
-                </div>
+                </div> */}
                 <div className=" flex justify-center flex-col p-2">
                   <div className='text-center  '>
                     <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }} >Categorías populares</h2>
@@ -199,7 +199,7 @@ export const Catalog = () => {
 
                     <div className="flex cursor-pointer justify-center relative items-center col-span-2 hover:scale-[105%] transition-transform duration-300" >
                       <div className="w-full h-full">
-                        <Link to={  
+                        <Link to={
                           {
                             pathname: "../categoria/Percusión",
                             state: {
@@ -207,11 +207,11 @@ export const Catalog = () => {
                             }
                           }
                         }>
-                        <img src={percusionCategoria} alt="percusion" className="w-full h-full aspect-square object-cover rounded-lg" />
-                        <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex rounded-br-lg rounded-bl-lg ">
+                          <img src={percusionCategoria} alt="percusion" className="w-full h-full aspect-square object-cover rounded-lg" />
+                          <div className="absolute  bg-pink-300 p-2  bottom-0 w-full justify-center flex rounded-br-lg rounded-bl-lg ">
 
-                          <span className="text-red-500 titulo text-3xl ">Percusión</span>
-                        </div>
+                            <span className="text-red-500 titulo text-3xl ">Percusión</span>
+                          </div>
                         </Link>
                       </div>
 
@@ -231,7 +231,7 @@ export const Catalog = () => {
 
                     (
                       <div key={index} className="flex justify-center flex-col p-2 gap-4 ">
-                        <h2  className='mb-6 text-3xl border-l-4 border-red-500 px-2  ' >{category?.attributes?.nombre}</h2>
+                        <h2 className='mb-6 text-3xl border-l-4 border-red-500 px-2  ' >{category?.attributes?.nombre}</h2>
                         <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
                           {
@@ -253,7 +253,7 @@ export const Catalog = () => {
                               (
                                 // console.log("hay productos")
 
-                                productList?.map((product,index) => (
+                                productList?.map((product, index) => (
                                   product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === category?.attributes?.nombre ?
                                     (
                                       <Product key={index} product={product} />

@@ -9,7 +9,6 @@ import { FiltersContext } from '../context/FiltersContext'
 import fcar from '../img/fcar.webp';
 import scar from '../img/scar.webp';
 import tcar from '../img/tcar.webp';
-import focar from '../img/focar.webp';
 import { CustomRightArrow } from '../components/Arrows/CustomRightArrow';
 import { CustomLeftArrow } from '../components/Arrows/CustomLeftArrow';
 import { Breadcrumbs } from '../components/Breadcrumbs';
@@ -29,7 +28,6 @@ export function Home() {
   const { products } = useContext(ProductContext);
   const carImages = [
     fcar,
-    focar,
     tcar,
   ]
   // Filtra solo los datos de productos (la propiedad "data" en la respuesta)
@@ -74,13 +72,13 @@ export function Home() {
       const bDescuento = parseInt(b?.attributes?.descuento)
       // console.log(aVendidos, bVendidos)
       // console.log(aDescuento, bDescuento)
-      if(aVendidos !== bVendidos){
+      if (aVendidos !== bVendidos) {
         return bVendidos - aVendidos
-      }else{
+      } else {
         return aDescuento - bDescuento
       }
 
-      
+
       // if (a?.attributes?.veces_comprado !== b?.attributes?.veces_comprado) {
       //   // Ordenar por veces_comprado de mayor a menor
       //   return parseInt(b?.attributes?.veces_comprado) - parseInt(a?.attributes?.veces_comprado);
@@ -97,7 +95,7 @@ export function Home() {
   const getNewProducts = () => {
     //get products by "createdAt attribute -> this is the format "2023-12-18T02:02:33.596Z"
     let productosOrdenados = [...productsArray]
-    productosOrdenados =productosOrdenados.sort((a, b) => {
+    productosOrdenados = productosOrdenados.sort((a, b) => {
       const aDate = new Date(a?.attributes?.publishedAt)
       const bDate = new Date(b?.attributes?.publishedAt)
       return bDate - aDate
@@ -324,11 +322,11 @@ export function Home() {
 
 
         </div> */}
-        <div className='flex'>
-          {/* GRID WITH BRANDSLOGOWARRAY */}
-          {/* I want that some elements take more space than others. Example: Element 1 take four cells  */}
+        {/* <div className='flex'> */}
+        {/* GRID WITH BRANDSLOGOWARRAY */}
+        {/* I want that some elements take more space than others. Example: Element 1 take four cells  */}
 
-          {/* <section className='container mx-auto py-20'>
+        {/* <section className='container mx-auto py-20'>
             <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Categorías Populares</h2>
             <div className='grid grid-cols-1 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4'>
               {
@@ -354,44 +352,43 @@ export function Home() {
               }
             </div>
           </section> */}
-        </div>
+        {/* </div> */}
         {/* MARCAS */}
-        <section className="brands" style={{}}>
+        {/* <section className="brands" style={{}}>
           <div className="container mx-auto py-20">
             <h2 className='titulo mb-6 text-center' style={{ fontSize: 39, color: "#F80606" }}>Nuestras Marcas</h2>
             <div className="">
-              {/* {productsArray?.slice(0, 5).map(product => (
+              {productsArray?.slice(0, 5).map(product => (
                   <Product key={product?.id} product={product} />
-                )).slice(0, 5)} */}
+                )).slice(0, 5)}
 
               <Carousel
                 responsive={
                   {
                     superLargeDesktop: {
-                      // the naming can be any, depends on you.
                       breakpoint: { max: 4000, min: 1025 },
                       items: 5,
-                      slidesToSlide: 1 // optional, default to 1.
+                      slidesToSlide: 1 
                     },
                     desktop: {
                       breakpoint: { max: 1024, min: 769 },
                       items: 5,
-                      slidesToSlide: 1 // optional, default to 1.
+                      slidesToSlide: 1 
                     },
                     tablet: {
                       breakpoint: { max: 768, min: 641 },
                       items: 4,
-                      slidesToSlide: 1 // optional, default to 1.
+                      slidesToSlide: 1 
                     },
                     mobile: {
                       breakpoint: { max: 640, min: 401 },
                       items: 2,
-                      slidesToSlide: 1 // optional, default to 1.
+                      slidesToSlide: 1 
                     },
                     smobile: {
                       breakpoint: { max: 400, min: 0 },
                       items: 1,
-                      slidesToSlide: 1 // optional, default to 1.
+                      slidesToSlide: 1 
                     }
                   }
                 }
@@ -415,25 +412,25 @@ export function Home() {
                     return (
                       <div key={brand?.id} className='bg-[#e5e7eb] justify-center flex items-center'>
                         <img
-                          // select image from public/images folder
+                          select image from public/images folder
                           className="rounded-lg"
-                          // " sm:aspect-[unset] sm:object-fill rounded-lg"
+                          " sm:aspect-[unset] sm:object-fill rounded-lg"
 
                           src={brand?.attributes?.logo?.data?.attributes?.url}
-                          // srcSet={
-                          //   `
+                          srcSet={
+                            `
 
-                          //   ${brand?.attributes?.logo?.data?.attributes?.url} 1920w,
-                          //   `
+                            ${brand?.attributes?.logo?.data?.attributes?.url} 1920w,
+                            `
 
-                          // }
+                          }
                           style={{
                             display: 'block',
-                            // aspectRatio: '16/9',
-                            // objectFit: 'cover',
-                            // height: '100vh',
+                            aspectRatio: '16/9',
+                            objectFit: 'cover',
+                            height: '100vh',
 
-                            // width: '100vh',
+                            width: '100vh',
                           }}
 
                         />
@@ -445,7 +442,7 @@ export function Home() {
               </Carousel>
             </div>
           </div>
-        </section>
+        </section> */}
 
       </div>
 
