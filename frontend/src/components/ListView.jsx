@@ -11,7 +11,7 @@ export const ListView = ({ products }) => {
       {
         products?.map((product) => {
           const {
-            id = product.id,
+            id = product?.id,
             name = product?.attributes?.nombre,
             image = product?.attributes?.portada?.data?.attributes?.url,
             price = product?.attributes?.precio,
@@ -41,7 +41,7 @@ export const ListView = ({ products }) => {
 
                   <button disabled={!(stock > 0)} className={`transition-all duration-300   ${stock > 0 ? "bg-[#D40404] hover:bg-[#F80606]  text-white" : "bg-white text-black opacity-[0.6] cursor-not-allowed"} py-2 px-8  font-semibold border border-black flex justify-center  rounded-[16px] w-full sm:mx-0`}
                     onClick={() => {
-                      addToCart(({ ...product, price }), id);
+                      addToCart(({ ...product, precio: price }), id);
                     }}>
                     {
                       stock > 0 ? "Agregar al carrito" : "Agotado"
