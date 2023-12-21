@@ -17,8 +17,6 @@ import { ProductCarousel } from '../components/ProductCarousel';
 import Heart from '../components/Icons/Heart';
 import { SingleProduct } from '../components/SingleProduct';
 // reset window scroll position to top on page load
-import { Helmet } from 'react-helmet';
-
 
 
 
@@ -82,7 +80,7 @@ export const ProductDetails = () => {
   }
 
   const { attributes } = product;
-  const { nombre, precio, descripcion, portada,especificaciones } = attributes;
+  const { nombre, precio, descripcion, portada, especificaciones } = attributes;
 
   // filter products by category
   // const relatedProducts = productsArray.filter((item) => {
@@ -131,37 +129,37 @@ export const ProductDetails = () => {
   // } , [portada?.data?.attributes?.url]);
   function obtenerObjetosPorLinea(texto) {
     const lineas = texto.split('\n'); // Dividir el texto en líneas
-  
+
     const objetosPorLinea = lineas.map((linea) => {
       const palabras = linea.trim().split(' ');
-  
+
       const especificacionIndex = palabras.findIndex((palabra) => palabra.startsWith('-'));
-  
+
       if (especificacionIndex !== -1) {
         let especificacion = palabras[especificacionIndex].slice(1);
         let contenido = '';
-  
+
         const dosPuntosIndex = palabras.findIndex((palabra, index) => index > especificacionIndex && palabra.includes(':'));
-  
+
         if (dosPuntosIndex !== -1) {
           especificacion = palabras.slice(especificacionIndex, dosPuntosIndex + 1).join(' ').replace('-', '');
           contenido = palabras.slice(dosPuntosIndex + 1).join(' ').replace('-', '');
         } else {
           contenido = palabras.slice(especificacionIndex + 1).join(' ').replace('-', '');
         }
-  
+
         return {
           especificacion,
           contenido,
         };
       }
-  
+
       return null;
     }).filter(Boolean);
-  
+
     return objetosPorLinea;
   }
-  
+
   const objetos = obtenerObjetosPorLinea(especificaciones);
   console.log(objetos)
   console.log(product)
@@ -178,10 +176,10 @@ export const ProductDetails = () => {
                   <h2 className='titulo mb-6 text-left ' style={{
                     fontSize: 39
                   }}> <span className='text-red-500 border-b-4 border-red-500'>
-                    {
-                      product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === "Vinilos y CD's" ? "Lista de canciones" : "Especificaciones"
-                    }
-                  </span>
+                      {
+                        product?.attributes?.subcategoria?.data?.attributes?.categoria?.data?.attributes?.nombre === "Vinilos y CD's" ? "Lista de canciones" : "Especificaciones"
+                      }
+                    </span>
                   </h2>
 
                 </div>
@@ -202,7 +200,7 @@ export const ProductDetails = () => {
                           </div>
                         ))
                       }
-                     
+
 
                     </div>
                   </div>
@@ -213,7 +211,7 @@ export const ProductDetails = () => {
 
           </div>
           <div className=' mb-10  '>
-     
+
             <div className='flex flex-col py-10'>
 
               <div className='text-center text-2xl  mb-10'>
@@ -276,34 +274,32 @@ export const ProductDetails = () => {
 
 
       </div>
-      <Helmet>
 
-        <title>{nombre}</title>
-        <meta name="description" content={descripcion} />
-        <meta name="keywords" content={nombre} />
-        <meta name="author" content="Rinconcito de la Guitarra" />
-        <meta name="robots" content="index, follow" />
-        <meta name="googlebot" content="index, follow" />
-        <meta property="og:title" content={nombre} />
-        <meta property="og:description" content={descripcion} />
-        <meta property="og:image" content={portada?.data?.attributes?.url} />
-        <meta property='og:url' content={`https://rinconcito-pruebas.onrender.com/product/${id}`} />
-        <meta property="og:site_name" content="Rinconcito de la Guitarra" />
-        <meta property="og:locale" content="es_ES" />
-        <meta property="og:type" content="website" />
-        <meta property="og:updated_time" content="1440432930" />
-        <meta property="fb:app_id" content="966242223397117" />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@rinconcitodelaguitarra" />
-        <meta name="twitter:creator" content="@rinconcitodelaguitarra" />
-        <meta name="twitter:title" content={nombre} />
-        <meta name="twitter:description" content={descripcion} />
-        <meta name="twitter:image" content={portada?.data?.attributes?.url} />
-        <meta name="twitter:image:alt" content={nombre} />
-
+      <title>{nombre}</title>
+      <meta name="description" content={descripcion} />
+      <meta name="keywords" content={nombre} />
+      <meta name="author" content="Rinconcito de la Guitarra" />
+      <meta name="robots" content="index, follow" />
+      <meta name="googlebot" content="index, follow" />
+      <meta property="og:title" content={nombre} />
+      <meta property="og:description" content={descripcion} />
+      <meta property="og:image" content={portada?.data?.attributes?.url} />
+      <meta property='og:url' content={`https://rinconcito-pruebas.onrender.com/product/${id}`} />
+      <meta property="og:site_name" content="Rinconcito de la Guitarra" />
+      <meta property="og:locale" content="es_ES" />
+      <meta property="og:type" content="website" />
+      <meta property="og:updated_time" content="1440432930" />
+      <meta property="fb:app_id" content="966242223397117" />
+      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:site" content="@rinconcitodelaguitarra" />
+      <meta name="twitter:creator" content="@rinconcitodelaguitarra" />
+      <meta name="twitter:title" content={nombre} />
+      <meta name="twitter:description" content={descripcion} />
+      <meta name="twitter:image" content={portada?.data?.attributes?.url} />
+      <meta name="twitter:image:alt" content={nombre} />
 
 
-      </Helmet>
+
     </>
 
   );
