@@ -13,7 +13,7 @@ export const Breadcrumbs = () => {
   const location = useLocation()
   let currentLink = ""
   let crumbs = location.pathname.split('/').filter((crumb) => crumb !== "")
-  crumbs = crumbs.map((crumb) => {
+  crumbs = crumbs?.map((crumb) => {
 
     return decodeURIComponent(crumb)
 
@@ -32,13 +32,13 @@ export const Breadcrumbs = () => {
     ]
 
     crumbs = crumbs.slice(0, 3)
-    crumbs.push(getSingular(category))
+    crumbs?.push(getSingular(category))
   }
 
-  let fcrumbs = crumbs.filter((crumb) => crumb !== "")
-  if (crumbs.includes("producto")) {
-    fcrumbs = crumbs.filter((crumb) => crumb !== "")
-      .map((crumb, index) => {
+  let fcrumbs = crumbs?.filter((crumb) => crumb !== "")
+  if (crumbs?.includes("producto")) {
+    fcrumbs = crumbs?.filter((crumb) => crumb !== "")
+      ?.map((crumb, index) => {
         currentLink += `/${crumb}`
         crumb = decodeURIComponent(crumb)
         return (
@@ -53,8 +53,8 @@ export const Breadcrumbs = () => {
       }
       )
   } else {
-    fcrumbs = crumbs.filter((crumb) => crumb !== "")
-      .map((crumb,index) => {
+    fcrumbs = crumbs?.filter((crumb) => crumb !== "")
+      ?.map((crumb, index) => {
         currentLink += `/${crumb}`
         return (
           <div className='crumb' key={index}>
