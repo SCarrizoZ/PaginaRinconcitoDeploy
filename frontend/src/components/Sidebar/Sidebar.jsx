@@ -42,7 +42,7 @@ export function Sidebar() {
           <RiArrowRightLine className='text-2xl' />
         </div>
       </div>
-      <div className='flex flex-col h-[300px] md:h-[400px] lg:h-[300px] xl:h-[500px] overflow-y-auto overflow-x-hidden border-b bg-pink-200 '>
+      <div className='flex flex-col h-[300px] md:h-[400px] lg:h-[300px] xl:h-[500px] overflow-y-auto overflow-x-hidden border-b  '>
         {cart.map((item) => {
           return <CartItem key={item.id} item={item}></CartItem>;
         })}
